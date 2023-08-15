@@ -1,0 +1,205 @@
+:root {
+	--bg-dark: #1f2937;
+	--bg-quote: #e5e7eb;
+	--cta-blue: #3882f6;
+	--light: #f9faf8;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body {
+	background-color: var(--light);
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+/******************************************
+/* GLOBALS
+/*******************************************/
+
+main,
+header {
+	background-color: var(--bg-dark);
+}
+
+main,
+button,
+header {
+	color: var(--light);
+}
+
+button {
+	background-color: var(--cta-blue);
+	border-radius: 5px;
+	border: none;
+	padding: 6px 24px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.quote {
+	background-color: var(--bg-quote);
+}
+
+/******************************************
+/* HEADER
+/*******************************************/
+
+/* font color defined in globals */
+
+header {
+	display: flex;
+	justify-content: center;
+}
+
+header > nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 40px;
+	width: 900px;
+}
+
+header > nav > ul {
+	display: flex;
+}
+
+header > nav > ul > li {
+	padding: 10px;
+	color: var(--bg-quote);
+}
+
+/******************************************
+/* MAIN
+/*******************************************/
+
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 450px;
+}
+
+main > .heroText,
+main > .heroImage {
+	width: 450px;
+}
+
+main > .heroText > p {
+	max-width: 400px;
+	font-size: 18px;
+	color: var(--bg-quote);
+}
+
+main > .heroText > p {
+	max-width: 400px;
+	padding: 14px 0;
+}
+
+main > .heroImage {
+	display: flex;
+	justify-content: center;
+}
+
+main img {
+	height: 300px;
+}
+
+/******************************************
+/* INFO
+/*******************************************/
+
+.info {
+	display: flex;
+	height: 400px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.info > .portraits {
+	display: flex;
+	padding: 40px 0;
+	max-width: 900px;
+}
+
+.info img,
+.info p {
+	width: 225px;
+	padding: 0 10px;
+}
+
+/* .info p {
+	margin: 0 20px;
+} */
+
+/******************************************
+/* QUOTE
+/*******************************************/
+
+.quote {
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.quoteContainer {
+	display: flex;
+	flex-direction: column;
+	max-width: 800px;
+}
+
+.quote > .quoteContainer > p {
+	font-size: 36px;
+	font-style: italic;
+	color: #595e64;
+}
+
+.quote > .quoteContainer > span {
+	align-self: flex-end;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+/******************************************
+/* FOOTER
+/*******************************************/
+
+footer {
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+footer > .callToAction {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 100px;
+	width: 900px;
+	border-radius: 6px;
+	background-color: var(--cta-blue);
+}
+
+footer > .callToAction > .ctaText {
+	display: flex;
+	flex-direction: column;
+	color: var(--light);
+}
+
+footer > .callToAction > .ctaText > h4 {
+	line-height: 1.4;
+}
+
+footer > .callToAction > button {
+	border: 1px solid white;
+	height: 40px;
+}
