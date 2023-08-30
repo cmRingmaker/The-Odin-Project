@@ -1,32 +1,85 @@
+const buttons = document.querySelectorAll('button')
+const scoreForPlayer = document.querySelector('.scoreForPlayer')
+const scoreForComputer = document.querySelector('.scoreForComputer')
+const versus = document.querySelector('.versus')
+const result = document.querySelector('.result')
+
+// fill player and computer with every button click
+let player = ''
+let computer = ''
+let pScore = 0
+let cScore = 0
+
 function getComputerChoice() {
   const choice = ['Rock', 'Paper', 'Scissors']
   return choice[Math.floor(Math.random() * 3)]
 }
 
-function playRound(computer, player) {
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    // clear selected button every time a new button is clicked
+    buttons.forEach((btn) => {
+      btn.classList.remove('selected')
+    })
+
+    e.target.classList.add('selected')
+    player = e.target.id
+    computer = getComputerChoice()
+    game()
+  })
+})
+
+function playRound() {
   if(computer === 'Rock' && player === 'Paper' ||
      computer === 'Paper' && player === 'Scissors' ||
      computer === 'Scissors' && player === 'Rock') {
-      return `You win! ${player} beats ${computer}.`
+      pScore += 1
+      result.style.display = 'none'
+
+      winCondition()
+
      } else if (computer === player) {
-      return 'Draw!'
+      // Draw conditions
+      result.style.display = 'block'
+      if(result.style.display === 'block') {
+        result.innerText += '!'
+      }
      } else {
-       return `You lose! ${computer} beats ${player}.`
+      cScore += 1
+      result.style.display = 'none'
+
+      winCondition()
      }
 }
 
-function game() {
-  for(let i = 0; i < 5; i++) {
-    let player = prompt('Please type R, P, or S to choose between Rock, Paper, or Scissors').toLowerCase()
-    let choice = ''
-  
-    switch (player) {
-      case 'r': choice = 'Rock';     break;
-      case 'p': choice = 'Paper';    break;
-      case 's': choice = 'Scissors'; break;
-      default: return 'Please choose between Rock, Paper, or Scissors'
-    }
 
-    console.log(playRound(getComputerChoice(), choice))
+function winCondition() {
+  if(pScore === 5) {
+    result.style.display = 'block'
+    result.innerText = `YOU WIN!`
+    versus.style.display = 'none'
+  } else if(cScore === 5) {
+    result.style.display = 'block'
+    result.innerText = 'COMPUTER WINS!'
+    result.style.color = 'red'
+    versus.style.display = 'none'
+  }
+}
+
+function game() {  
+  playRound()
+  scoreForPlayer.innerText = pScore
+  scoreForComputer.innerText = cScore
+
+  if(pScore === 5 || cScore === 5){
+    document.querySelector('.btns').style.display = 'none'
+    const rematch = document.createElement('button')
+    rematch.classList.add('replay')
+    rematch.innerText = 'PLAY AGAIN'
+    document.querySelector('#container').appendChild(rematch)
+
+    rematch.addEventListener('click', () => {
+      location.reload()
+    })
   }
 }

@@ -1,0 +1,80 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  font-size: 62.5%;
+}
+
+body {
+  background-color: rgb(49, 49, 71);
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  min-height: 100vh;
+}
+
+.score {
+  height: 200px;
+  width: 100%;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.versus {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  color: #ff8400;
+  font-size: 5rem;
+}
+
+.computer, .scoreForComputer {
+  color: #2f9472;
+}
+
+.result {
+  display: none;
+  margin-top: 10px;
+  align-self: center;
+  color: lightcoral;
+  font-size: 6rem;
+}
+
+button {
+  margin: 0 3px;
+  width: 100px;
+  height: 180px;
+  border: 0;
+  border-radius: 3px;
+}
+
+.replay {
+  width: 400px;
+  font-size: 3rem;
+  margin: 0;
+}
+
+/* Make SVG unclickable! */
+svg {
+  pointer-events: none;
+  width: 32px;
+  height: 32px;
+  stroke: #000000;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.selected {
+  background-color: orange;
+}
