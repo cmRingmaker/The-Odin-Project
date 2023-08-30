@@ -11,6 +11,8 @@ Projects
 
 [Landing Page Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/landing-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/landing-page/)
 
+[Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/rock-paper-scissors) | [Demo](https://cmringmaker.github.io/The-Odin-Project/rock-paper-scissors/)
+
 HTML Foundations: [Odin Recipes Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/odin-recipes) | [Demo](https://cmringmaker.github.io/The-Odin-Project/odin-recipes/)
 ---
 * Tags and headers are needed to tell search engines how much importance different elements of your page have.
@@ -22,3 +24,9 @@ Flexbox: [Landing Page Code](https://github.com/cmRingmaker/The-Odin-Project/tre
 * display: flex is for the container of your items, while flex items are the children inside the container.
 * Flexbox operates with a main axis and cross axis, which change the flow of items depending on the direction you set.
 * Flexbox makes worrying about floats practically nonexistant!
+
+JavaScript: [Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/rock-paper-scissors) | [Demo](https://cmringmaker.github.io/The-Odin-Project/rock-paper-scissors/)
+---
+* With JS, the DOM is easily manipulated with using querySelectors to target specific HTML elements, as well as using event listeners to change the elements.
+* Arrays and Objects are powerful ways to store data that can be called later!
+* When debugging JS in a browser, following the stack trace is a great way to get to root of the problem.
