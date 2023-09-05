@@ -1,9 +1,12 @@
 buttons = document.querySelectorAll('.pixel')
-
 const grid = document.querySelector('.grid')
 
-createGrid(16, 16)
+createGrid(16, 16) //default grid size
 let gridSize = 16
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
@@ -36,10 +39,17 @@ function createGrid(rows, cols) {
 
   for(let i = 0; i < cells; i++) {
     let div = document.createElement('div')
+    div.addEventListener('mouseover', fillCell)
+    div.addEventListener('mousedown', fillCell)
     grid.appendChild(div).className = 'grid-item'
   }
 }
 
 function clear() {
   grid.innerHTML = ''  
+}
+
+function fillCell(e) {
+  if(e.type === 'mouseover' && !mouseDown) return
+  e.target.style.backgroundColor = 'red'
 }
