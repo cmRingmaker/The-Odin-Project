@@ -1,5 +1,16 @@
 buttons = document.querySelectorAll('.pixel')
 const grid = document.querySelector('.grid')
+const color = document.querySelector('#colorPicker')
+const eraser = document.querySelector('.erase')
+
+// chosenColor is updated in localStorage, default is black
+let chosenColor = '#000000'
+
+color.addEventListener('input', (e) => {
+  chosenColor = color.value
+  // Save color in local storage to persist choices through loads
+  localStorage.setItem('color', chosenColor)
+})
 
 createGrid(16, 16) //default grid size
 let gridSize = 16
@@ -18,7 +29,6 @@ buttons.forEach((button) => {
       gridSize = 100
     }
 
-    console.log(gridSize)
     clear()
     gridSelect()
   })
@@ -46,10 +56,16 @@ function createGrid(rows, cols) {
 }
 
 function clear() {
-  grid.innerHTML = ''  
+  grid.innerHTML = ''
 }
+
+document.querySelector('.clear').addEventListener('click', (e) => {
+  clear()
+  gridSelect()
+})
 
 function fillCell(e) {
   if(e.type === 'mouseover' && !mouseDown) return
-  e.target.style.backgroundColor = 'red'
+  // Get color from local storage
+  e.target.style.backgroundColor = localStorage.getItem('color')
 }
