@@ -3,13 +3,14 @@ const grid = document.querySelector('.grid')
 const color = document.querySelector('#colorPicker')
 const eraser = document.querySelector('.erase')
 
-// chosenColor is updated in localStorage, default is black
+// chosenColor is updated in sessionStorage, default is black
 let chosenColor = '#000000'
+sessionStorage.setItem('color', chosenColor)
 
 color.addEventListener('input', (e) => {
   chosenColor = color.value
-  // Save color in local storage to persist choices through loads
-  localStorage.setItem('color', chosenColor)
+  // Save color in session storage to persist choices through loads
+  sessionStorage.setItem('color', chosenColor)
 })
 
 createGrid(16, 16) //default grid size
@@ -66,6 +67,6 @@ document.querySelector('.clear').addEventListener('click', (e) => {
 
 function fillCell(e) {
   if(e.type === 'mouseover' && !mouseDown) return
-  // Get color from local storage
-  e.target.style.backgroundColor = localStorage.getItem('color')
+  // Get color from session storage
+  e.target.style.backgroundColor = sessionStorage.getItem('color')
 }
