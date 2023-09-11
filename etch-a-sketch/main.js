@@ -4,7 +4,7 @@ const color = document.querySelector('#colorPicker')
 const eraser = document.querySelector('.erase')
 
 // chosenColor is updated in sessionStorage, default is black
-let chosenColor = '#000000'
+let chosenColor = color.value
 sessionStorage.setItem('color', chosenColor)
 
 color.addEventListener('input', (e) => {
