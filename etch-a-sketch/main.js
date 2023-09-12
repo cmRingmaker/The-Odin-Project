@@ -70,3 +70,11 @@ function fillCell(e) {
   // Get color from session storage
   e.target.style.backgroundColor = sessionStorage.getItem('color')
 }
+
+function modeSelect(mode) {
+  // rainbow mode
+
+  // color mode
+  
+  // eraser mode
+}
