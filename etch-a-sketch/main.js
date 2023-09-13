@@ -87,7 +87,6 @@ function fillRainbow(e) {
 
 function fillColor(e) {
   if(e.type === 'mouseover' && !mouseDown) return
-  // Get color from session storage
   e.target.style.backgroundColor = sessionStorage.getItem('color')
 }
 
