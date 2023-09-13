@@ -1,3 +1,8 @@
+:root {
+	--grid-rows: 16;
+	--grid-cols: 16;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -16,10 +21,82 @@ body {
 	background-color: gray;
 }
 
-/******************************************
-/* LAYOUT
-/*******************************************/
+#container {
+	background-color: rgb(70, 70, 70);
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+button, input {
+	cursor: pointer;
+}
 
 /******************************************
-/* ADDITIONAL STYLES
+/* MENU
 /*******************************************/
+
+.menu {
+	background-color: rgb(187, 187, 187);
+	height: 960px;
+	width: 200px;
+	font-size: 5rem;
+}
+
+.rainbow {
+	font-size: 2.5rem;
+	color: white;
+	border: 2px solid black;
+	background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%);
+}
+
+.rainbow:active {
+	height: 50px;
+}
+
+.color {
+	width: 180px;
+	height: 180px;
+	border: 2px solid black;
+	margin: 10px 0 20px 10px
+}
+
+.modeChoice {
+	display: block;
+	font-size: 2.4rem;
+	text-align: center;
+	user-select: none;
+}
+
+#colorPicker {
+	width: 100%;
+	height: 100%;
+}
+
+button {
+	width: 100%;
+}
+
+
+/******************************************
+/* PIXEL GRID
+/*******************************************/
+
+.grid {
+	width: 960px;
+	height: 960px;
+	background-color: gray;
+	display: grid;
+	grid-template-rows: repeat(var(--grid-rows), 1fr);
+	grid-template-columns: repeat(var(--grid-cols), 1fr);
+	cursor: crosshair;
+}
+
+.grid-item {
+	background-color: rgb(199, 199, 199);
+	border-right: 1px solid rgb(179, 179, 179);
+	border-top: 1px solid rgb(179, 179, 179);
+	transition: all 0.1s ease;
+}
