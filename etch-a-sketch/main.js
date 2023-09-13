@@ -32,6 +32,11 @@ color.addEventListener('click', (e) => {
   modeChoiceText.innerText = 'Color Mode!'
 })
 
+eraser.addEventListener('click', (e) => {
+  currentMode = 'eraserMode'
+  modeChoiceText.innerText = 'Eraser Mode!'
+})
+
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
     if(e.target.classList.contains('small')) {
@@ -86,10 +91,16 @@ function fillColor(e) {
   e.target.style.backgroundColor = sessionStorage.getItem('color')
 }
 
+function erase(e) {
+  if(e.type === 'mouseover' && !mouseDown) return
+  e.target.style.backgroundColor = 'rgb(199, 199, 199)'
+}
+
 function modeSelect(e) {
   switch(currentMode) {
     case 'rainbowMode': fillRainbow(e); break;
     case 'colorMode'  : fillColor(e);   break;
+    case 'eraserMode' : erase(e);       break;
   }
 }
 
