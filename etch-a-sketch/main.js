@@ -1,11 +1,24 @@
 buttons = document.querySelectorAll('.pixel')
 const grid = document.querySelector('.grid')
 const color = document.querySelector('#colorPicker')
+const rainbow = document.querySelector('.rainbow')
 const eraser = document.querySelector('.erase')
+const modeChoiceText = document.querySelector('.modeChoice')
 
-// chosenColor is updated in sessionStorage, default is black
-let chosenColor = color.value
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
+let chosenColor = color.value // updated in sessionStorage
+let currentMode = 'colorMode'
 sessionStorage.setItem('color', chosenColor)
+createGrid(16, 16) //default grid size
+let gridSize = 16
+
+rainbow.addEventListener('click', (e) => {
+  currentMode = 'rainbowMode'
+  modeChoiceText.innerText = 'Rainbow Mode!'
+})
 
 color.addEventListener('input', (e) => {
   chosenColor = color.value
@@ -13,12 +26,11 @@ color.addEventListener('input', (e) => {
   sessionStorage.setItem('color', chosenColor)
 })
 
-createGrid(16, 16) //default grid size
-let gridSize = 16
-
-let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
+// secondary event listener for mode selection
+color.addEventListener('click', (e) => {
+  currentMode = 'colorMode'
+  modeChoiceText.innerText = 'Color Mode!'
+})
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
@@ -50,8 +62,8 @@ function createGrid(rows, cols) {
 
   for(let i = 0; i < cells; i++) {
     let div = document.createElement('div')
-    div.addEventListener('mouseover', fillCell)
-    div.addEventListener('mousedown', fillCell)
+    div.addEventListener('mouseover', modeSelect)
+    div.addEventListener('mousedown', modeSelect)
     grid.appendChild(div).className = 'grid-item'
   }
 }
@@ -60,21 +72,29 @@ function clear() {
   grid.innerHTML = ''
 }
 
-document.querySelector('.clear').addEventListener('click', (e) => {
-  clear()
-  gridSelect()
-})
+function fillRainbow(e) {
+  let r = Math.floor(Math.random() * 255)
+  let g = Math.floor(Math.random() * 255)
+  let b = Math.floor(Math.random() * 255)
+  if(e.type === 'mouseover' && !mouseDown) return
+  e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
+}
 
-function fillCell(e) {
+function fillColor(e) {
   if(e.type === 'mouseover' && !mouseDown) return
   // Get color from session storage
   e.target.style.backgroundColor = sessionStorage.getItem('color')
 }
 
-function modeSelect(mode) {
-  // rainbow mode
-
-  // color mode
-  
-  // eraser mode
+function modeSelect(e) {
+  switch(currentMode) {
+    case 'rainbowMode': fillRainbow(e); break;
+    case 'colorMode'  : fillColor(e);   break;
+  }
 }
+
+// Reset everything!
+document.querySelector('.clear').addEventListener('click', (e) => {
+  clear()
+  gridSelect()
+})
