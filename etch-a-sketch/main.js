@@ -4,10 +4,13 @@ const color = document.querySelector('#colorPicker')
 const rainbow = document.querySelector('.rainbow')
 const eraser = document.querySelector('.erase')
 const modeChoiceText = document.querySelector('.modeChoice')
+const gridRangeText = document.querySelector('.gridSize')
+const gridRange = document.querySelector('#gridRange')
 
 let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
+grid.onmousedown = () => (mouseDown = true)
+grid.onmouseup = () => (mouseDown = false)
+grid.addEventListener('mouseleave', (e) => {mouseDown = false})
 
 let chosenColor = color.value // updated in sessionStorage
 let currentMode = 'colorMode'
@@ -20,7 +23,7 @@ rainbow.addEventListener('click', (e) => {
   modeChoiceText.innerText = 'Rainbow Mode!'
 })
 
-color.addEventListener('input', (e) => {
+color.addEventListener('change', (e) => {
   chosenColor = color.value
   // Save color in session storage to persist choices through loads
   sessionStorage.setItem('color', chosenColor)
@@ -32,6 +35,15 @@ color.addEventListener('click', (e) => {
   modeChoiceText.innerText = 'Color Mode!'
 })
 
+gridRange.addEventListener('input', (e) => {
+  gridRangeText.innerText = `${gridRange.value} x ${gridRange.value}`
+})
+
+gridRange.addEventListener('change', (e) => {
+  clear()
+  createGrid(gridRange.value, gridRange.value)
+})
+
 eraser.addEventListener('click', (e) => {
   currentMode = 'eraserMode'
   modeChoiceText.innerText = 'Eraser Mode!'
@@ -41,16 +53,20 @@ buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
     if(e.target.classList.contains('small')) {
       gridSize = 16
+      gridRange.value = 16
     }else if(e.target.classList.contains('medium')) {
       gridSize = 64
+      gridRange.value = 64
     }else if(e.target.classList.contains('large')) {
       gridSize = 100
+      gridRange.value = 100
     }
 
     clear()
     gridSelect()
   })
 })
+
 
 function gridSelect() {
   switch(gridSize) {
@@ -61,6 +77,9 @@ function gridSelect() {
 }
 
 function createGrid(rows, cols) {
+  rows = gridRange.value
+  cols = gridRange.value
+  gridRangeText.innerText = `${rows} x ${cols}`
   grid.style.setProperty('--grid-rows', rows)
   grid.style.setProperty('--grid-cols', cols)
   let cells = rows * cols

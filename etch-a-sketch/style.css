@@ -39,10 +39,14 @@ button, input {
 /*******************************************/
 
 .menu {
+	padding-top: 20px;
 	background-color: rgb(187, 187, 187);
 	height: 960px;
 	width: 200px;
 	font-size: 5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .rainbow {
@@ -53,7 +57,7 @@ button, input {
 }
 
 .rainbow:active {
-	height: 50px;
+	text-shadow: 2px 2px 0 black;
 }
 
 .color {
@@ -63,20 +67,29 @@ button, input {
 	margin: 10px 0 20px 10px
 }
 
-.modeChoice {
+#colorPicker {
+	width: 100%;
+	height: 100%;
+}
+
+.modeChoice, .gridSize {
 	display: block;
 	font-size: 2.4rem;
 	text-align: center;
 	user-select: none;
 }
 
-#colorPicker {
-	width: 100%;
-	height: 100%;
+.gridSize {
+	padding-bottom: 20px;
 }
 
 button {
 	width: 100%;
+}
+
+button:last-of-type {
+	margin-top: auto;
+	margin-bottom: 40px;
 }
 
 
