@@ -39,6 +39,7 @@ gridRange.addEventListener('input', (e) => {
   gridRangeText.innerText = `${gridRange.value} x ${gridRange.value}`
 })
 
+// keep change event as to not spam create grids!
 gridRange.addEventListener('change', (e) => {
   clear()
   createGrid(gridRange.value, gridRange.value)
