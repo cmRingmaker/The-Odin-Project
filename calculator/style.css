@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	font-size: 62.5%;
+	vertical-align: baseline;
+}
+
+#container {
+	background-color: rgb(212, 173, 136);
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+#calculator {
+	width: 500px;
+	height: 700px;
+	background-color: rgb(70, 185, 185);
+	box-shadow: -4px 4px 8px black;
+	border-radius: 8px;
+}
