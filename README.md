@@ -13,6 +13,8 @@ Projects
 
 [Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/rock-paper-scissors) | [Demo](https://cmringmaker.github.io/The-Odin-Project/rock-paper-scissors/)
 
+[Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/etch-a-sketch) | [Demo](https://cmringmaker.github.io/The-Odin-Project/etch-a-sketch/)
+
 HTML Foundations: [Odin Recipes Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/odin-recipes) | [Demo](https://cmringmaker.github.io/The-Odin-Project/odin-recipes/)
 ---
 * Tags and headers are needed to tell search engines how much importance different elements of your page have.
@@ -30,3 +32,9 @@ JavaScript: [Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-P
 * With JS, the DOM is easily manipulated with using querySelectors to target specific HTML elements, as well as using event listeners to change the elements.
 * Arrays and Objects are powerful ways to store data that can be called later!
 * When debugging JS in a browser, following the stack trace is a great way to get to root of the problem.
+
+JavaScript: [Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/etch-a-sketch) | [Demo](https://cmringmaker.github.io/The-Odin-Project/etch-a-sketch/)
+---
+* The DOM can support a surprising amount of divs being generated!
+* Calling functions inside of event listeners allows for more DRY code.
+* Session Storage is a powerful way to keep certain elements persisting through reloads.
