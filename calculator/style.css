@@ -60,12 +60,12 @@ span {
 	color: white;
 }
 
-#previousInput {
+#upperDisplay {
 	font-size: 2.2rem;
 	color: rgb(39, 39, 39);
 }
 
-#currentInput {
+#lowerDisplay {
 	text-shadow: -2px 2px 6px black;
 }
 
