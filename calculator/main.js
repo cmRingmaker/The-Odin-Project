@@ -21,6 +21,7 @@ operatorButtons.forEach((button) =>
 
 equalsButton.addEventListener('click', ()=> equals())
 clearButton.addEventListener('click', ()=> clearAll())
+deleteButton.addEventListener('click', ()=> deleteOne())
 
 function setCurrentInput(number) {
   if(lowerDisplay.textContent === '0') {
@@ -56,7 +57,14 @@ function operate(num1, num2, op) {
 }
 
 function clearAll() {
-  lowerDisplay.textContent = ''
+  lowerDisplay.textContent = '0'
   upperDisplay.textContent = ''
   currentOperation = null
+}
+
+function deleteOne() {
+  lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1)
+  if(lowerDisplay.textContent.length === 0){
+    lowerDisplay.textContent = '0'
+  }
 }
