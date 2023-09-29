@@ -102,11 +102,11 @@ button:hover {
 	background-color: rgb(206, 124, 124);
 }
 
-[data-operator], #decimalBtn {
+[data-operator] {
 	background-color: rgb(147, 147, 202);
 }
 
-[data-operator]:hover, #decimalBtn:hover {
+[data-operator]:hover {
 	background-color: rgb(115, 115, 158);
 }
 

@@ -1,6 +1,5 @@
 const clearButton = document.getElementById('clearBtn')
 const deleteButton = document.getElementById('deleteBtn')
-const decimalButton = document.getElementById('decimalBtn')
 const equalsButton = document.getElementById('equalsBtn')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operatorButtons = document.querySelectorAll('[data-operator]')
@@ -19,18 +18,19 @@ operatorButtons.forEach((button) =>
   button.addEventListener('click', ()=> setCurrentOperation(button.textContent) )
 )
 
-equalsButton.addEventListener('click', ()=> equals())
-clearButton.addEventListener('click', ()=> clearAll())
-deleteButton.addEventListener('click', ()=> deleteOne())
+equalsButton.addEventListener('click', ()=> {equals(), changeDisplayFontSize()})
+clearButton.addEventListener('click', ()=> {clearAll(), changeDisplayFontSize()})
+deleteButton.addEventListener('click', ()=> {deleteOne(), changeDisplayFontSize()})
 
 function setCurrentInput(number) {
-  if(lowerDisplay.textContent === '0') {
-    lowerDisplay.textContent = ''
-}
+  // don't allow multiple decimals!
+  if(number === '.' && lowerDisplay.textContent.includes('.')) return
+  if(lowerDisplay.textContent === '0') lowerDisplay.textContent = ''
   lowerDisplay.textContent += number
 }
 
 function setCurrentOperation(operator) {
+  if(lowerDisplay.textContent === '') return
   currentOperation = operator
   firstOperand = lowerDisplay.textContent
   upperDisplay.textContent = `${lowerDisplay.textContent} ${operator}`
@@ -38,6 +38,7 @@ function setCurrentOperation(operator) {
 }
 
 function equals() {
+  if(upperDisplay.textContent.includes('=')) return
   upperDisplay.textContent = `${upperDisplay.textContent} ${lowerDisplay.textContent} =`
   secondOperand = lowerDisplay.textContent
   lowerDisplay.textContent = operate(firstOperand, secondOperand, currentOperation)
@@ -55,6 +56,8 @@ function operate(num1, num2, op) {
     case '^': return num1 ** num2;
     case '%': return num1 % num2;
   }
+
+  currentOperation = null
 }
 
 function clearAll() {
@@ -67,5 +70,13 @@ function deleteOne() {
   lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1)
   if(lowerDisplay.textContent.length === 0){
     lowerDisplay.textContent = '0'
+  }
+}
+
+function changeDisplayFontSize() {
+  if(lowerDisplay.textContent.length > 12) { 
+    lowerDisplay.style.fontSize = '4rem'
+  } else {
+    lowerDisplay.style.fontSize = '5rem'
   }
 }
