@@ -89,3 +89,31 @@ button {
 	font-size: 3rem;
 	box-shadow: -2px 2px 2px rgb(112, 112, 112);
 }
+
+button:hover {
+	outline: 1px solid black;
+}
+
+#clearBtn, #deleteBtn {
+	background-color: rgb(235, 140, 140);
+}
+
+#clearBtn:hover, #deleteBtn:hover {
+	background-color: rgb(206, 124, 124);
+}
+
+[data-operator], #decimalBtn {
+	background-color: rgb(147, 147, 202);
+}
+
+[data-operator]:hover, #decimalBtn:hover {
+	background-color: rgb(115, 115, 158);
+}
+
+#equalsBtn {
+	background-color: rgb(169, 226, 154);
+}
+
+#equalsBtn:hover {
+	background-color: rgb(146, 196, 133);
+}
