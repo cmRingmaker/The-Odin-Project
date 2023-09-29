@@ -53,6 +53,7 @@ function operate(num1, num2, op) {
     case 'x': return num1 * num2;
     case '÷': return num1 / num2;
     case '^': return num1 ** num2;
+    case '%': return num1 % num2;
   }
 }
 
