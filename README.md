@@ -38,3 +38,9 @@ JavaScript: [Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project
 * The DOM can support a surprising amount of divs being generated!
 * Calling functions inside of event listeners allows for more DRY code.
 * Session Storage is a powerful way to keep certain elements persisting through reloads.
+
+JavaScript: [Calculator Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/calculator) | [Demo](https://cmringmaker.github.io/The-Odin-Project/calculator/)
+---
+* Manipulating strings is easy!
+* Using custom data attributes is another way for HTML and JS to "talk" to each other, to change the DOM.
+* When using an ID with .getElementById, you do not need the # sign to choose it, you just simply call the ID name.
