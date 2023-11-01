@@ -4,8 +4,9 @@ This repository contains all of the assignments associated with [The Odin Projec
 
 Under each section that is completed, I will list notable things that I had learned while working through it.
 
-## Projects
+# Projects
 
+### FOUNDATIONS
 [Odin Recipes Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/odin-recipes) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/odin-recipes/)
 
 [Landing Page Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/landing-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/landing-page/)
@@ -15,6 +16,9 @@ Under each section that is completed, I will list notable things that I had lear
 [Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/etch-a-sketch) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/etch-a-sketch/)
 
 [Calculator Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/calculator) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/calculator/)
+
+### INTERMEDIATE
+[Sign-up Form]() | [Demo]()
 
 ## HTML Foundations: [Odin Recipes Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/odin-recipes) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/odin-recipes/)
 
