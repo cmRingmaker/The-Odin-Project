@@ -1,20 +1,14 @@
-/* Box Model Hack */
+:root {
+	font-size: 62.5%;
+}
+
 * {
-     box-sizing: border-box;
-}
-
-/* Clear fix hack */
-.clearfix:after {
-     content: ".";
-     display: block;
-     clear: both;
-     visibility: hidden;
-     line-height: 0;
-     height: 0;
-}
-
-.clear {
-	clear: both;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	vertical-align: baseline;
 }
 
 /******************************************
@@ -22,21 +16,72 @@
 /*******************************************/
 
 body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: black;
+	font-size: 2.5rem;
+}
 
+#container {
+	display: flex;
+	height: 1000px;
+}
+
+.logoarea {
+	background: blue;
+	width: 500px;
+}
+
+.infoarea {
+	background: #f9fafb;
+	width: 800px;
+	display: flex;
+	flex-direction: column;
+}
+
+h1, h2 {
+	font-size: 2.5rem;
+	padding: 20px 0;
+}
+
+h2 {
+	padding-top: 0;
 }
 
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-header {
 
+
+.intro {
+	height: 30%;
+	padding-top: 10%;
+	line-height: 1.3;
+	width: 90%;
+	align-self: center;
 }
 
-footer {
+form {
+	height: 40%;
+	background-color: white;
+}
 
+.formwrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.input_group {
+	flex: 1 1 50%
 }
 
 /******************************************
-/* ADDITIONAL STYLES
+/* FORM
 /*******************************************/
+
+input {
+	border: 1px solid grey;
+}
