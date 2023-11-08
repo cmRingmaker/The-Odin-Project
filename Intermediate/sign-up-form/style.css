@@ -20,18 +20,20 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: black;
+	background: #27272c;
 	font-size: 2.5rem;
 }
 
 #container {
 	display: flex;
 	height: 1000px;
+	box-shadow: -3px 5px 8px 1px #000000;
 }
 
 .logoarea {
 	background: blue;
 	width: 500px;
+	border-radius: 8px 0 0 8px;
 }
 
 .infoarea {
@@ -39,6 +41,7 @@ body {
 	width: 800px;
 	display: flex;
 	flex-direction: column;
+	border-radius: 0 8px 8px 0;
 }
 
 h1, h2 {
@@ -50,23 +53,31 @@ h2 {
 	padding-top: 0;
 }
 
+span {
+	display: block;
+}
+
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 
-
 .intro {
-	height: 30%;
-	padding-top: 10%;
+	height: 300px;
 	line-height: 1.3;
-	width: 90%;
+	width: calc(100% - 80px);
+	padding-top: 10%;
 	align-self: center;
 }
 
 form {
-	height: 40%;
+	height: 350px;
 	background-color: white;
+	border-top: 1px solid #f5f5f5;
+	box-shadow: 0px 5px 3px 0px #e2e3e4;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .formwrapper {
@@ -74,14 +85,32 @@ form {
 	flex-wrap: wrap;
 }
 
-.input_group {
-	flex: 1 1 50%
+.formwrapper > .input_group {
+	flex: 1 1 50%;
+	margin: 15px 0;
 }
 
 /******************************************
 /* FORM
 /*******************************************/
 
-input {
+.input_group > input {
 	border: 1px solid grey;
+	border-radius: 3px;
+	height: 30px;
+	width: 300px;
+	display: block;
+	padding-left: 10px; /* For the inside of the input! */
+	margin: 0 auto;
+}
+
+label {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	padding: 0 0 5px 50px;
+	display: block;
+}
+
+input[type=submit] {
+	width: 300px;
 }
