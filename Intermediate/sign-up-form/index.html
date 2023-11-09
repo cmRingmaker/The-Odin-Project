@@ -17,7 +17,7 @@
 <body>
 	<section id='container'>
 		<div class="logoarea">
-			<h1>ODIN</h1>
+			<h1>jelly</h1>
 			<img src="assets/diane-picchiottino-Fo4_-oKnxjE-unsplash.jpg" alt="">
 		</div>
 
@@ -32,26 +32,28 @@
 
 			<form action="" method='get' id='myform'>
 				<h1>Let's do this!</h1>
+				<span>Required fields are marked with &lowast;</span>
 				<div class="formwrapper">
 
 					<div class="input_group">
 						<label for="first_name">First name</label>
-						<input type="text" name="first_name" id="first_name" required>
+						<input type="text" name="first_name" id="first_name" placeholder='John' required>
 					</div>
 
 					<div class="input_group">
 						<label for="last_name">Last name</label>
-						<input type="text" name="last_name" id="last_name">
+						<input type="text" name="last_name" id="last_name" placeholder='Doe'>
 					</div>
 
 					<div class="input_group">
 						<label for="email">Email</label>
-						<input type="email" name="email" id="email" required>
+						<input type="email" name="email" id="email" placeholder='my@email.com' required>
 					</div>
 
 					<div class="input_group">
 						<label for="phone">Phone number</label>
-						<input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+						<input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+							placeholder='012-345-6789'>
 					</div>
 
 					<div class="input_group">
