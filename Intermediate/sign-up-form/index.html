@@ -32,45 +32,46 @@
 
 			<form action="" method='get' id='myform'>
 				<h1>Let's do this!</h1>
-				<span>Required fields are marked with &lowast;</span>
+				<span>Required fields are marked with a star: <b>&lowast;</b></span>
 				<div class="formwrapper">
 
 					<div class="input_group">
-						<label for="first_name">First name</label>
+						<label for="first_name">FIRST NAME &lowast;</label>
 						<input type="text" name="first_name" id="first_name" placeholder='John' required>
 					</div>
 
 					<div class="input_group">
-						<label for="last_name">Last name</label>
+						<label for="last_name">LAST NAME</label>
 						<input type="text" name="last_name" id="last_name" placeholder='Doe'>
 					</div>
 
 					<div class="input_group">
-						<label for="email">Email</label>
+						<label for="email">EMAIL &lowast;</label>
 						<input type="email" name="email" id="email" placeholder='my@email.com' required>
 					</div>
 
 					<div class="input_group">
-						<label for="phone">Phone number</label>
+						<label for="phone">PHONE NUMBER</label>
 						<input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 							placeholder='012-345-6789'>
 					</div>
 
 					<div class="input_group">
-						<label for="password">Password</label>
+						<label for="password">PASSWORD &lowast;</label>
 						<input type="password" name="password" id="password" required>
+						<div class="error"></div>
 					</div>
 
 					<div class="input_group">
-						<label for="confirm_password">Confirm password</label>
+						<label for="confirm_password">CONFIRM PASSWORD &lowast;</label>
 						<input type="password" name="confirm_password" id="confirm_password" required>
 					</div>
 				</div>
 			</form>
 
 			<div class="outro">
-				<input type="submit" value="Create Account" form='myform'>
-				<span>Already have an account? <a href="#">Log in</a></span>
+				<input type="submit" value="CREATE ACCOUNT" form='myform'>
+				<span>Already have an account? <a href="#"><strong>LOG IN</strong></a></span>
 			</div>
 
 		</div>

@@ -4,6 +4,7 @@
 	--main-background-color: rgb(38, 38, 43);
 	--form-background-color: rgb(32, 31, 36);
 	--color-primary: rgb(170, 120, 214);
+	--color-primary-dark: rgb(92, 42, 139);
 	--color-secondary: rgb(211, 105, 194);
 	--color-blue: rgb(0, 187, 204);
 }
@@ -12,6 +13,7 @@
 	margin: 0;
 	border: 0;
 	list-style: none;
+	outline: none;
 }
 
 /******************************************
@@ -117,6 +119,14 @@ img {
 /* FORM
 /*******************************************/
 
+form > span {
+	font-size: 1.4rem;
+}
+form b {
+	font-size: 2rem;
+	font-weight: 100;
+}
+
 .input_group > input {
 	border-radius: 3px;
 	height: 30px;
@@ -126,21 +136,53 @@ img {
 	margin: 0 auto;
 	background-color: black;
 	border: none;
-	color: white;
+	color: var(--color-blue);
+	font-size: 1.8rem;
 }
 
 .input_group > input:focus {
-	outline: none;
 	box-shadow: 0px 0px 0px 2px var(--color-secondary);
 }
 
 label {
 	font-size: 1.5rem;
-	text-transform: uppercase;
 	padding: 0 0 5px 50px;
 	display: block;
 }
 
+.outro {
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+}
+
 input[type=submit] {
-	width: 300px;
+	width: 250px;
+	height: 50px;
+	font-size: 2.3rem;
+	background: var(--color-primary);
+	color: var(--page-background-color);
+	text-shadow: 1px 2px 1px var(--color-secondary);
+	border-radius: 5px;
+	transition: 0.2s;
+	align-self: center;
+	margin: 30px 0;
+}
+
+input[type=submit]:hover, input[type=submit]:focus {
+	background: var(--color-primary-dark);
+	color: var(--color-blue);
+	text-shadow: 1px 2px 2px var(--page-background-color);
+	box-shadow: 0px 0px 0px 2px var(--color-secondary);
+}
+
+.outro > span {
+	align-self: flex-end;
+	margin: 110px 50px 0 0;
+	color: var(--color-secondary);
+}
+
+.outro > span a {
+	color: var(--color-blue);
+	text-decoration: underline dotted;
 }
