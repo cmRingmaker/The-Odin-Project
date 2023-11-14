@@ -15,7 +15,7 @@ confirmPw.addEventListener('keyup', () => {
   
   timeout = setTimeout(() => {
     validateConfirmation()
-  }, 500)
+  }, 400)
 })
 
 password.addEventListener('keyup', () => {
@@ -23,7 +23,7 @@ password.addEventListener('keyup', () => {
   
   timeout = setTimeout(() => {
     validatePassword()
-  }, 500)
+  }, 400)
 })
 
 form.addEventListener('submit', (e) => {
@@ -31,11 +31,9 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     errorChecker.innerText = 'Passwords do not match!'
   } else if (password.value === confirmPw.value) {
-    // since this is an example form with data not going anywhere... replacing the PW in the url because of the get method appending it as plain text
-    password.value = '######'
-    confirmPw.value = '######'
+    // Since this is a test, we are just simply resetting the form to not send any data anywhere
+    form.reset()
   }
-
 })
 
 function validatePassword() {
