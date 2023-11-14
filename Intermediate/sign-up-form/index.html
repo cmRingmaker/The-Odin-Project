@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Sign-up Form">
+	<meta name="keywords"
+		content="sign up form, the odin project, html css javascript, interactive, program">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Roboto:wght@100;300;500&display=swap"
+		rel="stylesheet">
+
+	<title>Sign-up!</title>
+
+	<!-- external CSS link -->
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<section id='container'>
+		<div class="logoarea">
+			<h1>jelly</h1>
+			<img src="assets/diane-picchiottino-Fo4_-oKnxjE-unsplash.jpg" alt="">
+			<span>Photo by <a
+					href="https://unsplash.com/photos/pink-and-white-jellyfish-in-water-Fo4_-oKnxjE">Diane
+					Picchiottino</a></span>
+		</div>
+
+		<div class="infoarea">
+			<div class="intro">
+				<p>This is not a real online service! You know you need something like this in your life to
+					help you realize your deepest dreams.
+				</p>
+				<h2>Sign up <i>now</i> to get started.</h2>
+				<span>You <i>know</i> you want to.</span>
+			</div>
+
+			<!-- Since this is only an example form, default method is GET - see the form event listener on line 29 of the JS where the PW is replaced -->
+			<form action='' id='myform'>
+				<h1>Let's do this!</h1>
+				<span>Required fields are marked with a star: <b>&lowast;</b></span>
+				<div class="formwrapper">
+
+					<div class="input_group">
+						<label for="first_name">FIRST NAME &lowast;</label>
+						<input type="text" name="first_name" id="first_name" placeholder='John' required>
+					</div>
+
+					<div class="input_group">
+						<label for="last_name">LAST NAME</label>
+						<input type="text" name="last_name" id="last_name" placeholder='Doe'>
+					</div>
+
+					<div class="input_group">
+						<label for="email">EMAIL &lowast;</label>
+						<input type="email" name="email" id="email" placeholder='my@email.com' required>
+					</div>
+
+					<div class="input_group">
+						<label for="phone">PHONE NUMBER</label>
+						<input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+							placeholder='012-345-6789'>
+					</div>
+
+					<div class="input_group">
+						<label for="password">PASSWORD &lowast;</label>
+						<input type="password" name="password" id="password" required>
+					</div>
+
+					<div class="input_group">
+						<label for="confirm_password">CONFIRM PASSWORD &lowast;</label>
+						<input type="password" name="confirm_password" id="confirm_password" required>
+					</div>
+					<span class='pwspan'>Password must be a minimum of 8 characters, at least one uppercase
+						letter, one
+						lowercase letter, and one number.</span>
+				</div>
+
+				<div id='error'></div>
+
+			</form>
+
+			<div class="outro">
+				<input type="submit" value="CREATE ACCOUNT" form='myform' id='submit_button'>
+				<span>Already have an account? <a href="#"><strong>LOG IN</strong></a></span>
+			</div>
+
+		</div>
+	</section>
+
+	<script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>

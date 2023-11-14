@@ -1,0 +1,241 @@
+:root {
+	font-size: 62.5%;
+	font-family: 'Roboto', sans-serif;
+
+	--page-background-color: rgb(38, 38, 41);
+	--main-background-color: rgb(38, 38, 43);
+	--form-background-color: rgb(32, 31, 36);
+	--color-primary: rgb(170, 120, 214);
+	--color-primary-dark: rgb(92, 42, 139);
+	--color-secondary: rgb(211, 105, 194);
+	--color-blue: rgb(0, 187, 204);
+}
+
+* {
+	margin: 0;
+	border: 0;
+	list-style: none;
+	outline: none;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--page-background-color);
+	font-size: 2.5rem;
+	color: white;
+}
+
+#container {
+	display: flex;
+	height: 1000px;
+	box-shadow: -3px 5px 8px 1px #000000;
+}
+
+.logoarea {
+	width: 500px;
+	border-radius: 8px 0 0 8px;
+}
+
+.infoarea {
+	background: var(--main-background-color);
+	width: 800px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 0 8px 8px 0;
+	color: var(--color-primary);
+}
+
+h1, h2 {
+	font-size: 2.5rem;
+	padding: 20px 0;
+	font-weight: 300;
+	user-select: none;
+}
+
+h2 {
+	padding-top: 0;
+	color: var(--color-secondary);
+}
+
+span {
+	display: block;
+}
+
+::selection {
+	color: var(--page-background-color);
+	background: var(--color-blue);
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+.intro {
+	height: 200px;
+	line-height: 1.3;
+	width: calc(100% - 80px);
+	padding-top: 10%;
+	align-self: center;
+}
+
+form {
+	height: 500px;
+	background-color: var(--form-background-color);
+	border-top: 1px solid rgb(27, 27, 27);
+	box-shadow: 0px 6px 4px -4px rgb(15, 15, 15);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.formwrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.formwrapper > .input_group {
+	flex: 1 1 50%;
+	margin: 15px 0;
+}
+
+/******************************************
+/* IMAGE AREA
+/*******************************************/
+
+img {
+	height: 100%;
+}
+
+.logoarea > h1 {
+	position: absolute;
+	width: 500px;
+	transform: translateY(150%);
+	font-size: 10rem;
+	text-align: center;
+	color: var(--color-blue);
+	background: rgba(51, 51, 51, 0.3);
+	text-shadow: 3px 5px 3px var(--page-background-color);
+	box-shadow: 0px 6px 10px -6px var(--page-background-color), 0px -6px 10px -6px var(--page-background-color);
+}
+
+.logoarea > span {
+	position: absolute;
+	transform: translateY(-180%);
+	width: 500px;
+	font-size: 1.6rem;
+	font-weight: 300;
+	text-align: center;
+}
+
+.logoarea > span a {
+	color: var(--color-primary);
+}
+
+/******************************************
+/* FORM
+/*******************************************/
+
+form, img { /* Disable highlights */
+	user-select: none;
+}
+
+form > span {
+	font-size: 1.4rem;
+}
+form b {
+	font-size: 2rem;
+	font-weight: 100;
+}
+
+input {
+	transition: 0.2s;
+}
+
+.input_group > input {
+	border-radius: 3px;
+	height: 30px;
+	width: 300px;
+	display: block;
+	padding-left: 10px; /* For the inside of the input! */
+	margin: 0 auto;
+	background-color: black;
+	border: none;
+	color: var(--color-blue);
+	font-size: 1.8rem;
+}
+
+.input_group > input:focus {
+	box-shadow: 0px 0px 0px 2px var(--color-secondary);
+}
+
+label {
+	font-size: 1.5rem;
+	padding: 0 0 5px 50px;
+	display: block;
+}
+
+.outro {
+	height: 250px;
+	display: flex;
+	flex-direction: column;
+}
+
+input[type=submit] {
+	width: 250px;
+	height: 50px;
+	font-size: 2.3rem;
+	font-weight: 700;
+	background: var(--color-primary);
+	color: var(--page-background-color);
+	text-shadow: 1px 2px 1px var(--color-secondary);
+	border-radius: 5px;
+	align-self: center;
+	margin: 30px 0;
+	cursor: pointer;
+}
+
+input[type=submit]:hover, input[type=submit]:focus {
+	background: var(--color-primary-dark);
+	color: var(--color-blue);
+	text-shadow: 1px 2px 2px var(--page-background-color);
+	box-shadow: 0px 0px 0px 2px var(--color-secondary);
+}
+
+.outro > span {
+	align-self: flex-end;
+	margin: 70px 50px 0 0;
+	color: var(--color-secondary);
+}
+
+.outro > span a {
+	color: var(--color-blue);
+	text-decoration: underline dotted;
+}
+
+.pwspan {
+	font-size: 1.4rem;
+	font-weight: 300;
+	margin: 0 auto;
+}
+
+/******************************************
+/* FORM VALIDATIONS
+/*******************************************/
+
+label[for="first_name"]:invalid {
+	color: red;
+}
+
+#error {
+	width: 100%;
+	text-align: center;
+	color: red;
+}
