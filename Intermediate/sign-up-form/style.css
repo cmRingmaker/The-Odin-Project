@@ -229,3 +229,13 @@ input[type=submit]:hover, input[type=submit]:focus {
 /******************************************
 /* FORM VALIDATIONS
 /*******************************************/
+
+label[for="first_name"]:invalid {
+	color: red;
+}
+
+#error {
+	width: 100%;
+	text-align: center;
+	color: red;
+}

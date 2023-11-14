@@ -40,7 +40,8 @@
 				<span>You <i>know</i> you want to.</span>
 			</div>
 
-			<form action="" method='get' id='myform'>
+			<!-- Since this is only an example form, default method is GET - see the form event listener on line 29 of the JS where the PW is replaced -->
+			<form action='' id='myform'>
 				<h1>Let's do this!</h1>
 				<span>Required fields are marked with a star: <b>&lowast;</b></span>
 				<div class="formwrapper">
@@ -69,7 +70,6 @@
 					<div class="input_group">
 						<label for="password">PASSWORD &lowast;</label>
 						<input type="password" name="password" id="password" required>
-						<div class="error"></div>
 					</div>
 
 					<div class="input_group">
@@ -80,10 +80,13 @@
 						letter, one
 						lowercase letter, and one number.</span>
 				</div>
+
+				<div id='error'></div>
+
 			</form>
 
 			<div class="outro">
-				<input type="submit" value="CREATE ACCOUNT" form='myform'>
+				<input type="submit" value="CREATE ACCOUNT" form='myform' id='submit_button'>
 				<span>Already have an account? <a href="#"><strong>LOG IN</strong></a></span>
 			</div>
 

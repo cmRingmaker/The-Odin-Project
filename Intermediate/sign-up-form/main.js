@@ -1,14 +1,16 @@
 const password = document.getElementById('password')
-const pwlabel = document.querySelector('label[for="password"]')
-const confirmpw = document.getElementById('confirm_password')
-const confirmlabel = document.querySelector('label[for="confirm_password"]')
+const pwLabel = document.querySelector('label[for="password"]')
+const confirmPw = document.getElementById('confirm_password')
+const confirmLabel = document.querySelector('label[for="confirm_password"]')
+const submitButton = document.getElementById('submit_button')
+const errorChecker = document.getElementById('error')
+const form = document.getElementById('myform')
 
 // minimum 8 characters, one upper, one lower, one number
 let validPW = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
-
 let timeout;
 
-confirmpw.addEventListener('keyup', () => {
+confirmPw.addEventListener('keyup', () => {
   clearTimeout(timeout)
   
   timeout = setTimeout(() => {
@@ -16,7 +18,7 @@ confirmpw.addEventListener('keyup', () => {
   }, 500)
 })
 
-password.addEventListener('keyup', (e) => {
+password.addEventListener('keyup', () => {
   clearTimeout(timeout)
   
   timeout = setTimeout(() => {
@@ -24,28 +26,38 @@ password.addEventListener('keyup', (e) => {
   }, 500)
 })
 
+form.addEventListener('submit', (e) => {
+  if(password.value !== confirmPw.value) {
+    e.preventDefault()
+    errorChecker.innerText = 'Passwords do not match!'
+  } else if (password.value === confirmPw.value) {
+    // since this is an example form with data not going anywhere... replacing the PW in the url because of the get method appending it as plain text
+    password.value = '######'
+    confirmPw.value = '######'
+  }
 
+})
 
 function validatePassword() {
   if(password.value === '') {
-    pwlabel.style.color = ''
+    pwLabel.style.color = ''
     return
   }
 
   (!validPW.test(password.value))
-    ? pwlabel.style.color = 'red'
-    : pwlabel.style.color = 'green'
+    ? pwLabel.style.color = 'red'
+    : pwLabel.style.color = 'green'
 }
 
 function validateConfirmation() {
-  if(confirmpw.value === '') {
-    confirmlabel.style.color = ''
+  if(confirmPw.value === '') {
+    confirmLabel.style.color = ''
     return
   }
 
-  if(pwlabel.style.color === 'green') {
-    (confirmpw.value === password.value)
-    ? confirmlabel.style.color = 'green'
-    : confirmlabel.style.color = 'red'
+  if(pwLabel.style.color === 'green') {
+    (confirmPw.value === password.value)
+      ? confirmLabel.style.color = 'green'
+      : confirmLabel.style.color = 'red'
   }
 }
