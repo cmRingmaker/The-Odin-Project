@@ -60,7 +60,7 @@ Under each section that is completed, I will list notable things that I had lear
 ---
 ### <p align='center'>INTERMEDIATE</p>
 
-## Forms: [Sign-up Form](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Intermediate/sign-up-form) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Intermediate/sign-up-form/)*
+## Forms: [Sign-up Form](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Intermediate/sign-up-form) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Intermediate/sign-up-form/)
 *[HTML | CSS + Flexbox | JavaScript]*
 
 - Forms are a powerful way to get data directly from a user.
