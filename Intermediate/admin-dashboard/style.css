@@ -1,5 +1,14 @@
 :root {
   font-size: 62.5%;
+  --FONT_COLOR: rgb(255, 255, 255);
+  --FONT_INACTIVE: rgba(255, 255, 255, 0.5);
+
+  --COLOR_BACKGROUND: rgb(55, 38, 37);
+  --COLOR_BORDER: rgb(69, 53, 52);
+  --COLOR_LIGHTER: rgb(65, 49, 48);
+  --COLOR_DARKER: rgb(50, 34, 33);
+  --COLOR_DARK_EMPHASIS: rgb(51, 35, 34);
+
 }
 
 * {
@@ -8,6 +17,7 @@
 	border: 0;
 	list-style: none;
 	outline: none;
+  box-sizing: border-box;
 }
 
 /******************************************
@@ -15,21 +25,70 @@
 /*******************************************/
 
 body {
-  background-color: gray;
+  grid-template-columns: clamp(100px, 25%, 280px) 1fr;
+  min-height: 100vh;
+  display: grid;
+  background-color: var(--COLOR_BACKGROUND);
+  color: var(--FONT_COLOR);
+  font-size: 2.5rem;
 }
 
 
 /******************************************
-/* LAYOUT
+/* SIDEBAR
 /*******************************************/
-header {
 
+#sidebar {
+  border-right: 2px solid var(--COLOR_BORDER);
+  background: var(--COLOR_DARKER);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-footer {
+#logo {
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 3.5rem;
+  text-transform: lowercase;
+  text-align: center;
+  border-bottom: 2px solid var(--COLOR_BORDER);
+}
 
+nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--FONT_INACTIVE);
+}
+
+nav li {
+  display: block;
+  padding: 10px 30px;
+}
+
+nav li:hover {
+  color: var(--FONT_COLOR);
+  background: var(--COLOR_BACKGROUND);
+  transition: 400ms;
+}
+
+.selected {
+  color: var(--FONT_COLOR);
+  background-color: var(--COLOR_LIGHTER) !important;
+  text-shadow: 1px 1px 1px black;
+}
+
+/* settings */
+nav ul:last-child {
+  padding-bottom: 30px;
 }
 
 /******************************************
-/* ADDITIONAL STYLES
+/* MAIN CONTENT
 /*******************************************/
+
+main {
+
+}
