@@ -25,12 +25,32 @@
 /*******************************************/
 
 body {
-  grid-template-columns: clamp(100px, 25%, 280px) 1fr;
-  min-height: 100vh;
   display: grid;
+  grid-template-columns: clamp(100px, 25%, 280px) 1fr;
   background-color: var(--COLOR_BACKGROUND);
   color: var(--FONT_COLOR);
   font-size: 2.5rem;
+  min-height: 100vh;
+
+  grid-template-areas: 
+  'sidebar container';
+
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+p {
+  font-size: 1.8rem;
+  color: var(--FONT_INACTIVE);
+}
+
+hr {
+  height: 1px;
+  background-color: var(--COLOR_BORDER);
+  margin: 20px 0;
 }
 
 
@@ -41,14 +61,13 @@ body {
 #sidebar {
   border-right: 2px solid var(--COLOR_BORDER);
   background: var(--COLOR_DARKER);
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  max-height: 100vh;
+  grid-area: sidebar;
 }
 
 #logo {
   width: 100%;
-  padding: 1rem 0;
+  padding: 10px 0;
   font-size: 3.5rem;
   text-transform: lowercase;
   text-align: center;
@@ -56,7 +75,7 @@ body {
 }
 
 nav {
-  height: 100%;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -89,6 +108,73 @@ nav ul:last-child {
 /* MAIN CONTENT
 /*******************************************/
 
+#container {
+  display: grid;
+  grid-template-rows: clamp(100px, 10%, 200px) 1fr;
+  background: var(--COLOR_BACKGROUND);
+  grid-template-areas:
+    'head'
+    'main';
+}
+
+header {
+  background: var(--COLOR_LIGHTER);
+  border-bottom: 2px solid var(--COLOR_DARKER);
+  grid-area: head;
+}
+
 main {
+  display: grid;
+  grid-template-columns: 1fr clamp(200px, 20%, 300px);
+  padding: 20px;
+  gap: 30px;
+  grid-template-areas: 
+  'content news';
+
+  overflow-y: auto;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 250px;
+  gap: 30px;
+  grid-area: content;
+}
+
+.card {
+  background-color: var(--COLOR_LIGHTER);
+  border-radius: 8px;
+  border: 2px solid var(--COLOR_BORDER);
+  box-shadow: 4px 4px 6px 0px var(--COLOR_DARK_EMPHASIS);
+}
+
+#news {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 30px;
+  grid-area: news;
+}
+
+#announcements, #trending {
+  border: 1px solid var(--COLOR_BORDER);
+  border-radius: 8px;
+  padding: 30px;
+}
+
+
+
+
+
+@media (orientation: portrait) {	
+	main {
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+		grid-template-areas:
+    'content'
+    'news';
+	}
+
+  /* TODO: FIGURE OUT HOW TO DISPLAY NEWS UNDER CONTENT WHEN QUERIED */
 
 }
