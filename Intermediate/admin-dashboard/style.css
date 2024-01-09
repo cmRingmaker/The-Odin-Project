@@ -26,15 +26,13 @@
 
 body {
   display: grid;
-  grid-template-columns: clamp(100px, 25%, 280px) 1fr;
+  grid-template-columns: clamp(80px, 25%, 280px) 1fr;
   background-color: var(--COLOR_BACKGROUND);
   color: var(--FONT_COLOR);
   font-size: 2.5rem;
-  min-height: 100vh;
-
+  min-height: 100vh;  
   grid-template-areas: 
   'sidebar container';
-
   overflow: hidden;
 }
 
@@ -63,6 +61,10 @@ hr {
   background: var(--COLOR_DARKER);
   max-height: 100vh;
   grid-area: sidebar;
+
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 #logo {
@@ -115,6 +117,8 @@ nav ul:last-child {
   grid-template-areas:
     'head'
     'main';
+  max-height: 100vh;
+  overflow: auto;
 }
 
 header {
@@ -138,7 +142,7 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 250px;
-  gap: 30px;
+  gap: 25px;
   grid-area: content;
 }
 
@@ -166,15 +170,17 @@ main {
 
 
 
-@media (orientation: portrait) {	
+@media screen and (max-width: 1200px) {	
 	main {
     grid-template-columns: 1fr;
-    /* grid-template-rows: 1fr 1fr; */
 		grid-template-areas:
     'content'
     'news';
 	}
+}
 
-  /* TODO: FIGURE OUT HOW TO DISPLAY NEWS UNDER CONTENT WHEN QUERIED */
-
+@media screen and (max-width: 500px) { 
+  main {
+    padding: 10px;
+  }
 }
