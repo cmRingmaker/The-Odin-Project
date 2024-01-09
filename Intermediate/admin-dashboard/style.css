@@ -26,7 +26,7 @@
 
 body {
   display: grid;
-  grid-template-columns: clamp(80px, 25%, 280px) 1fr;
+  grid-template-columns: clamp(80px, 20%, 280px) 1fr;
   background-color: var(--COLOR_BACKGROUND);
   color: var(--FONT_COLOR);
   font-size: 2.5rem;
@@ -74,6 +74,14 @@ hr {
   text-transform: lowercase;
   text-align: center;
   border-bottom: 2px solid var(--COLOR_BORDER);
+}
+
+.longLogo {
+  display: block;
+}
+
+.shortLogo {
+  display: none;
 }
 
 nav {
@@ -166,8 +174,18 @@ main {
   padding: 30px;
 }
 
+#trending span, #trending a {
+  display: block;
+}
+
+#trending > ul > li {
+  font-size: 1.8rem;
+}
 
 
+/******************************************
+/* MEDIA QUERIES
+/*******************************************/
 
 
 @media screen and (max-width: 1200px) {	
@@ -179,8 +197,16 @@ main {
 	}
 }
 
-@media screen and (max-width: 500px) { 
-  main {
-    padding: 10px;
-  }
+@media screen and (max-width: 940px) {
+  #logo     { font-size: 2.7rem; }
+  #sidebar  { font-size: 1.8rem; }
+}
+
+@media screen and (max-width: 710px) { 
+  .longLogo   { display: none; }
+  .shortLogo  { display: block; }
+}
+
+@media screen and (max-width: 500px) {
+  main  { padding: 10px; }
 }
