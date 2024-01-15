@@ -8,7 +8,7 @@ NAV_LI.forEach(li => {
       selectedLi.removeAttribute('class')
     }
 
-    selectedLi = e.target
+    selectedLi = e.currentTarget
     selectedLi.classList.add('selected')
   })
 });

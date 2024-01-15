@@ -51,6 +51,18 @@ hr {
   margin: 20px 0;
 }
 
+svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
 
 /******************************************
 /* SIDEBAR
@@ -93,8 +105,12 @@ nav {
 }
 
 nav li {
-  display: block;
+  display: flex;
   padding: 10px 30px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  user-select: none;
 }
 
 nav li:hover {
@@ -202,9 +218,16 @@ main {
   #sidebar  { font-size: 1.8rem; }
 }
 
+/* fix overflow issue in sidebar at smaller widths */
+@media screen and (max-width: 800px) {
+  nav li  { gap: 6px; padding-left: 15px; }
+}
+
 @media screen and (max-width: 710px) { 
-  .longLogo   { display: none; }
-  .shortLogo  { display: block; }
+  .longLogo           { display: none; }
+  .shortLogo          { display: block; }
+  nav > ul > li span  { display: none; }
+  nav > ul > li       { justify-content: center; padding: 10px 30px };
 }
 
 @media screen and (max-width: 500px) {
