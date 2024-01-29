@@ -1,6 +1,14 @@
 :root {
   font-size: 62.5%;
+  --FONT_WHITE: rgb(229, 231, 235);
+
+  --COLOR_DARKER: rgb(17, 24, 39);
+  --COLOR_LIGHTER: rgb(31, 41, 55);
 }
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
    
 * {
   margin: 0;
@@ -9,18 +17,59 @@
   list-style: none;
   outline: none;
   box-sizing: border-box;
+  line-height: 1.5;
 }
 
-/******************************************
-/* BASE STYLES
-/*******************************************/
-
+span {
+  /* font-size: 2.5rem; */
+}
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 
+body {
+  background-color: var(--COLOR_DARKER);
+  color: var(--FONT_WHITE);
+  height: 100vh;
+  font-size: 1.8rem;
+  display: grid;
+  justify-items: center;
+}
+
+header, main {
+  background-color: var(--COLOR_LIGHTER);
+  width: clamp(400px, 56vw, 1400px);
+  display: grid;
+}
+
+header {
+  height: 80px;
+  position: fixed;
+  top: 0;
+  border-bottom: 6px solid var(--COLOR_DARKER);
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+}
+
+main {
+  padding-top: 80px; /* space for the header */
+}
+
 
 /******************************************
-/* ADDITIONAL STYLES
+/* HEADER
 /*******************************************/
+h4 { /* title */
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  opacity: 0.7;
+}
+
+#stats {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr)
+}
