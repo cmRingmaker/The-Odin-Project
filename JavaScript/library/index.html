@@ -27,18 +27,48 @@
 
 	<main>
 		<div id="container">
+
+			<template id='template'>
+				<div class="card">
+					<span>Book Title</span>
+					<span>Pages</span>
+					<span>Author Name</span>
+					<span>Read</span>
+			</template>
+
+			<!-- TESTING DATA -->
 			<div class="card">
-				<p>Lord of the Rings <br>
-					by J.R.R. Tolkien</p>
+				<span>Lord of the Rings</span>
+				<span>1178 Pages</span>
+				<span>J. R. R. Tolkien</span>
+				<span>Read</span>
 			</div>
+
 			<div class="card">Test Example by Tester</div>
 			<div class="card">Test Example by Tester</div>
 			<div class="card">Test Example by Tester</div>
 			<div class="card">Test Example by Tester</div>
 			<div class="card">Test Example by Tester</div>
 			<div class="card">Test Example by Tester</div>
+			<!-- TESTING DATA -->
+
 		</div>
 	</main>
+
+	<dialog id='modal'>
+		<!-- CLOSE MODAL -->
+		<button id="closeModal">CLOSE</button>
+
+		<!-- BOOK FORM -->
+		<form action="" form id='myForm'>
+			<h1>Book Name</h1>
+		</form>
+	</dialog>
+
+	<footer>
+		<button id='editBooks'>Edit Books</button>
+		<button id='addBooks'>Add Books</button>
+	</footer>
 
 	<script type="text/javascript" src="main.js"></script>
 </body>
