@@ -30,18 +30,19 @@
 
 			<template id='template'>
 				<div class="card">
-					<span>Book Title</span>
-					<span>Pages</span>
-					<span>Author Name</span>
-					<span>Read</span>
+					<span id='cardTitle'>Book Title</span>
+					<span id='cardAuthor'>Author Name</span>
+					<span id='cardPages'>Pages</span>
+					<span id='cardRead'>Read</span>
 			</template>
 
 			<!-- TESTING DATA -->
 			<div class="card">
-				<span>Lord of the Rings</span>
-				<span>1178 Pages</span>
-				<span>J. R. R. Tolkien</span>
-				<span>Read</span>
+				<!-- <span>Lord of the Rings</span> -->
+				<span id='cardTitle'>How To Win Friends and Influence People</span>
+				<span id='cardAuthor'>J. R. R. Tolkien</span>
+				<span id='cardPages'>1178 Pages</span>
+				<span id='cardRead'>Read</span>
 			</div>
 
 			<div class="card">Test Example by Tester</div>
@@ -57,12 +58,39 @@
 
 	<dialog id='modal'>
 		<!-- CLOSE MODAL -->
-		<button id="closeModal">CLOSE</button>
+		<button id="closeModal">X</button>
 
 		<!-- BOOK FORM -->
 		<form action="" form id='myForm'>
-			<h1>Book Name</h1>
+			<div class="formGroup">
+				<input type="text" name='bookName' id='bookName' required>
+				<label for="bookName">Book Name:</label>
+			</div>
+
+			<div class="formGroup">
+				<input type="text" name='bookAuthor' id='bookAuthor' required>
+				<label for="bookAuthor">Author:</label>
+			</div>
+
+			<div class="formGroup">
+				<input type="number" name='bookPages' id='bookPages' required min='1' max='9999'>
+				<label for="bookPages">Number of Pages</label>
+			</div>
+
+			<div class="formGroup">
+				<fieldset>
+					<legend>Have you read this book?</legend>
+
+					<input type="radio" name='readOrNot' id='haveRead' value='yes'>
+					<label for="haveRead">Yes</label>
+
+					<input type="radio" name='readOrNot' id='haveNotRead' value='no'>
+					<label for="haveNotRead">No</label>
+				</fieldset>
+			</div>
 		</form>
+
+
 	</dialog>
 
 	<footer>

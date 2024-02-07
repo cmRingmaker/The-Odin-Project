@@ -5,6 +5,10 @@
   --COLOR_DARKER: rgb(17, 24, 39);
   --COLOR_LIGHTER: rgb(31, 41, 55);
   --COLOR_CONTENT: rgb(55, 65, 81);
+
+  --BUTTON_COLOR: rgba(13, 148, 137);
+  --BUTTON_BORDER: 4px solid rgba(11, 124, 115);
+  --BUTTON_HOVER: rgb(20, 194, 179);
 }
 
 /******************************************
@@ -23,6 +27,7 @@
 
 button {
   cursor: pointer;
+  transition: 0.3s;
 }
 
 /******************************************
@@ -107,8 +112,16 @@ h4 { /* title */
   border-left: 2px solid var(--COLOR_DARKER);
   border-bottom: 2px solid var(--COLOR_DARKER);
   display: grid;
-  grid-template-columns: 1fr 20%;
+  grid-template-areas: 
+      'title title title title'
+      'author author pages read';
 }
+
+/* SPECIFY EACH CARD AREA IN THE GRID */
+#cardTitle  { grid-area: title; padding-left: 20px; }
+#cardAuthor { grid-area: author; padding-left: 20px; opacity: 0.7; }
+#cardPages  { grid-area: pages; opacity: 0.7; }
+#cardRead   { grid-area: read; padding-right: 20px; opacity: 0.7; text-align: end; }
 
 
 /******************************************
@@ -119,17 +132,18 @@ h4 { /* title */
   width: calc(100% - 10px);
   height: calc(100% - 12px);
   font-size: 3rem;
-  background-color: rgba(13, 148, 137);
-  border: 4px solid rgba(11, 124, 115);
+  background-color: var(--BUTTON_COLOR);
+  border: var(--BUTTON_BORDER);
   border-radius: 3px;
 }
 
 #editBooks:hover, #addBooks:hover {
-  background-color: rgb(20, 194, 179);
+  /*  */
+  background-color: var(--BUTTON_HOVER);
 }
 
 /******************************************
-/* DIALOG BOX
+/* DIALOG BOX && FORM
 /*******************************************/
 
 dialog:not([open]) {
@@ -158,24 +172,70 @@ dialog::backdrop {
   background-color: rgba(37, 40, 46, 0.7);
 }
 
-form {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  background-color: red;
-}
-
 #closeModal {
   grid-column: 3 / 4;
   grid-row: 1 / 2;
   width: 60px;
   height: 60px;
-  background-color: red;
-  /* border: 1px solid red; */
+  background-color: var(--BUTTON_COLOR);
+  border: var(--BUTTON_BORDER);
+  color: var(--COLOR_DARKER);
+  font-weight: 800;
   font-size: 3rem;
-  /* text-align: center; */
+
+  /* Position outside of modal */
   position: relative;
   top: -70px;
   right: 18px;
+}
+
+#closeModal:hover {
+  background-color: var(--BUTTON_HOVER);
+}
+
+form {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.formGroup {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+input {
+  background-color: transparent;
+  border-bottom: 2px solid var(--COLOR_DARKER);
+  font-size: 2.4rem;
+  padding-top: 30px;
+}
+
+label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  transition: 0.1s;
+  color: var(--BUTTON_COLOR);
+  user-select: none;
+}
+
+.formGroup > input,
+.formGroup > label {
+  width: 100%;
+  height: 80px;
+}
+
+/* .formGroup > input:focus + label {
+  transform: scale(0.8) translateY(-30px) translateX(-50px);
+  letter-spacing: 2px;
+  opacity: 0.6;
+} */
+
+input:valid + label, input:focus + label {
+  transform: scale(0.8) translateY(-30px) translateX(-50px);
+  opacity: 0.6;
 }
 
 /******************************************
@@ -184,8 +244,8 @@ form {
 
 @media screen and (max-width: 1100px) {
   h4      { display: none; }
-  header  { grid-template-columns: 1fr; grid-template-rows: 1fr;}
-  #stats  { grid-template-columns: 1fr 1fr; align-items: center;}
+  header  { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+  #stats  { grid-template-columns: 1fr 1fr; align-items: center; }
   
   /* Header stat info */
   #stats > *        { padding: 0 20px; width: 100%; } /* make sure our spans are 100% width for text alignments */

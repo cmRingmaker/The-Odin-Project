@@ -4,6 +4,7 @@ const editBooks = document.getElementById('editBooks')
 const addBooks = document.getElementById('addBooks')
 const modal = document.getElementById('modal')
 const closeModal = document.getElementById('closeModal')
+const bookPages = document.getElementById('bookPages')
 
 let library
 let content = template.content
@@ -29,17 +30,24 @@ class Book {
 addBooks.addEventListener('click', (e) => modal.showModal())
 closeModal.addEventListener('click', (e) => modal.close())
 
+bookPages.addEventListener('keydown', (e) => {
+  if(/[0-9\-.]|Delete|Backspace/.test(e.key)) return
+  e.preventDefault()
+})
+
 // HANDLE EDITING SELECTED BOOK
 editBooks.addEventListener('click', (e) => console.log('dummy data'))
-
 
 // -----------------------|
 // ------------ FUNCTIONS |
 // -----------------------|
 
+function render() {
+  console.log('rendering')
+}
 
 function addNewBook() {
-  const newBook = new Book(title.value, author.value, pages.value, isRead.value)
+  const newBook = new Book(title, author, pages, isRead)
   library.push(newBook)
 }
 
