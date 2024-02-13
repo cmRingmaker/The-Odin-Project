@@ -30,7 +30,7 @@ class Book {
 addBooks.addEventListener('click', (e) => modal.showModal())
 closeModal.addEventListener('click', (e) => modal.close())
 
-bookPages.addEventListener('keydown', (e) => {
+bookPages.addEventListener('keydown', (e) => { // force numbers only
   if(/[0-9\-.]|Delete|Backspace/.test(e.key)) return
   e.preventDefault()
 })
