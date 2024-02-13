@@ -5,8 +5,10 @@ const addBooks = document.getElementById('addBooks')
 const modal = document.getElementById('modal')
 const closeModal = document.getElementById('closeModal')
 const bookPages = document.getElementById('bookPages')
+const myForm = document.getElementById('myForm')
+const submitForm = document.getElementById('submitForm')
 
-let library
+let library = []
 let content = template.content
 
 // -----------------------|
@@ -14,7 +16,7 @@ let content = template.content
 // -----------------------|
 
 class Book {
-  constructor(title = 'Unknown', author = 'Unknown', pages = '0', isRead = false) {
+  constructor(title = 'Unknown', author = 'Unknown', pages = '0', isRead = true) {
     this.title = title
     this.author = author
     this.pages = pages
@@ -34,6 +36,22 @@ bookPages.addEventListener('keydown', (e) => { // force numbers only
   if(/[0-9\-.]|Delete|Backspace/.test(e.key)) return
   e.preventDefault()
 })
+
+submitForm.addEventListener('click', (e) => {
+  e.preventDefault()
+
+  const title = myForm.bookName.value
+  const author = myForm.bookAuthor.value
+  const pages = myForm.bookPages.value
+  const isRead = myForm.readOrNot.value === 'yes'
+  
+  const newBook = new Book(title, author, pages, isRead)
+  console.log(newBook)
+  // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
+  // put data into library - and don't allow a form submit without all values filled out!
+})
+
+
 
 // HANDLE EDITING SELECTED BOOK
 editBooks.addEventListener('click', (e) => console.log('dummy data'))

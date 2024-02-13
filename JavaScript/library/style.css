@@ -233,7 +233,17 @@ input:valid + label, input:focus + label {
   opacity: 0.6;
 }
 
-/* RADIO BUTTONS */
+/******************************************
+/* RADIO BUTTONS ON FORM *****************/
+
+legend {
+  font-size: 1.8rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--BUTTON_COLOR);
+}
+
 input[type='radio'] {
   display: none;
 }
@@ -281,8 +291,8 @@ fieldset > div > label:before {
 
 input[type='radio']:checked + label:before {
   background-color: var(--FONT_WHITE);
-  height: 25px;
-  width: 25px;
+  height: 25px; /* height/width are 5px smaller when checked */
+  width: 25px;  /* and a border of 5px added to make the box 30px */
   border: 5px solid var(--COLOR_CONTENT);
 }
 
@@ -290,6 +300,26 @@ input[type='radio']:checked + label {
   background: var(--BUTTON_HOVER);
 }
 
+/******************************************
+/* SUBMIT FORM ***************************/
+
+#submitForm {
+  position: absolute;
+  /* padding: 20px 0; */
+  height: 70px;
+  bottom: -80px;
+  width: 100%;
+  background-color: var(--FONT_WHITE);
+  color: var(--COLOR_DARKER);
+  border: var(--BUTTON_BORDER);
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+#submitForm:hover {
+  background: var(--BUTTON_HOVER);
+  color: var(--FONT_WHITE);
+}
 
 /******************************************
 /* MEDIA QUERIES
