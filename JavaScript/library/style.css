@@ -113,16 +113,24 @@ h4 { /* title */
   border-left: 2px solid var(--COLOR_DARKER);
   border-bottom: 2px solid var(--COLOR_DARKER);
   display: grid;
-  grid-template-areas: 
-      'title title title title'
-      'author author pages read';
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
 }
 
-/* SPECIFY EACH CARD AREA IN THE GRID */
-#cardTitle  { grid-area: title; padding-left: 20px; }
-#cardAuthor { grid-area: author; padding-left: 20px; opacity: 0.7; }
-#cardPages  { grid-area: pages; opacity: 0.7; }
-#cardRead   { grid-area: read; padding-right: 20px; opacity: 0.7; text-align: end; }
+#cardTitle {
+  grid-row: 1 / 2;
+  grid-column: 1 / 5;
+  padding-left: 20px;
+}
+
+#cardAuthor, #cardPages, #cardRead {
+  grid-row: 2 / 3;
+  opacity: 0.7;
+}
+
+#cardAuthor { grid-column: 1 / 3; padding-left: 20px;}
+#cardPages  { grid-column: 3 / 4; text-align: center;}
+#cardRead   { grid-column: 4 / 5; text-align: end; padding-right: 20px;}
 
 
 /******************************************

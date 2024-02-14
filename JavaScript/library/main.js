@@ -20,8 +20,8 @@ class Book {
   constructor(title = 'Unknown', author = 'Unknown', pages = '0', isRead = true) {
     this.title = title
     this.author = author
-    this.pages = pages
-    this.isRead = isRead
+    this.pages = `${pages} pages`
+    this.isRead = isRead ? 'Read' : 'Unread'
   }
 }
 
@@ -68,7 +68,7 @@ function renderPageLoad() {
 
     div.querySelector('#cardTitle').textContent = book.title
     div.querySelector('#cardAuthor').textContent = book.author
-    div.querySelector('#cardPages').textContent = book.page
+    div.querySelector('#cardPages').textContent = book.pages
     div.querySelector('#cardRead').textContent = book.isRead
 
     container.append(div)
@@ -83,7 +83,7 @@ function renderLatestBook() {
 
   div.querySelector('#cardTitle').textContent = latest[0].title
   div.querySelector('#cardAuthor').textContent = latest[0].author
-  div.querySelector('#cardPages').textContent = latest[0].page
+  div.querySelector('#cardPages').textContent = latest[0].pages
   div.querySelector('#cardRead').textContent = latest[0].isRead
 
   container.append(div)
