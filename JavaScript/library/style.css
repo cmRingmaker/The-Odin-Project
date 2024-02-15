@@ -68,12 +68,11 @@ footer {
   height: 80px;
   position: fixed;
   bottom: 0;
+  border-top: 6px solid var(--COLOR_DARKER);
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
 }
-
-
 
 
 /******************************************
@@ -147,8 +146,27 @@ h4 { /* title */
 }
 
 #editBooks:hover, #addBooks:hover {
-  /*  */
   background-color: var(--BUTTON_HOVER);
+}
+
+.editModeHeader {
+  background-color: var(--BUTTON_COLOR);
+  padding-top: 10px;
+}
+
+.editDisableAdd {
+  opacity: 0.33;
+  pointer-events: none;
+}
+
+.editMode {
+  background-color: var(--COLOR_DARKER);
+  opacity: 0.77;
+}
+
+.editMode:hover {
+  background-color: var(--COLOR_CONTENT);
+  opacity: 1;
 }
 
 /******************************************

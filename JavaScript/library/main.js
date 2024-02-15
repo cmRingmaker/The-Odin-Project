@@ -1,4 +1,5 @@
 // HEADER
+const header = document.getElementById('header')
 const headerBooks = document.getElementById('bks')
 const headerBooksRead = document.getElementById('bksread')
 const headerPages = document.getElementById('pgs')
@@ -7,6 +8,7 @@ const headerPagesRead = document.getElementById('pgsread')
 // MAIN CONTENT
 const container = document.getElementById('container')
 const template = document.getElementById('template')
+const card = document.getElementsByClassName('card')
 
 // MODAL
 const modal = document.getElementById('modal')
@@ -43,6 +45,7 @@ class Book {
 
 // MODAL POPUP
 addBooks.addEventListener('click', (e) => modal.showModal())
+
 closeModal.addEventListener('click', (e) => {
   errorMessage() // handle error div
   modal.close()
@@ -67,8 +70,9 @@ submitForm.addEventListener('click', (e) => {
   addNewBook(newBook)
 })
 
-// HANDLE EDITING SELECTED BOOK
-editBooks.addEventListener('click', (e) => console.log('dummy data'))
+// EDIT BOOKS
+editBooks.addEventListener('click', (e) => editBookEntry())
+
 
 // -----------------------|
 // ------------ FUNCTIONS |
@@ -144,6 +148,32 @@ function updateHeader() {
   headerBooksRead.textContent = `Books Read: ${readItems.length}`
   headerPages.textContent = `Total Pages: ${getTotalPages}`
   headerPagesRead.textContent = `Pages Read: ${readPages}`
+}
+
+
+// SET DEFAULT HEADER STATE FOR THE editBookEntry() FUNCTION
+const headerDefault = header.innerHTML
+
+function editBookEntry() {
+  // CHANGE HEADER TO REFLECT YOU ARE IN EDIT MODE
+  // Disable adding new books, change header, and change styling of the cards
+
+  const headerChange = header.classList.contains('editModeHeader')
+
+  if(!headerChange) {
+    header.classList.add('editModeHeader')
+    header.innerHTML = '<h1>EDITING MODE</h1>'
+    addBooks.classList.add('editDisableAdd')
+  } else {
+    header.innerHTML = headerDefault
+    header.removeAttribute('class')
+    addBooks.removeAttribute('class')
+  }
+  
+  // CHANGE CARDS TO REFLECT YOU ARE IN EDIT MODE
+  for(let i = 0; i < card.length; i++) {
+    card[i].classList.toggle('editMode')
+  }
 }
 
 renderPageLoad()
