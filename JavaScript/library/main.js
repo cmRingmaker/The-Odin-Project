@@ -1,14 +1,26 @@
-const template = document.getElementById('template')
+// HEADER
+const headerBooks = document.getElementById('bks')
+const headerBooksRead = document.getElementById('bksread')
+const headerPages = document.getElementById('pgs')
+const headerPagesRead = document.getElementById('pgsread')
+
+// MAIN CONTENT
 const container = document.getElementById('container')
-const editBooks = document.getElementById('editBooks')
-const addBooks = document.getElementById('addBooks')
+const template = document.getElementById('template')
+
+// MODAL
 const modal = document.getElementById('modal')
 const closeModal = document.getElementById('closeModal')
-const bookPages = document.getElementById('bookPages')
 const myForm = document.getElementById('myForm')
+const bookPages = document.getElementById('bookPages')
 const submitForm = document.getElementById('submitForm')
 const formError = document.getElementById('formError')
 
+// FOOTER
+const editBooks = document.getElementById('editBooks')
+const addBooks = document.getElementById('addBooks')
+
+// GLOBALS
 let content = template.content
 let library = JSON.parse(localStorage.getItem('library')) || [] // initialize localstorage library
 
@@ -17,10 +29,10 @@ let library = JSON.parse(localStorage.getItem('library')) || [] // initialize lo
 // -----------------------|
 
 class Book {
-  constructor(title = 'Unknown', author = 'Unknown', pages = '0', isRead = true) {
+  constructor(title = 'Unknown', author = 'Unknown', pages = 0, isRead = true) {
     this.title = title
     this.author = author
-    this.pages = `${pages} pages`
+    this.pages = pages
     this.isRead = isRead ? 'Read' : 'Unread'
   }
 }
@@ -63,7 +75,10 @@ editBooks.addEventListener('click', (e) => console.log('dummy data'))
 // -----------------------|
 
 function renderPageLoad() {
-  library.forEach(book => {    
+  updateHeader()
+
+  library.forEach(book => {
+    // CREATE NEW DIVS WITH BOOK INFO
     let div = template.content.cloneNode(true)
 
     div.querySelector('#cardTitle').textContent = book.title
@@ -77,6 +92,7 @@ function renderPageLoad() {
 
 function renderLatestBook() {
   checkLocalStorage()
+  updateHeader()
   let latest = library.slice(-1)
 
   let div = template.content.cloneNode(true)
@@ -101,8 +117,6 @@ function checkLocalStorage() {
 }
 
 function addNewBook(book) {
-  // checkLocalStorage()
-
   let duplicate = library.find(b => 
     b.title === book.title &&
     b.author === book.author &&
@@ -119,6 +133,17 @@ function addNewBook(book) {
   }
 
   updateLocalStorage()
+}
+
+function updateHeader() {
+  const readItems = library.filter((book) => book.isRead === 'Read')
+  const getTotalPages = library.reduce((acc, c) => acc + Number(c.pages), 0)
+  const readPages = readItems.reduce((acc, c) => acc + Number(c.pages), 0)
+
+  headerBooks.textContent = `Books: ${library.length}`
+  headerBooksRead.textContent = `Books Read: ${readItems.length}`
+  headerPages.textContent = `Total Pages: ${getTotalPages}`
+  headerPagesRead.textContent = `Pages Read: ${readPages}`
 }
 
 renderPageLoad()

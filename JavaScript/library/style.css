@@ -369,10 +369,10 @@ form:invalid + #submitForm {
   
   /* Header stat info */
   #stats > *        { padding: 0 20px; width: 100%; } /* make sure our spans are 100% width for text alignments */
-  #stats > .bks     { order: 0; text-align: right;}
-  #stats > .bksread { order: 2; text-align: right;}
-  #stats > .pgs     { order: 1; }
-  #stats > .pgsread { order: 3; }
+  #stats > #bks     { order: 0; text-align: right;}
+  #stats > #bksread { order: 2; text-align: right;}
+  #stats > #pgs     { order: 1; }
+  #stats > #pgsread { order: 3; }
 
   #container  { grid-template-columns: 1fr; }
 }
