@@ -157,9 +157,8 @@ const headerDefault = header.innerHTML
 function editBookEntry() {
   // CHANGE HEADER TO REFLECT YOU ARE IN EDIT MODE
   // Disable adding new books, change header, and change styling of the cards
-
   const headerChange = header.classList.contains('editModeHeader')
-
+  
   if(!headerChange) {
     header.classList.add('editModeHeader')
     header.innerHTML = '<h1>EDITING MODE</h1>'
@@ -173,7 +172,28 @@ function editBookEntry() {
   // CHANGE CARDS TO REFLECT YOU ARE IN EDIT MODE
   for(let i = 0; i < card.length; i++) {
     card[i].classList.toggle('editMode')
+
+    // EVENT LISTENERS TO EVERY CARD IN EDIT MODE
+    card[i].addEventListener('click', (e) => {
+      let title = card[i].querySelector('#cardTitle').textContent
+      let author = card[i].querySelector('#cardAuthor').textContent
+      let pages = card[i].querySelector('#cardPages').textContent
+      let isRead = card[i].querySelector('#cardRead').textContent
+
+      // Open modal with card data
+      editOpenModal(title, author, pages, isRead)
+    })
   }
 }
+
+function editOpenModal(title, author, pages, isRead) {
+  myForm.bookName.value = title
+  myForm.bookAuthor.value = author
+  myForm.bookPages.value = pages
+  myForm.readOrNot.value = isRead
+
+  modal.showModal()
+}
+
 
 renderPageLoad()
