@@ -8,7 +8,7 @@ const headerPagesRead = document.getElementById('pgsread')
 // MAIN CONTENT
 const container = document.getElementById('container')
 const template = document.getElementById('template')
-const card = document.getElementsByClassName('card')
+const cards = document.getElementsByClassName('card')
 
 // MODAL
 const modal = document.getElementById('modal')
@@ -17,14 +17,19 @@ const myForm = document.getElementById('myForm')
 const bookPages = document.getElementById('bookPages')
 const submitForm = document.getElementById('submitForm')
 const formError = document.getElementById('formError')
+const bookDelete = document.getElementById('bookDelete')
 
 // FOOTER
 const editBooks = document.getElementById('editBooks')
 const addBooks = document.getElementById('addBooks')
 
-// GLOBALS
-let content = template.content
-let library = JSON.parse(localStorage.getItem('library')) || [] // initialize localstorage library
+// GLOBALS                                  
+let library = JSON.parse(localStorage.getItem('library')) || []   // initialize localstorage library
+const headerDefault = header.innerHTML                            // default header state
+const headerChange = header.classList.contains('editModeHeader')  // edit header state
+let isEditMode = false                                            // edit mode
+let originalTitle                                                 // save original title and author for editing divs & localstorage
+let originalAuthor                                                // <--^
 
 // -----------------------|
 // -------------- CLASSES |
@@ -39,12 +44,40 @@ class Book {
   }
 }
 
+class Card {
+  constructor(book, template) {
+    this.book = book
+    this.template = template
+
+    // Create card element
+    this.element = template.content.cloneNode(true)
+
+    // Add data-title attribute
+    this.element.querySelector('.card').dataset.title = book.title
+
+    // Populate data
+    this.setTitle(book.title)
+    this.setAuthor(book.author)
+    this.setPages(book.pages)
+    this.setRead(book.isRead)
+  }
+
+  // Methods
+  setTitle  = (title) =>  this.element.querySelector('#cardTitle').textContent = title
+  setAuthor = (author) => this.element.querySelector('#cardAuthor').textContent = author
+  setPages  = (pages) =>  this.element.querySelector('#cardPages').textContent = pages
+  setRead   = (read) =>   this.element.querySelector('#cardRead').textContent = read
+}
+
 // -----------------------|
 // ------ EVENT LISTENERS |
 // -----------------------|
 
 // MODAL POPUP
-addBooks.addEventListener('click', (e) => modal.showModal())
+addBooks.addEventListener('click', (e) => {
+  modal.showModal()
+  bookDelete.style.visibility = 'hidden'
+})
 
 closeModal.addEventListener('click', (e) => {
   errorMessage() // handle error div
@@ -57,22 +90,48 @@ bookPages.addEventListener('keydown', (e) => { // force numbers only
 })
 
 submitForm.addEventListener('click', (e) => {
-  e.preventDefault()
-  errorMessage() // handle error div
+  if(isEditMode) {
+    const title = myForm.bookName.value
+    const author = myForm.bookAuthor.value
+    const pages = myForm.bookPages.value
+    const isRead = myForm.readOrNot.value === 'yes'
 
-  const title = myForm.bookName.value
-  const author = myForm.bookAuthor.value
-  const pages = myForm.bookPages.value
-  const isRead = myForm.readOrNot.value === 'yes'
+    const ind = library.findIndex(book => 
+      book.title === originalTitle && book.author === originalAuthor
+    )
+
+    // set localstorage values to our new values
+    library[ind].title = title
+    library[ind].author = author
+    library[ind].pages = pages
+    library[ind].isRead = isRead ? 'Read' : 'Unread'
+
+    updateLocalStorage()
+    updateHeader()
+    
+  } else {
+    e.preventDefault()
+    errorMessage() // handle error div
   
-  const newBook = new Book(title, author, pages, isRead)
+    const title = myForm.bookName.value
+    const author = myForm.bookAuthor.value
+    const pages = myForm.bookPages.value
+    const isRead = myForm.readOrNot.value === 'yes'
+    
+    const newBook = new Book(title, author, pages, isRead)
+  
+    addNewBook(newBook)
+    updateHeader()
+  }
 
-  addNewBook(newBook)
+
+
+
 })
 
-// EDIT BOOKS
-editBooks.addEventListener('click', (e) => editBookEntry())
+editBooks.addEventListener('click', toggleEditMode)
 
+bookDelete.addEventListener('click', deleteBook)
 
 // -----------------------|
 // ------------ FUNCTIONS |
@@ -82,36 +141,21 @@ function renderPageLoad() {
   updateHeader()
 
   library.forEach(book => {
-    // CREATE NEW DIVS WITH BOOK INFO
-    let div = template.content.cloneNode(true)
-
-    div.querySelector('#cardTitle').textContent = book.title
-    div.querySelector('#cardAuthor').textContent = book.author
-    div.querySelector('#cardPages').textContent = book.pages
-    div.querySelector('#cardRead').textContent = book.isRead
-
-    container.append(div)
+    const card = new Card(book, template)
+    container.appendChild(card.element)
   })
 }
 
 function renderLatestBook() {
-  checkLocalStorage()
-  updateHeader()
-  let latest = library.slice(-1)
-
-  let div = template.content.cloneNode(true)
-
-  div.querySelector('#cardTitle').textContent = latest[0].title
-  div.querySelector('#cardAuthor').textContent = latest[0].author
-  div.querySelector('#cardPages').textContent = latest[0].pages
-  div.querySelector('#cardRead').textContent = latest[0].isRead
-
-  container.append(div)
+  const latest = library.slice(-1)[0]
+  const card = new Card(latest, template)
+  container.appendChild(card.element)
 }
 
 function errorMessage() {
   formError.style.visibility = 'hidden'
 }
+
 function updateLocalStorage() {
   localStorage.setItem('library', JSON.stringify(library))
 }
@@ -150,50 +194,109 @@ function updateHeader() {
   headerPagesRead.textContent = `Pages Read: ${readPages}`
 }
 
+function toggleEditMode() {
+  isEditMode = !isEditMode
+  console.log(`EDIT MODE === ${isEditMode}`)
+  console.log(headerBooks.textContent, headerBooksRead.textContent, headerPages.textContent, headerPagesRead.textContent)
+  return (isEditMode) ? enterEditMode() : exitEditMode()
+}
 
-// SET DEFAULT HEADER STATE FOR THE editBookEntry() FUNCTION
-const headerDefault = header.innerHTML
+function enterEditMode() {
+  updateHeader()
+  header.classList.add('editModeHeader')
+  header.innerHTML = '<h1>EDITING MODE</h1>'
+  addBooks.classList.add('editDisableAdd')
 
-function editBookEntry() {
-  // CHANGE HEADER TO REFLECT YOU ARE IN EDIT MODE
-  // Disable adding new books, change header, and change styling of the cards
-  const headerChange = header.classList.contains('editModeHeader')
-  
-  if(!headerChange) {
-    header.classList.add('editModeHeader')
-    header.innerHTML = '<h1>EDITING MODE</h1>'
-    addBooks.classList.add('editDisableAdd')
-  } else {
-    header.innerHTML = headerDefault
-    header.removeAttribute('class')
-    addBooks.removeAttribute('class')
-  }
-  
-  // CHANGE CARDS TO REFLECT YOU ARE IN EDIT MODE
-  for(let i = 0; i < card.length; i++) {
-    card[i].classList.toggle('editMode')
+  bookDelete.style.visibility = 'visible'  
+  handleCardEdit()
+}
 
-    // EVENT LISTENERS TO EVERY CARD IN EDIT MODE
-    card[i].addEventListener('click', (e) => {
-      let title = card[i].querySelector('#cardTitle').textContent
-      let author = card[i].querySelector('#cardAuthor').textContent
-      let pages = card[i].querySelector('#cardPages').textContent
-      let isRead = card[i].querySelector('#cardRead').textContent
+function exitEditMode() {
+  header.innerHTML = headerDefault
+  header.removeAttribute('class')
+  // updateHeader()
+  addBooks.removeAttribute('class')
 
-      // Open modal with card data
-      editOpenModal(title, author, pages, isRead)
-    })
+  // handleCardEdit()
+  // updateLocalStorage()
+}
+
+function editCard(e) {
+  const title = e.currentTarget.querySelector('#cardTitle').textContent
+  const author = e.currentTarget.querySelector('#cardAuthor').textContent
+  const pages = e.currentTarget.querySelector('#cardPages').textContent
+  const isRead = e.currentTarget.querySelector('#cardRead').textContent
+
+  editOpenModal(title, author, pages, isRead)
+}
+
+
+function handleCardEdit() {
+  for(let card of cards) {
+    if(isEditMode) {
+      card.classList.add('editMode')
+      card.addEventListener('click', editCard)
+    } else {
+      card.classList.remove('editMode')
+      card.removeEventListener('click', editCard)
+    }
   }
 }
 
 function editOpenModal(title, author, pages, isRead) {
+  // keep track of original un-edited params
+  originalTitle = title
+  originalAuthor = author
+
   myForm.bookName.value = title
   myForm.bookAuthor.value = author
   myForm.bookPages.value = pages
   myForm.readOrNot.value = isRead
 
-  modal.showModal()
+  if(isRead === 'Read') {
+    myForm.readOrNot.value = 'yes'
+  } else {
+    myForm.readOrNot.value = 'no'
+  }
+
+  if(isEditMode) {
+    modal.showModal()
+  }
+
+  updateHeader()
 }
+
+function deleteBook() {
+  const title = myForm.bookName.value
+  const author = myForm.bookAuthor.value
+
+  // Get book div that is clicked on in our library
+  const index = library.findIndex((book) => {
+    return book.title === title && book.author === author
+  })
+
+  if(index !== -1) {
+    const book = library[index]
+    
+    // query card
+    const card = container.querySelector(`[data-title="${book.title}"]`)
+    
+    // remove card if found
+    if(card) {
+      card.remove()
+    }
+
+    library.splice(index, 1)
+
+    updateLocalStorage()
+  }
+
+  // exitEditMode()
+  
+  updateHeader()
+  modal.close()
+}
+
 
 
 renderPageLoad()
