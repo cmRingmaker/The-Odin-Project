@@ -1,9 +1,5 @@
 // HEADER
 const header = document.getElementById('header')
-const headerBooks = document.getElementById('bks')
-const headerBooksRead = document.getElementById('bksread')
-const headerPages = document.getElementById('pgs')
-const headerPagesRead = document.getElementById('pgsread')
 
 // MAIN CONTENT
 const container = document.getElementById('container')
@@ -28,6 +24,7 @@ let library = JSON.parse(localStorage.getItem('library')) || []   // initialize 
 const headerDefault = header.innerHTML                            // default header state
 const headerChange = header.classList.contains('editModeHeader')  // edit header state
 let isEditMode = false                                            // edit mode
+let isHeaderEditMode = false                                      // header edit mode
 let originalTitle                                                 // save original title and author for editing divs & localstorage
 let originalAuthor                                                // <--^
 
@@ -184,6 +181,12 @@ function addNewBook(book) {
 }
 
 function updateHeader() {
+  if(isHeaderEditMode) return
+  const headerBooks = document.getElementById('bks')
+  const headerBooksRead = document.getElementById('bksread')
+  const headerPages = document.getElementById('pgs')
+  const headerPagesRead = document.getElementById('pgsread')
+
   const readItems = library.filter((book) => book.isRead === 'Read')
   const getTotalPages = library.reduce((acc, c) => acc + Number(c.pages), 0)
   const readPages = readItems.reduce((acc, c) => acc + Number(c.pages), 0)
@@ -197,28 +200,25 @@ function updateHeader() {
 function toggleEditMode() {
   isEditMode = !isEditMode
   console.log(`EDIT MODE === ${isEditMode}`)
-  console.log(headerBooks.textContent, headerBooksRead.textContent, headerPages.textContent, headerPagesRead.textContent)
   return (isEditMode) ? enterEditMode() : exitEditMode()
 }
 
 function enterEditMode() {
-  updateHeader()
+  isHeaderEditMode = true
   header.classList.add('editModeHeader')
   header.innerHTML = '<h1>EDITING MODE</h1>'
   addBooks.classList.add('editDisableAdd')
-
   bookDelete.style.visibility = 'visible'  
   handleCardEdit()
 }
 
 function exitEditMode() {
+  isHeaderEditMode = false
   header.innerHTML = headerDefault
   header.removeAttribute('class')
-  // updateHeader()
   addBooks.removeAttribute('class')
-
-  // handleCardEdit()
-  // updateLocalStorage()
+  handleCardEdit()
+  updateHeader()
 }
 
 function editCard(e) {
@@ -275,11 +275,9 @@ function deleteBook() {
     return book.title === title && book.author === author
   })
 
-  if(index !== -1) {
-    const book = library[index]
-    
+  if(index !== -1) {    
     // query card
-    const card = container.querySelector(`[data-title="${book.title}"]`)
+    const card = container.querySelector(`[data-title="${title}"]`)
     
     // remove card if found
     if(card) {
@@ -287,14 +285,11 @@ function deleteBook() {
     }
 
     library.splice(index, 1)
-
     updateLocalStorage()
   }
 
-  // exitEditMode()
-  
-  updateHeader()
   modal.close()
+  updateHeader()
 }
 
 
