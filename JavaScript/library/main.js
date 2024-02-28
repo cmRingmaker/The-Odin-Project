@@ -59,7 +59,6 @@ class Card {
     this.setRead(book.isRead)
   }
 
-  // Methods
   setTitle  = (title) =>  this.element.querySelector('#cardTitle').textContent = title
   setAuthor = (author) => this.element.querySelector('#cardAuthor').textContent = author
   setPages  = (pages) =>  this.element.querySelector('#cardPages').textContent = pages
@@ -81,7 +80,8 @@ closeModal.addEventListener('click', (e) => {
   modal.close()
 })
 
-bookPages.addEventListener('keydown', (e) => { // force numbers only
+// Force numbers only.
+bookPages.addEventListener('keydown', (e) => {
   if(/[0-9\-.]|Delete|Backspace/.test(e.key)) return
   e.preventDefault()
 })
@@ -291,7 +291,5 @@ function deleteBook() {
   modal.close()
   updateHeader()
 }
-
-
 
 renderPageLoad()
