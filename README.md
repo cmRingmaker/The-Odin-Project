@@ -81,3 +81,10 @@ Under each section that is completed, I will list notable things that I had lear
 
 ---
 ### <p align='center'>FULL STACK JAVASCRIPT</p>
+
+## Library: [Library Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/library) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/library/)
+*[HTML | CSS + Grid + Flexbox | JavaScript]*
+
+- Utilizing localstorage on the client-side is very useful.
+- Writing classes that can be edited to quickly change a lot of functionalty is incredibly powerful.
+- Modals are fun to build!
