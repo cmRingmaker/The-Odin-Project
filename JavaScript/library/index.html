@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="A small library app">
+	<meta name="keywords"
+		content="library app, the odin project, html css javascript, interactive, program">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Library</title>
+
+	<!-- external CSS link -->
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header id='header'>
+		<h4>Library</h4>
+		<div id="stats">
+			<span id='bks'>Books: 0</span>
+			<span id='bksread'>Books Read: 0</span>
+			<span id='pgs'>Total Pages: 0</span>
+			<span id='pgsread'>Pages Read: 0</span>
+		</div>
+	</header>
+
+	<main>
+		<div id="container">
+			<template id='template'>
+				<div class="card">
+					<span id='cardTitle'>Book Title</span>
+					<span id='cardAuthor'>Author Name</span>
+					<span id='cardPages'>Pages</span>
+					<span id='cardRead'>Read</span>
+			</template>
+
+			<!-- POPULATE DIVS HERE -->
+		</div>
+	</main>
+
+	<dialog id='modal'>
+		<!-- CLOSE MODAL -->
+		<div id="formError">Duplicate Book Found!</div>
+		<div id="bookDelete">DELETE BOOK</div>
+		<button id="closeModal">X</button>
+
+		<!-- BOOK FORM -->
+		<form action="" form id='myForm'>
+			<div class="formGroup">
+				<input type="text" name='bookName' id='bookName' required>
+				<label for="bookName">Book Name:</label>
+			</div>
+
+			<div class="formGroup">
+				<input type="text" name='bookAuthor' id='bookAuthor' required>
+				<label for="bookAuthor">Author:</label>
+			</div>
+
+			<div class="formGroup">
+				<input type="number" name='bookPages' id='bookPages' required min='1' max='9999'>
+				<label for="bookPages">Number of Pages</label>
+			</div>
+
+			<div class="formGroup">
+				<fieldset>
+					<legend>Have you read this book?</legend>
+
+					<div>
+						<input type="radio" name='readOrNot' id='haveRead' value='yes' checked>
+						<label for="haveRead" class='radioLabel'>Yes</label>
+
+						<input type="radio" name='readOrNot' id='haveNotRead' value='no'>
+						<label for="haveNotRead" class='radioLabel'>No</label>
+					</div>
+
+				</fieldset>
+			</div>
+		</form>
+
+		<button form='myForm' id='submitForm'>SUBMIT</button>
+
+	</dialog>
+
+	<footer>
+		<button id='editBooks'>Edit Books</button>
+		<button id='addBooks'>Add Books</button>
+	</footer>
+
+	<script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
