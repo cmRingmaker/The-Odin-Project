@@ -22,6 +22,9 @@ Under each section that is completed, I will list notable things that I had lear
 
 [Admin Dashboard Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Intermediate/admin-dashboard) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Intermediate/admin-dashboard/)
 
+### JAVASCRIPT
+[Library Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/JavaScript/library) | [Demo](https://cmringmaker.github.io/The-Odin-Project/JavaScript/library/)
+
 ---
 ### <p align='center'>FOUNDATIONS</p>
 
@@ -38,21 +41,21 @@ Under each section that is completed, I will list notable things that I had lear
 - Flexbox operates with a main axis and cross axis, which change the flow of items depending on the direction you set.
 - Flexbox makes worrying about floats practically nonexistant!
 
-## JavaScript: [Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/rock-paper-scissors) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/rock-paper-scissors/)
+## JavaScript Basics: [Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/rock-paper-scissors) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/rock-paper-scissors/)
 *[HTML | CSS + Flexbox | JavaScript]*
 
 - With JS, the DOM is easily manipulated with using querySelectors to target specific HTML elements, as well as using event listeners to change the elements.
 - Arrays and Objects are powerful ways to store data that can be called later!
 - When debugging JS in a browser, following the stack trace is a great way to get to root of the problem.
 
-## JavaScript: [Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/etch-a-sketch) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/etch-a-sketch/)
+## JavaScript Basics: [Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/etch-a-sketch) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/etch-a-sketch/)
 *[HTML | CSS + Flexbox | JavaScript]*
 
 - The DOM can support a surprising amount of divs being generated!
 - Calling functions inside of event listeners allows for more DRY code.
 - Session Storage is a powerful way to keep certain elements persisting through reloads.
 
-## JavaScript: [Calculator Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/calculator) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/calculator/)
+## JavaScript Basics: [Calculator Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/calculator) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/calculator/)
 *[HTML | CSS + Flexbox | JavaScript]*
 
 - Manipulating strings is easy!
