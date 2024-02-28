@@ -22,8 +22,8 @@ Under each section that is completed, I will list notable things that I had lear
 
 [Admin Dashboard Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Intermediate/admin-dashboard) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Intermediate/admin-dashboard/)
 
-### JAVASCRIPT
-[Library Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/JavaScript/library) | [Demo](https://cmringmaker.github.io/The-Odin-Project/JavaScript/library/)
+### FULL STACK JAVASCRIPT
+[Library Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/library) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/library/)
 
 ---
 ### <p align='center'>FOUNDATIONS</p>
@@ -78,3 +78,6 @@ Under each section that is completed, I will list notable things that I had lear
 - Creating the base layout of a site with Grid is wonderfully easy.
 - You can have grids inside grids, or even flexbox inside grids!
 - Making grids be responsive to the page resizing is not only easy, but has the benefit of not having to write tons of mediaqueries.
+
+---
+### <p align='center'>FULL STACK JAVASCRIPT</p>
