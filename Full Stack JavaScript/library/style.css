@@ -60,8 +60,6 @@ header {
 }
 
 main {
-  /* padding-top: calc(10% - 70px);
-  padding-bottom: calc(10% - 70px); */
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -100,7 +98,7 @@ h4 { /* title */
 /*******************************************/
 
 #container {
-  width: calc(100% - 10px);
+  width: 100%;
   padding: 5px 0;
   justify-self: center;
   display: grid;
@@ -411,4 +409,9 @@ form:invalid + #submitForm {
   #stats > #pgsread { order: 3; }
 
   #container  { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 500px) {
+  header, main, footer  { width: clamp(100%, 70vw, 1400px); }
+  #container            { max-width: calc(100% - 10px); }
 }
