@@ -414,4 +414,7 @@ form:invalid + #submitForm {
 @media screen and (max-width: 500px) {
   header, main, footer  { width: clamp(100%, 70vw, 1400px); }
   #container            { max-width: calc(100% - 10px); }
+  
+  header { font-size: 1.4rem; }
+  footer > button { font-size: 2.4rem !important; }
 }
