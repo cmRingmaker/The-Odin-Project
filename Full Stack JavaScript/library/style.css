@@ -60,8 +60,8 @@ header {
 }
 
 main {
-  padding-top: 80px;      /* space for the header */
-  padding-bottom: 80px;   /* space for the footer */
+  padding-top: calc(10% - 70px);
+  padding-bottom: calc(10% - 70px);
 }
 
 footer {
