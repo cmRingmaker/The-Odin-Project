@@ -427,8 +427,17 @@ form:invalid + #submitForm {
     grid-template-columns: 10px 1fr 10px;
   }
 
-  input { font-size: 2rem;}
+  #formError {
+    width: 80%;
+    border: 3px solid red;
+    font-size: 2.4rem;
+    padding: 8px;
   
+    /* Position outside of modal */
+    top: -70px;
+  }
+
+  input { font-size: 2rem;}  
   #bookDelete { width: 80%; font-size: 2.4rem; padding: 8px; }
   #closeModal { right: 46px; }
   #submitForm { height: 60px; bottom: -70px;}
