@@ -60,8 +60,6 @@ header {
 }
 
 main {
-  /* padding-top: calc(10% - 70px);
-  padding-bottom: calc(10% - 70px); */
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -100,7 +98,7 @@ h4 { /* title */
 /*******************************************/
 
 #container {
-  width: calc(100% - 10px);
+  width: 100%;
   padding: 5px 0;
   justify-self: center;
   display: grid;
@@ -411,4 +409,36 @@ form:invalid + #submitForm {
   #stats > #pgsread { order: 3; }
 
   #container  { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 500px) {
+  header, main, footer  { width: clamp(100%, 70vw, 1400px); }
+  #container            { max-width: calc(100% - 10px); }
+  
+  header { font-size: 1.4rem; }
+  footer > button { font-size: 2.4rem !important; }
+
+  dialog {
+    font-size: 2rem;
+    width: 100%;
+    min-width: 96%;
+    height: 400px;
+    grid-template-rows: 10px 1fr 10px;
+    grid-template-columns: 10px 1fr 10px;
+  }
+
+  #formError {
+    width: 80%;
+    border: 3px solid red;
+    font-size: 2.4rem;
+    padding: 8px;
+  
+    /* Position outside of modal */
+    top: -70px;
+  }
+
+  input { font-size: 2rem;}  
+  #bookDelete { width: 80%; font-size: 2.4rem; padding: 8px; }
+  #closeModal { right: 46px; }
+  #submitForm { height: 60px; bottom: -70px;}
 }
