@@ -417,4 +417,19 @@ form:invalid + #submitForm {
   
   header { font-size: 1.4rem; }
   footer > button { font-size: 2.4rem !important; }
+
+  dialog {
+    font-size: 2rem;
+    width: 100%;
+    min-width: 96%;
+    height: 400px;
+    grid-template-rows: 10px 1fr 10px;
+    grid-template-columns: 10px 1fr 10px;
+  }
+
+  input { font-size: 2rem;}
+  
+  #bookDelete { width: 80%; font-size: 2.4rem; padding: 8px; }
+  #closeModal { right: 46px; }
+  #submitForm { height: 60px; bottom: -70px;}
 }
