@@ -8,6 +8,13 @@
     content="tic-tac-toe app, tic tac toe, the odin project, html css javascript, interactive, program">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Madimi+One&family=Roboto:wght@100;300;500&display=swap"
+    rel="stylesheet">
+
   <title>Tic-Tac-Toe!</title>
 
   <!-- external CSS link -->
@@ -15,6 +22,48 @@
 </head>
 
 <body>
+  <header>
+    <h1>Tic-Tac-Toe!</h1>
+  </header>
+
+  <main>
+    <!-- Score Cards -->
+    <section id="playerScore">
+      <h3>Player</h3>
+      <span class="scoreCount">Score: </span>
+      <span class="winCount">Wins: </span>
+    </section>
+
+    <section id="computerScore">
+      <h3>Computer</h3>
+      <span class="scoreCount">Score: </span>
+      <span class="winCount">Wins: </span>
+    </section>
+
+    <!-- Play Area -->
+    <section id="boardArea">
+      <div id="board">
+        <div class="space">X</div>
+        <div class="space">O</div>
+        <div class="space">X</div>
+
+        <div class="space">0</div>
+        <div class="space">X</div>
+        <div class="space">0</div>
+
+        <div class="space">X</div>
+        <div class="space">0</div>
+        <div class="space">X</div>
+      </div>
+
+      <!-- Current Game Info -->
+      <div id="info"></div>
+    </section>
+  </main>
+
+  <footer>
+    footer
+  </footer>
 
 
   <script type="text/javascript" src="main.js"></script>

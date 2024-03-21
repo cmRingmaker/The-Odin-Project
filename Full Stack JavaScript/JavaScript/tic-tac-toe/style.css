@@ -1,5 +1,11 @@
 :root {
   font-size: 62.5%;
+
+  --BG_COLOR: rgba(150, 200, 100, 0.35);
+  --BG_YELLOW: rgb(251, 241, 199);
+
+  --DOTTED: 4px dotted var(--BG_COLOR);
+  --PLAY_BORDERS: 3px solid var(--BG_COLOR);
 }
 
 /******************************************
@@ -14,18 +20,127 @@
   outline: none;
   box-sizing: border-box;
   line-height: 1.5;
+  font-family: "Madimi One", sans-serif;
 }
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 
+body {
+  background: var(--BG_COLOR);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+header {
+  background: var(--BG_YELLOW);
+  box-shadow: 0px 2px 4px 0px #0000002d;
+}
+
+main {
+  width: clamp(420px, 80vw, 1400px);
+  justify-self: center;
+  display: grid;
+  grid-template-rows: 180px 1fr;
+  /* grid-template-columns: 1fr 1fr; */
+  gap: 20px;
+}
+
+main > section {
+  background: #fcf9ef;
+  border: 4px solid var(--BG_YELLOW);
+  border-radius: 10px;
+  font-size: 4rem;
+  text-align: center;
+}
+
+#boardArea {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-rows: 1fr 100px;
+  /* justify-content: center; */
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 1 / 1;
+  width: calc(100% - 20px);
+  max-width: 700px;
+  justify-self: center;
+  align-self: center;
+}
+
+#info {
+  background: var(--BG_YELLOW);
+  border-top: var(--DOTTED);
+}
+
+footer {
+  font-size: 1.6rem;
+}
+
 
 /******************************************
 /* CONTENT
 /*******************************************/
 
+h1 { /* Header Text */
+  font-size: 5rem;
+  color: var(--BG_COLOR);
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  text-align: center;
+}
+
+h3 { /* Player/Computer Name */
+  font-size: 3rem;
+  background-color: var(--BG_YELLOW);
+  border-bottom: var(--DOTTED);
+}
+
+span { /* Score/Win tracker */
+  font-size: 2.4rem;
+}
+
+.space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem;
+  user-select: none;
+}
+
+/* BORDERS FOR THE PLAYSPACE */
+.space:nth-child(2), .space:nth-child(8) { 
+  border-left: var(--PLAY_BORDERS);
+  border-right: var(--PLAY_BORDERS);
+}
+
+.space:nth-child(5) {
+  border: var(--PLAY_BORDERS);
+}
+
+.space:nth-child(4), .space:nth-child(6) { 
+  border-top: var(--PLAY_BORDERS);
+  border-bottom: var(--PLAY_BORDERS);
+}
+
 
 /******************************************
 /* MEDIA QUERIES
 /*******************************************/
+
+@media screen and (max-width: 700px) {
+  .space { font-size: 6rem;}  
+}
+
+@media screen and (max-width: 500px) {
+  main    { width: calc(100% - 40px); }
+}
+
+@media screen and (max-width: 350px) {
+  .space  { font-size: 4rem;}
+}
