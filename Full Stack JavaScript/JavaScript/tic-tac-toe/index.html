@@ -28,7 +28,7 @@
 
   <main>
     <!-- Score Cards -->
-    <section id="playerScore">
+    <section id="playerScore" class='currentTurn'>
       <h3>Player</h3>
       <span class="scoreCount">Score: </span>
       <span class="winCount">Wins: </span>
@@ -43,21 +43,22 @@
     <!-- Play Area -->
     <section id="boardArea">
       <div id="board">
-        <div class="space">X</div>
-        <div class="space">O</div>
-        <div class="space">X</div>
+        <!-- &nbsp; hack to add whitespace so the empty spaces don't resize-->
+        <div class="space">&nbsp;</div>
+        <div class="space">&nbsp;</div>
+        <div class="space">&nbsp;</div>
 
-        <div class="space">0</div>
-        <div class="space">X</div>
-        <div class="space">0</div>
+        <div class="space">&nbsp;</div>
+        <div class="space">&nbsp;</div>
+        <div class="space">&nbsp;</div>
 
-        <div class="space">X</div>
-        <div class="space">0</div>
-        <div class="space">X</div>
+        <div class="space">&nbsp;</div>
+        <div class="space">&nbsp;</div>
+        <div class="space">&nbsp;</div>
       </div>
 
       <!-- Current Game Info -->
-      <div id="info"></div>
+      <div id="info">Current Round: 1</div>
     </section>
   </main>
 

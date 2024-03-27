@@ -127,6 +127,14 @@ span { /* Score/Win tracker */
   border-bottom: var(--PLAY_BORDERS);
 }
 
+/******************************************
+/* JS ENABLERS
+/*******************************************/
+
+.currentTurn {
+  box-shadow: -4px 6px 2px 0px rgb(230, 105, 105);
+}
+
 
 /******************************************
 /* MEDIA QUERIES
@@ -170,3 +178,29 @@ span { /* Score/Win tracker */
 @media screen and (max-height: 780px) {
   #board { max-width: 390px; }
 }
+
+
+
+
+
+
+
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+/* TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO - TODO */
+
+/*  JS:
+      - create bot instead of just a 2nd player
+      - swap current turn classes depending on whos turn it is
+      - allow user input for their name?
+
+    CSS:
+    - tidy up
+    - finish the player/computer cards
+
+
+*/
