@@ -85,13 +85,27 @@ class Game {
     return this.round + 1
   }
 
+  updateCurrentTurn(player) {
+    const playerMarker = player.getMarker()
+
+    const playerElement = document.getElementById(playerMarker === 'X' ? 'playerScore' : 'computerScore')
+    const otherElement = document.getElementById(playerMarker === 'X' ? 'computerScore' : 'playerScore')
+
+    playerElement.classList.remove('currentTurn')
+    otherElement.classList.add('currentTurn')
+  }
+
   playMove(index) {
     const board = this.gameBoard.getBoard()
     const currentPlayerMarker = this.getCurrentPlayer().getMarker()
+    const markerClass = currentPlayerMarker === 'X' ? 'playerX' : 'playerO'
 
     if(board[index] === null) {
       this.gameBoard.setBoard(index, currentPlayerMarker)
-      boardSquares[index].textContent = currentPlayerMarker;
+      // Set markers & coloring
+      boardSquares[index].textContent = currentPlayerMarker
+      boardSquares[index].classList.add(markerClass)
+
       this.round++ // New round tracker!
       const result = this.checkWin(this.currentPlayer)
         
@@ -101,18 +115,7 @@ class Game {
         console.log(this.getCurrentPlayer())
         this.updateCurrentTurn(this.currentPlayer)
       }
-
     }
-  }
-
-  updateCurrentTurn(player) {
-    const playerMarker = player.getMarker()
-
-    const playerElement = document.getElementById(playerMarker === 'X' ? 'playerScore' : 'computerScore')
-    const otherElement = document.getElementById(playerMarker === 'X' ? 'computerScore' : 'playerScore')
-
-    playerElement.classList.remove('currentTurn')
-    otherElement.classList.add('currentTurn')
   }
 }
 

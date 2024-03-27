@@ -76,6 +76,9 @@ main > section {
 #info {
   background: var(--BG_YELLOW);
   border-top: var(--DOTTED);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
@@ -133,6 +136,14 @@ span { /* Score/Win tracker */
 
 .currentTurn {
   box-shadow: -4px 6px 2px 0px rgb(230, 105, 105);
+}
+
+.playerX {
+  color: red;
+}
+
+.playerO {
+  color: blue;
 }
 
 
