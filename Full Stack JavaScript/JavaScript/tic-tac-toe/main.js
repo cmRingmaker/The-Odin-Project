@@ -33,22 +33,21 @@ class Game {
     this.gameBoard = new GameBoard()
     this.round = 0
 
-    const winConditions = { // win conditions check indexes!
-      horizontal: [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8]
-      ],
-      vertical: [
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8]
-      ],
-      diagonal: [
-        [0, 4, 8],
-        [2, 4, 6]
-      ]
-    }
+    const winConditions = [ // Check indexes for win conditions
+      // horizontal:
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+
+      // vertical:
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+
+      // diagonal:
+      [0, 4, 8],
+      [2, 4, 6]
+    ]
 
     this.winConditions = winConditions
   }
@@ -61,15 +60,11 @@ class Game {
       return false // Do not check win conditions if they are not possible
     }
 
-    for(const type in this.winConditions) {
-      const combinations = this.winConditions[type]
+    for(const combination of this.winConditions) {
+      const [a, b, c] = combination
 
-      for(const combination of combinations) {
-        const [a, b, c] = combination
-
-        if( board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker ) {
-          return `${playerMarker} wins ${type}!`
-        }
+      if( board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker) {
+        return `${playerMarker} wins!`
       }
     }
     return false;
