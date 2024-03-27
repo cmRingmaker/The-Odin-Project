@@ -31,6 +31,7 @@ class Game {
     this.player2 = new Player('O')
     this.currentPlayer = this.player1 // default to user playing first round
     this.gameBoard = new GameBoard()
+    this.round = 0
 
     const winConditions = { // win conditions check indexes!
       horizontal: [
@@ -56,6 +57,10 @@ class Game {
     const playerMarker = player.getMarker()
     const board = this.gameBoard.getBoard()
 
+    if(this.round < 5) {
+      return false // Do not check win conditions if they are not possible
+    }
+
     for(const type in this.winConditions) {
       const combinations = this.winConditions[type]
 
@@ -69,11 +74,15 @@ class Game {
     }
     return false;
   }
-
+  
   getCurrentPlayer() {
     const currentPlayer = this.currentPlayer
     this.currentPlayer = this.currentPlayer === this.player1 ? this.player2 : this.player1
     return currentPlayer
+  }
+
+  getCurrentRound() {
+    return this.round + 1
   }
 
   playMove(index) {
@@ -83,20 +92,28 @@ class Game {
     if(board[index] === null) {
       this.gameBoard.setBoard(index, currentPlayerMarker)
       boardSquares[index].textContent = currentPlayerMarker;
+      this.round++ // New round tracker!
       const result = this.checkWin(this.currentPlayer)
-
+        
       if(result) {
         console.log(result)
       } else {
-        this.getCurrentPlayer()
+        console.log(this.getCurrentPlayer())
+        this.updateCurrentTurn(this.currentPlayer)
       }
 
-    } else {
-      console.log('SQUARE ALREADY OCCUPIED')
     }
   }
 
+  updateCurrentTurn(player) {
+    const playerMarker = player.getMarker()
 
+    const playerElement = document.getElementById(playerMarker === 'X' ? 'playerScore' : 'computerScore')
+    const otherElement = document.getElementById(playerMarker === 'X' ? 'computerScore' : 'playerScore')
+
+    playerElement.classList.remove('currentTurn')
+    otherElement.classList.add('currentTurn')
+  }
 }
 
 const game = new Game()
@@ -106,6 +123,7 @@ boardSquares.forEach((square, index) => {
     game.playMove(index)
 
     const currentPlayer = game.getCurrentPlayer()
-    currentRound.textContent = `Current player: ${currentPlayer.getMarker()}`
+    const displayRound = game.getCurrentRound()
+    currentRound.textContent = `Current Round: ${displayRound}`
   }, {once: true})
 });
