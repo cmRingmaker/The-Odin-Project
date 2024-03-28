@@ -47,25 +47,20 @@ class Game {
     this.gameBoard = new GameBoard()
     this.round = 1
 
-    // Track WinStreaks
+    // Track Wins and Streaks
     this.player1Wins = localStorage.getItem('player1Wins') ? parseInt(localStorage.getItem('player1Wins')) : 0
     this.player2Wins = localStorage.getItem('player2Wins') ? parseInt(localStorage.getItem('player2Wins')) : 0
-    this.currentStreak = 0
-
+    this.player1Streak = localStorage.getItem('player1Streak') ? parseInt(localStorage.getItem('player1Streak')) : 0
+    this.player2Streak = localStorage.getItem('player2Streak') ? parseInt(localStorage.getItem('player2Streak')) : 0
+    this.winsAndStreaksUI()
+    
     const winConditions = [ // Check indexes for win conditions
       // horizontal:
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
       // vertical:
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
       // diagonal:
-      [0, 4, 8],
-      [2, 4, 6]
+      [0, 4, 8], [2, 4, 6]
     ]
 
     this.winConditions = winConditions
@@ -74,49 +69,28 @@ class Game {
   checkWin(player) {
     const playerMarker = player.getMarker()
     const board = this.gameBoard.getBoard()
-
-    if(this.round < 5) {
+  
+    if (this.round < 5) {
       return false // Do not check win conditions if they are not possible
     }
-
-    for(const combination of this.winConditions) {
+  
+    for (const combination of this.winConditions) {
       const [a, b, c] = combination
-
-      if(board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker) {
-        const markerCheck = playerMarker === 'X'
-
-        // Update Player/Computer wins
-        playerWinScore.textContent = `Wins: ${this.player1Wins + 1}`
-        computerWinScore.textContent = `Wins: ${this.player2Wins + 1}`
-
-        // Update Modal to display appropriate information
-        modalWinOrLose.textContent = markerCheck ? 'You Win!' : 'You Lose!'
-        modalWinner.textContent = playerMarker
-        modalWinner.classList.add(markerCheck ? 'playerX' : 'playerO')
-        modalMessage.textContent = markerCheck ? 'Congratulations!' : 'Try Again!'
-        statWins.textContent = markerCheck ? `Wins: ${this.player1Wins + 1}` : `Wins: ${this.player2Wins + 1}`
-        modal.showModal()
-
-        // Wins and Streaks
-        if(markerCheck) {
-          this.player1Wins++
-          this.currentStreak++
-          localStorage.setItem('player1Wins', this.player1Wins)
-        } else {
-          this.player2Wins++
-          this.currentStreak = 0
-          localStorage.setItem('player2Wins', this.player2Wins)
-        }
+  
+      if (board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker) {
+        this.updateUIAndModal(playerMarker)
 
         return `${playerMarker} wins!`
       }
     }
-    return false;
+    return false
   }
   
   getCurrentPlayer() {
+    console.log('CURRENT CALL')
     const currentPlayer = this.currentPlayer
     this.currentPlayer = this.currentPlayer === this.player1 ? this.player2 : this.player1
+    console.log(`getcurrentPlayer = ${this.currentPlayer.marker}`)
     return currentPlayer
   }
 
@@ -134,31 +108,42 @@ class Game {
     otherElement.classList.add('currentTurn')
   }
 
-  playMove(index) {
-    const board = this.gameBoard.getBoard()
-    const currentPlayer = this.getCurrentPlayer()
-    const currentPlayerMarker = currentPlayer.getMarker()
-  
-    // To add/remove CSS to which players turn it is
-    const markerClass = currentPlayerMarker === 'X' ? 'playerX' : 'playerO'
-  
-    if(board[index] === null) {
-      this.gameBoard.setBoard(index, currentPlayerMarker)
-      // Set markers & coloring
-      boardSquares[index].textContent = currentPlayerMarker
-      boardSquares[index].classList.add(markerClass)
-  
-      const result = this.checkWin(currentPlayer)
-  
-      if (result) {
-        console.log(result)
-      } else {
-        this.round++; // New round tracker!
-        this.updateCurrentTurn(currentPlayer)
-        this.currentPlayer = this.currentPlayer === this.player1 ? this.player2 : this.player1
-      }
+playMove(index) {
+  const board = this.gameBoard.getBoard()
+  const currentPlayer = this.getCurrentPlayer()
+  const currentPlayerMarker = currentPlayer.getMarker()
+
+  // To add/remove CSS to which players turn it is
+  const markerClass = currentPlayerMarker === 'X' ? 'playerX' : 'playerO'
+
+  if(board[index] === null) {
+    this.gameBoard.setBoard(index, currentPlayerMarker)
+    // Set markers & coloring
+    boardSquares[index].textContent = currentPlayerMarker
+    boardSquares[index].classList.add(markerClass)
+
+    const result = this.checkWin(currentPlayer)
+
+    // Hack to make sure currentround info is actually correct when computer plays
+    currentRound.textContent = `Current Round: ${this.round + 1}`
+
+    if(this.currentPlayer === this.player2) {
+      setTimeout(() => {
+        this.computerMove()
+      }, 700);
+    }
+
+    if(result) {
+      // Win result!
+      console.log(result)
+    } else {
+      this.updateCurrentTurn(currentPlayer)
+      this.currentPlayer = this.currentPlayer === this.player1 ? this.player2 : this.player1
+      this.round++; // Increment round after switching current player
     }
   }
+}
+
 
   resetBoard() {
     this.gameBoard = new GameBoard()
@@ -176,17 +161,95 @@ class Game {
   resetGame() {
     modal.close()
     this.resetBoard()
-    this.currentStreak = 0
+    modalWinner.removeAttribute('class')
   }
 
   clearStreak() {
-    this.currentStreak = 0
-    localStorage.removeItem('player1Wins')
-    localStorage.removeItem('player2Wins')
+    localStorage.clear()
     this.player1Wins = 0
     this.player2Wins = 0
+    this.player1Streak = 0
+    this.player2Streak = 0
+    this.winsAndStreaksUI()
   }
 
+  getRandomSquare() {
+    const board = this.gameBoard.getBoard()
+    const empties = []
+
+    for(let i = 0; i < board.length; i++) {
+      if(board[i] === null) {
+        empties.push(i)
+      }
+    }
+
+    if(empties.length === 0) {
+      return null
+    }
+    
+    return empties[Math.floor(Math.random() * empties.length)]
+  }
+
+  computerMove() {
+    const currentPlayer = this.currentPlayer
+    if (currentPlayer === this.player2) {
+      const index = this.getRandomSquare();
+      if (index !== null) {
+        this.playMove(index);
+        this.currentPlayer = this.currentPlayer === this.player1 ? this.player2 : this.player1
+      } else {
+        console.log('Game is a tie!');
+
+      // Update modal for when the game Ties
+        modalWinOrLose.textContent = 'DRAW!'
+        modalWinner.textContent = `Tied`
+        modalMessage.textContent = 'Game Tie!'
+        modal.showModal()
+
+      }
+    }
+    
+  }
+
+  updateUIAndModal(playerMarker) {
+    const isPlayerWin = playerMarker === 'X'
+
+    // Update win counts and streaks
+    if (isPlayerWin) {
+      this.player1Wins++
+      this.player1Streak++
+      this.player2Streak = 0
+      localStorage.setItem('player1Streak', this.player1Streak)
+      localStorage.setItem('player1Wins', this.player1Wins)
+    } else {
+      this.player2Wins++
+      this.player2Streak++
+      this.player1Streak = 0
+      localStorage.setItem('player2Streak', this.player2Streak)
+      localStorage.setItem('player2Wins', this.player2Wins)
+    }
+
+    this.winsAndStreaksUI()
+
+    // Update modal
+    modalWinOrLose.textContent = isPlayerWin ? 'You Win!' : 'You Lose!'
+    modalWinner.textContent = playerMarker
+    modalWinner.classList.add(isPlayerWin ? 'playerX' : 'playerO')
+    modalMessage.textContent = isPlayerWin ? 'Congratulations!' : 'Try Again!'
+    statWins.textContent = isPlayerWin ? `Wins: ${this.player1Wins}` : `Wins: ${this.player2Wins}`
+    statStreak.textContent = isPlayerWin ? `Streak: ${this.player1Streak}` : `Streak: ${this.player2Streak}`
+    modal.showModal()
+  }
+
+  winsAndStreaksUI() {
+    // Player 1
+    playerWinScore.textContent = `Wins: ${this.player1Wins}`
+    statStreak.textContent = `Streak: ${this.player1Streak}`
+  
+    // Player 2
+    computerWinScore.textContent = `Wins: ${this.player2Wins}`
+    statStreak.textContent = `Streak: ${this.player2Streak}`
+  }
 
 }
 
@@ -196,15 +259,15 @@ boardSquares.forEach((square, index) => {
   square.addEventListener('click', () => {
     game.playMove(index)
 
-    const currentPlayer = game.getCurrentPlayer()
+    const currentPlayer = game.getCurrentPlayer() // Keep for player switching!
     const displayRound = game.getCurrentRound()
     currentRound.textContent = `Current Round: ${displayRound}`
   })
 });
 
 clearStreak.addEventListener('click', () => {
-  game.clearStreak()
   game.resetGame()
+  game.clearStreak()
 })
 
 replayGame.addEventListener('click', () => game.resetGame())
