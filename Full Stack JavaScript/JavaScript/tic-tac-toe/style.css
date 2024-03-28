@@ -327,13 +327,4 @@ span { /* Score/Win tracker */
 /*  JS:
       - create bot instead of just a 2nd player
       - allow user input for their name?
-
-    CSS:
-    - tidy up
-
-    BUGS:
-    - fix player streaks to display properly
-    - fix class colors for player display appropriate color when resetting game
-
-
 */

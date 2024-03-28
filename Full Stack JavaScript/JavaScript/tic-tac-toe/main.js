@@ -47,25 +47,22 @@ class Game {
     this.gameBoard = new GameBoard()
     this.round = 1
 
-    // Track WinStreaks
+    // Track Wins
     this.player1Wins = localStorage.getItem('player1Wins') ? parseInt(localStorage.getItem('player1Wins')) : 0
     this.player2Wins = localStorage.getItem('player2Wins') ? parseInt(localStorage.getItem('player2Wins')) : 0
-    this.currentStreak = 0
+
+    // Track Streaks
+    this.player1Streak = localStorage.getItem('player1Streak') ? parseInt(localStorage.getItem('player1Streak')) : 0
+    this.player2Streak = localStorage.getItem('player2Streak') ? parseInt(localStorage.getItem('player2Streak')) : 0
+
 
     const winConditions = [ // Check indexes for win conditions
       // horizontal:
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
       // vertical:
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
       // diagonal:
-      [0, 4, 8],
-      [2, 4, 6]
+      [0, 4, 8], [2, 4, 6]
     ]
 
     this.winConditions = winConditions
@@ -86,26 +83,34 @@ class Game {
         const markerCheck = playerMarker === 'X'
 
         // Update Player/Computer wins
-        playerWinScore.textContent = `Wins: ${this.player1Wins + 1}`
-        computerWinScore.textContent = `Wins: ${this.player2Wins + 1}`
+        // playerWinScore.textContent = `Wins: ${this.player1Wins + 1}`
+        // computerWinScore.textContent = `Wins: ${this.player2Wins + 1}`
 
         // Update Modal to display appropriate information
         modalWinOrLose.textContent = markerCheck ? 'You Win!' : 'You Lose!'
         modalWinner.textContent = playerMarker
         modalWinner.classList.add(markerCheck ? 'playerX' : 'playerO')
         modalMessage.textContent = markerCheck ? 'Congratulations!' : 'Try Again!'
+
         statWins.textContent = markerCheck ? `Wins: ${this.player1Wins + 1}` : `Wins: ${this.player2Wins + 1}`
+        statStreak.textContent = markerCheck ? `Streak: ${this.player1Streak + 1}` : `Streak: ${this.player2Streak + 1}`
         modal.showModal()
 
         // Wins and Streaks
         if(markerCheck) {
           this.player1Wins++
-          this.currentStreak++
+          this.player1Streak++
+          this.player2Streak = 0
+          localStorage.setItem('player1Streak', this.player1Streak)
           localStorage.setItem('player1Wins', this.player1Wins)
+          playerWinScore.textContent = `Wins: ${this.player1Wins}`
         } else {
           this.player2Wins++
-          this.currentStreak = 0
+          this.player2Streak++
+          this.player1Streak = 0
+          localStorage.setItem('player2Streak', this.player2Streak)
           localStorage.setItem('player2Wins', this.player2Wins)
+          computerWinScore.textContent = `Wins: ${this.player2Wins}`
         }
 
         return `${playerMarker} wins!`
@@ -150,7 +155,7 @@ class Game {
   
       const result = this.checkWin(currentPlayer)
   
-      if (result) {
+      if(result) {
         console.log(result)
       } else {
         this.round++; // New round tracker!
@@ -176,15 +181,17 @@ class Game {
   resetGame() {
     modal.close()
     this.resetBoard()
-    this.currentStreak = 0
+    modalWinner.removeAttribute('class')
   }
 
   clearStreak() {
-    this.currentStreak = 0
-    localStorage.removeItem('player1Wins')
-    localStorage.removeItem('player2Wins')
+    localStorage.clear()
     this.player1Wins = 0
     this.player2Wins = 0
+    this.player1Streak = 0
+    this.player2Streak = 0
+    playerWinScore.textContent = 'Wins: 0'
+    computerWinScore.textContent = 'Wins: 0'
   }
 
 
@@ -203,8 +210,8 @@ boardSquares.forEach((square, index) => {
 });
 
 clearStreak.addEventListener('click', () => {
-  game.clearStreak()
   game.resetGame()
+  game.clearStreak()
 })
 
 replayGame.addEventListener('click', () => game.resetGame())
