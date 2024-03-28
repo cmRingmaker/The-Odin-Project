@@ -31,7 +31,7 @@ class Game {
     this.player2 = new Player('O')
     this.currentPlayer = this.player1 // default to user playing first round
     this.gameBoard = new GameBoard()
-    this.round = 0
+    this.round = 1
 
     const winConditions = [ // Check indexes for win conditions
       // horizontal:
@@ -63,7 +63,7 @@ class Game {
     for(const combination of this.winConditions) {
       const [a, b, c] = combination
 
-      if( board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker) {
+      if(board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker) {
         return `${playerMarker} wins!`
       }
     }
@@ -77,7 +77,7 @@ class Game {
   }
 
   getCurrentRound() {
-    return this.round + 1
+    return this.round
   }
 
   updateCurrentTurn(player) {
@@ -92,26 +92,30 @@ class Game {
 
   playMove(index) {
     const board = this.gameBoard.getBoard()
-    const currentPlayerMarker = this.getCurrentPlayer().getMarker()
+    const currentPlayer = this.getCurrentPlayer()
+    const currentPlayerMarker = currentPlayer.getMarker()
+  
+    // To add/remove CSS to which players turn it is
     const markerClass = currentPlayerMarker === 'X' ? 'playerX' : 'playerO'
-
+  
     if(board[index] === null) {
       this.gameBoard.setBoard(index, currentPlayerMarker)
       // Set markers & coloring
       boardSquares[index].textContent = currentPlayerMarker
       boardSquares[index].classList.add(markerClass)
-
-      this.round++ // New round tracker!
-      const result = this.checkWin(this.currentPlayer)
-        
-      if(result) {
+  
+      const result = this.checkWin(currentPlayer)
+  
+      if (result) {
         console.log(result)
       } else {
-        console.log(this.getCurrentPlayer())
-        this.updateCurrentTurn(this.currentPlayer)
+        this.round++; // New round tracker!
+        this.updateCurrentTurn(currentPlayer)
+        this.currentPlayer = this.currentPlayer === this.player1 ? this.player2 : this.player1
       }
     }
   }
+
 }
 
 const game = new Game()
@@ -123,5 +127,5 @@ boardSquares.forEach((square, index) => {
     const currentPlayer = game.getCurrentPlayer()
     const displayRound = game.getCurrentRound()
     currentRound.textContent = `Current Round: ${displayRound}`
-  }, {once: true})
+  })
 });
