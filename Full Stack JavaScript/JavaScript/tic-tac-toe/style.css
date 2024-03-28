@@ -1,11 +1,16 @@
 :root {
   font-size: 62.5%;
 
+  /* Main colors */
   --BG_COLOR: rgba(150, 200, 100, 0.35);
   --BG_YELLOW: rgb(251, 241, 199);
 
+  /* Player Info */
   --DOTTED: 4px dotted var(--BG_COLOR);
   --PLAY_BORDERS: 3px solid var(--BG_COLOR);
+  --PLAYER_COLOR_X: rgb(255, 181, 42);
+  --PLAYER_COLOR_O: rgb(245, 112, 123);
+  --PLAYER_SHADOW: rgb(145, 24, 24) -3px 6px;
 }
 
 /******************************************
@@ -135,15 +140,19 @@ span { /* Score/Win tracker */
 /*******************************************/
 
 .currentTurn {
-  box-shadow: -4px 6px 2px 0px rgb(230, 105, 105);
+  box-shadow: var(--PLAYER_SHADOW);
+  background: white;
 }
 
 .playerX {
-  color: red;
+  color: var(--PLAYER_COLOR_X);
+  text-shadow: var(--PLAYER_SHADOW);
+
 }
 
 .playerO {
-  color: blue;
+  color: var(--PLAYER_COLOR_O);
+  text-shadow: var(--PLAYER_SHADOW);
 }
 
 
@@ -206,7 +215,6 @@ span { /* Score/Win tracker */
 
 /*  JS:
       - create bot instead of just a 2nd player
-      - swap current turn classes depending on whos turn it is
       - allow user input for their name?
 
     CSS:
