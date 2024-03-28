@@ -1,6 +1,20 @@
 const boardSquares = document.querySelectorAll('.space')
 const currentRound = document.getElementById('info')
 
+// Scores
+const playerWinScore = document.getElementById('playerWin')
+const computerWinScore = document.getElementById('computerWin')
+
+// MODAL
+const modal = document.getElementById('modal')
+const modalWinOrLose = document.getElementById('winOrLose')
+const modalWinner = document.getElementById('modalWinner')
+const modalMessage = document.getElementById('infoMsg')
+const statStreak = document.getElementById('statStreak')
+const statWins = document.getElementById('statsWins')
+const clearStreak = document.getElementById('clearStreak')
+const replayGame = document.getElementById('replayGame')
+
 class GameBoard {
   constructor() {
     this.board = Array(9).fill(null)
@@ -33,6 +47,11 @@ class Game {
     this.gameBoard = new GameBoard()
     this.round = 1
 
+    // Track WinStreaks
+    this.player1Wins = localStorage.getItem('player1Wins') ? parseInt(localStorage.getItem('player1Wins')) : 0
+    this.player2Wins = localStorage.getItem('player2Wins') ? parseInt(localStorage.getItem('player2Wins')) : 0
+    this.currentStreak = 0
+
     const winConditions = [ // Check indexes for win conditions
       // horizontal:
       [0, 1, 2],
@@ -64,6 +83,31 @@ class Game {
       const [a, b, c] = combination
 
       if(board[a] === playerMarker && board[b] === playerMarker && board[c] === playerMarker) {
+        const markerCheck = playerMarker === 'X'
+
+        // Update Player/Computer wins
+        playerWinScore.textContent = `Wins: ${this.player1Wins + 1}`
+        computerWinScore.textContent = `Wins: ${this.player2Wins + 1}`
+
+        // Update Modal to display appropriate information
+        modalWinOrLose.textContent = markerCheck ? 'You Win!' : 'You Lose!'
+        modalWinner.textContent = playerMarker
+        modalWinner.classList.add(markerCheck ? 'playerX' : 'playerO')
+        modalMessage.textContent = markerCheck ? 'Congratulations!' : 'Try Again!'
+        statWins.textContent = markerCheck ? `Wins: ${this.player1Wins + 1}` : `Wins: ${this.player2Wins + 1}`
+        modal.showModal()
+
+        // Wins and Streaks
+        if(markerCheck) {
+          this.player1Wins++
+          this.currentStreak++
+          localStorage.setItem('player1Wins', this.player1Wins)
+        } else {
+          this.player2Wins++
+          this.currentStreak = 0
+          localStorage.setItem('player2Wins', this.player2Wins)
+        }
+
         return `${playerMarker} wins!`
       }
     }
@@ -116,6 +160,34 @@ class Game {
     }
   }
 
+  resetBoard() {
+    this.gameBoard = new GameBoard()
+    this.round = 1
+    this.currentPlayer = this.player1
+
+    boardSquares.forEach(square => {
+      square.innerHTML = '&nbsp;'
+      square.classList.remove('playerX', 'playerO')
+    })
+
+    currentRound.textContent = 'Current Round: 1'
+  }
+
+  resetGame() {
+    modal.close()
+    this.resetBoard()
+    this.currentStreak = 0
+  }
+
+  clearStreak() {
+    this.currentStreak = 0
+    localStorage.removeItem('player1Wins')
+    localStorage.removeItem('player2Wins')
+    this.player1Wins = 0
+    this.player2Wins = 0
+  }
+
+
 }
 
 const game = new Game()
@@ -129,3 +201,10 @@ boardSquares.forEach((square, index) => {
     currentRound.textContent = `Current Round: ${displayRound}`
   })
 });
+
+clearStreak.addEventListener('click', () => {
+  game.clearStreak()
+  game.resetGame()
+})
+
+replayGame.addEventListener('click', () => game.resetGame())

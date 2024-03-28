@@ -30,12 +30,12 @@
     <!-- Score Cards -->
     <section id="playerScore" class='currentTurn'>
       <h3>X</h3>
-      <span class="winCount">Wins: 0</span>
+      <span id="playerWin">Wins: 0</span>
     </section>
 
     <section id="computerScore">
       <h3>O</h3>
-      <span class="winCount">Wins: 0</span>
+      <span id="computerWin">Wins: 0</span>
     </section>
 
     <!-- Play Area -->
@@ -59,6 +59,22 @@
       <div id="info">Current Round: 1</div>
     </section>
   </main>
+
+  <dialog id='modal'>
+    <h4 id='winOrLose'>You Win!</h4>
+    <div id='winnerInfo'>
+      <span id='infoMsg'></span>
+      <span id='modalWinner'></span>
+      <div id='winnerStats'>
+        <span id='statStreak'>Streak: </span>
+        <span id='statsWins'>Wins: </span>
+      </div>
+    </div>
+    <div id='replay'>
+      <button id="clearStreak">Clear Streak</button>
+      <button id="replayGame">REPLAY</button>
+    </div>
+  </dialog>
 
   <footer><a href="https://cmringmaker.github.io/">@Ringmaker</a> &nbsp; | &nbsp; <a
       href="https://github.com/cmRingmaker">@GitHub</a></footer>
