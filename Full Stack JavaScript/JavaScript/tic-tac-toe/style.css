@@ -87,7 +87,14 @@ main > section {
 }
 
 footer {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+a {
+  color: var(--PLAYER_COLOR_O);
 }
 
 
