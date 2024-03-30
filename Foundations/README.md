@@ -1,17 +1,3 @@
-### FOUNDATIONS
-
-[Odin Recipes Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/odin-recipes) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/odin-recipes/)
-
-[Landing Page Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/landing-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/landing-page/)
-
-[Rock Paper Scissors Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/rock-paper-scissors) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/rock-paper-scissors/)
-
-[Etch-a-Sketch Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/etch-a-sketch) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/etch-a-sketch/)
-
-[Calculator Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/calculator) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/calculator/)
-
----
-
 ## HTML Foundations: [Odin Recipes Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Foundations/odin-recipes) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Foundations/odin-recipes/)
 
 _[HTML]_
