@@ -1,0 +1,95 @@
+:root {
+  font-size: 62.5%;
+
+  /* Main colors */
+  --BG_COLOR: rgb(236, 216, 228);
+  --BAM_RED: rgb(180, 40, 40);
+}
+
+/******************************************
+/* FONTS
+/*******************************************/
+
+@font-face {
+  font-family: 'Rampart';
+  font-weight: 400;
+  font-style: normal;
+  src: url(./font/RampartOne-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'BalooBhai';
+  font-weight: 400;
+  font-style: normal;
+  src: url(./font/BalooBhai2.ttf);
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  outline: none;
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-size: 1.6rem; /* Set default back to 16px for fallback */
+}
+
+body {
+  background-color: var(--BG_COLOR);
+}
+
+
+/******************************************
+/* HEADER
+/*******************************************/
+
+h1 {
+  text-align: center;
+  line-height: 1.2;
+  font-family: 'Rampart';
+  font-size: clamp(4.6rem, 1rem + 10vw, 12rem);
+  color: var(--BAM_RED);
+  text-shadow: 1px 1px 1px black;
+  user-select: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  gap: 4px;
+}
+
+nav > button {
+  width: 33%;
+  background-color: white;
+  font-size: clamp(3rem, 1rem + 3vw, 4.6rem);
+  font-family: 'BalooBhai';
+  font-weight: 600;
+  transition: all 600ms;
+}
+
+nav > button:hover {
+  background-color: var(--BAM_RED);
+  color: white;
+}
+
+nav > button:focus, button:active {
+  background-color: var(--BAM_RED);
+  color: white;
+  border-bottom: 4px solid black;
+  margin-bottom: -4px;
+}
+
+/******************************************
+/* CONTENT
+/*******************************************/
+
+img {
+  width: 400px;
+}
