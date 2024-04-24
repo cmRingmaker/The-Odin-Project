@@ -97,3 +97,6 @@ Under each section that is completed, I will list notable things that I had lear
 - Using the Class syntax (although they are just objects in JS) is a good way to have organized, readable code.
 - OOP principles such as encapsulation and abstraction are useful for keeping important data out of harms way by not letting you change it.
 - Not everything has to be darkmode.
+
+## Restaurant Page:
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
