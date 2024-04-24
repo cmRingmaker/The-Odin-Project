@@ -7,7 +7,6 @@ export default function about() {
   const content = document.getElementById('content')
   const container = DOMUtils.createDiv('about-container')
   const imgContainer = DOMUtils.createDiv('img-container')
-
   
   const aboutTitle = DOMUtils.createElementWithContent('h2', 'Home of the Bamburger!', 'about-title')
   const aboutImg = DOMUtils.createImage(Burger, 'about-img', 'Hamburger')
