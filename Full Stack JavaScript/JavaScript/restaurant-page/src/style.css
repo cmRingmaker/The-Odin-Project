@@ -4,6 +4,7 @@
   /* Main colors */
   --BG_COLOR: rgb(236, 216, 228);
   --BAM_RED: rgb(180, 40, 40);
+  --BORDER_LIGHT: 1px solid rgba(0, 0, 0, 0.2);
 
   /* Text */
   --TEXT_SHADOW: 1px 1px 1px black;
@@ -74,7 +75,7 @@ nav {
     font-family: 'BalooBhai';
     font-weight: 600;
     border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: var(--BORDER_LIGHT);
     transition: all 600ms;
   }
 
@@ -98,21 +99,18 @@ nav {
 
 #content {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* justify and align centers for smaller screens */
   align-items: center;
   max-width: 1400px;
   margin: 40px auto;
+  font-family: 'BalooBhai';
+  white-space: pre-line; /* Make sure linebreaks work! */
 
   & > div {
     width: 94vw;
     border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
     display: grid;
   }
-}
-
-.menu-container {
-  background-color: green;
 }
 
 .order-container {
@@ -136,11 +134,10 @@ nav {
 /*******************************************/
 
 .about-container {
-  font-family: 'BalooBhai';
-  white-space: pre-line; /* Make sure linebreaks work! */
   background-color: rgba(255, 0, 0, 0.1);
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 150px repeat(3, 1fr);
+  border: var(--BORDER_LIGHT);
 
   & .about-title {
     font-family: 'Rampart';
@@ -154,17 +151,17 @@ nav {
   }
 
   & .about-info {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     margin: 15px 0 0px 10px;
     grid-area: 2 / 1 / 4 / 3;
   }
 
   & .img-container {
     grid-area: 2 / 3 / 4 / 5;
-  }
 
-  & .about-img {
-    width: 100%;
+    & > img {
+      width: 100%;
+    }
   }
 
   & .review-container {
@@ -194,3 +191,32 @@ nav {
 /******************************************
 /* MENU
 /*******************************************/
+
+.menu-container {
+  gap: 40px;
+
+  & .menu-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      'left-side right-side';
+    background-color: rgba(255, 0, 0, 0.1);
+    border: var(--BORDER_LIGHT);
+    height: 300px;
+
+    & > div {
+      height: 300px;
+      padding: 20px;
+    }
+  }
+  
+  /* EVERY OTHER DIV WILL HAVE THE INFO AND IMAGES POSITION SWAPPED */
+  /* INFO LEFT - IMAGE RIGHT */
+  & .menu-info      { grid-area: left-side; }
+  & .img-container  { grid-area: right-side; }
+  & img { height: 100%; }
+
+  /* IMAGE LEFT - INFO RIGHT */
+  & .menu-item:nth-child(even) > .menu-info     { grid-area: right-side; }  
+  & .menu-item:nth-child(even) > .img-container { grid-area: left-side;}
+}

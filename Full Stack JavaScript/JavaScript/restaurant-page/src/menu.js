@@ -20,10 +20,16 @@ export default function menu() {
     const imgContainer = DOMUtils.createDiv('img-container')
     const menuImg = DOMUtils.createImage(item.src, 'menu-img', item.name)
 
-    imgContainer.appendChild(menuImg)
-    menuItem.append(itemInfo, imgContainer)
     container.appendChild(menuItem)
+    menuItem.append(itemInfo, imgContainer)
+    imgContainer.appendChild(menuImg)
+
+    // Test text for info in menu section - will move to its own loop
+    const review1 = DOMUtils.createElementWithContent('span', `Fake Review 1 \n -Review Man`, 'about-review')
+    itemInfo.appendChild(review1)
   })
+
+
 
   // Basic structure
   // ----------------------------------------------------
