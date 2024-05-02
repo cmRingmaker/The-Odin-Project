@@ -19,10 +19,10 @@ export default function about() {
 )
 
   const reviewContainer = DOMUtils.createDiv('review-container')
-  const review1 = DOMUtils.createElementWithContent('span', `Fake Review 1 \n -Review Man`, 'about-review')
-  const review2 = DOMUtils.createElementWithContent('span', `Fake Review 2 \n -Review Boy`, 'about-review')
-  const review3 = DOMUtils.createElementWithContent('span', `Fake Review 3 \n -Review Woman`, 'about-review')
-  const review4 = DOMUtils.createElementWithContent('span', `Fake Review 4 \n -Review Girl`, 'about-review')
+  const review1 = DOMUtils.createElementWithContent('span', `Best of Detroit! \n -BurgerSpot`, 'about-review')
+  const review2 = DOMUtils.createElementWithContent('span', `Amazing milkshakes! \n -DETReviewer`, 'about-review')
+  const review3 = DOMUtils.createElementWithContent('span', `11/10 \n -MoTown Food`, 'about-review')
+  const review4 = DOMUtils.createElementWithContent('span', `Retro Paradise \n -Review Girl`, 'about-review')
 
   content.appendChild(container)
   container.appendChild(aboutTitle)

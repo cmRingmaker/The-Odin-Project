@@ -28,8 +28,8 @@ contactBtn.addEventListener('click', () => renderTab(contact, contactBtn))
 // --------------------------------------------------------
 // FUNCTIONS
 
-contact() // Default page and Tab selected
-contactBtn.classList.add('active') // --^
+about() // Default page and Tab selected
+aboutBtn.classList.add('active') // --^
 
 function renderTab(tabFunction, btnClicked) { // Get current tab selected & Highlight its corresponding button
   removeActive(btnClicked)

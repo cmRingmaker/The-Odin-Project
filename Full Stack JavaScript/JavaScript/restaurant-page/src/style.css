@@ -4,6 +4,7 @@
   /* Main colors */
   --BG_COLOR: rgb(236, 216, 228);
   --BAM_RED: rgb(180, 40, 40);
+  --BAM_PINK: rgba(255, 0, 0, 0.1);
   --BORDER_LIGHT: 1px solid rgba(0, 0, 0, 0.2);
 
   /* Text */
@@ -148,7 +149,7 @@ nav {
 /*******************************************/
 
 .about-container {
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: var(--BAM_PINK);
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   grid-template-rows: 150px repeat(3, auto);
@@ -208,7 +209,7 @@ nav {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
-    background-color: rgba(255, 0, 0, 0.1);
+    background-color: var(--BAM_PINK);
     border: var(--BORDER_LIGHT);
 
     & > div {
@@ -268,5 +269,22 @@ nav {
 /*******************************************/
 
 .contact-container {
+  gap: 20px;
+  
+  & .contact-item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--BAM_PINK);
+    border: var(--BORDER_LIGHT);
+  }
 
+  /* & h2 {
+    font-size: clamp(3rem, 5rem + 0.5vw, 6rem);
+  } */
+  
+  & span {
+    padding: 10px 0;
+    font-size: 2.4rem;
+    text-align: center;
+  }
 }
