@@ -19,5 +19,5 @@ _[HTML | CSS + Grid + Flexbox | JavaScript]_
 _[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]_
 
 - Classes are very useful to make utility tools.
-- Webpack has a steep learning curve, but is very flexible and powerful once you get a hang of it.
+- Webpack has a steep learning curve, but is very flexible and powerful once you get going with it.
 - CSS natively supports nesting and it makes more sense to me to look at pages like I would look at a JS function, lumping all the relevant info together.
