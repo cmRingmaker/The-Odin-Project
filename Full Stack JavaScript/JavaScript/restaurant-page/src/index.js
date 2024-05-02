@@ -1,6 +1,6 @@
 import about from './about'
 import menu from './menu'
-import order from './order'
+import contact from './contact'
 import './style.css'
 
 console.log('RUNNING!!')
@@ -14,7 +14,7 @@ const navItems = document.querySelectorAll('nav > *')
 
 const aboutBtn = document.getElementById('navAbout')
 const menuBtn = document.getElementById('navMenu')
-const orderBtn = document.getElementById('navOrder')
+const contactBtn = document.getElementById('navContact')
 
 // --------------------------------------------------------
 // --------------------------------------------------------
@@ -22,14 +22,14 @@ const orderBtn = document.getElementById('navOrder')
 
 aboutBtn.addEventListener('click', () => renderTab(about, aboutBtn))
 menuBtn.addEventListener('click', () => renderTab(menu, menuBtn))
-orderBtn.addEventListener('click', () => renderTab(order, orderBtn))
+contactBtn.addEventListener('click', () => renderTab(contact, contactBtn))
 
 // --------------------------------------------------------
 // --------------------------------------------------------
 // FUNCTIONS
 
-about() // Default page and Tab selected
-aboutBtn.classList.add('active') // --^
+contact() // Default page and Tab selected
+contactBtn.classList.add('active') // --^
 
 function renderTab(tabFunction, btnClicked) { // Get current tab selected & Highlight its corresponding button
   removeActive(btnClicked)
