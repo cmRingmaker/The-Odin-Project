@@ -52,7 +52,7 @@ h1 {
   text-align: center;
   line-height: 1.2;
   font-family: 'Rampart';
-  font-size: clamp(4.6rem, 1rem + 10vw, 12rem);
+  font-size: clamp(4rem, 1rem + 8vw, 12rem);
   color: var(--BAM_RED);
   text-shadow: var(--TEXT_SHADOW);
   user-select: none;
@@ -151,8 +151,8 @@ nav {
 .about-container {
   background-color: var(--BAM_PINK);
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
   gap: 30px;
-  grid-template-rows: 150px repeat(3, auto);
   border: var(--BORDER_LIGHT);
 
   & .about-title { /* h2 */
@@ -222,7 +222,7 @@ nav {
     flex-direction: column;
 
     & .item-name { /* h2 */
-        font-size: clamp(5rem, 5vw, 5.5rem);
+        font-size: 5rem;
         transform: rotate(-3deg);
     }
 
@@ -257,10 +257,19 @@ nav {
 
 
   /* MEDIA QUERIES */
+
+  @media screen and (max-width: 900px) {
+    & .item-name { font-size: 4.4rem !important; }
+  }
+
   @media screen and (max-width: 850px) {
     & .menu-item      { grid-template-columns: 1fr; }
     & .menu-info      { grid-area: 1 / 1 / 2 / 2 !important; } /* important is added to not rewrite the above .menu-items */
-    & .img-container  { grid-area: 2 / 1 / 3 / 3 !important; }
+    & .img-container  { grid-area: 2 / 1 / 3 / 2 !important; }
+  }
+
+  @media screen and (max-width: 450px) {
+    & .item-name { font-size: 4rem !important;}
   }
 }
 
