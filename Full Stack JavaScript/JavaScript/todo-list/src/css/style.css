@@ -11,7 +11,7 @@
   /* ------------> DEFAULT DARK MODE COLORS!!!, CHANGE COLORS & DELETE THIS COMMENT LINE!!! <------------ */
   /* Main colors */
   --COLOR_BG: hsl(0, 5%, 10%);
-  --COLOR_PRIMARY: hsl(220, 90%, 15%);
+  --COLOR_PRIMARY: hsl(220, 62%, 58%);
   --COLOR_SECONDARY: hsl(303, 71%, 73%);
 
   /* Text */
@@ -25,12 +25,26 @@
     - - [ body, fonts, text elements, media elements ]
     * Styles that are shared across the entire site
    ================================================================== */
-
+  
 body {
   font-size: 1.8rem;
+  font-family: 'Fira Code', sans-serif;
   background-color: var(--COLOR_BG);
   color: var(--FONT_COLOR);
   height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr [content-start] minmax(300px, 900px) [content-end] 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  gap: 20px;
+
+  & > * {
+    grid-column: content;
+  }
+
+  @media screen and (max-width: 400px) {
+    grid-template-columns: 1fr;
+    & > * { grid-column: 1 / 2; }
+  }
 }
 
 ::selection {
@@ -46,7 +60,9 @@ body {
    ================================================================== */
   
 header {
-  background-color: var(--COLOR_PRIMARY);
+  padding: 20px 0 0 20px;
+  font-size: 4rem;
+  display: flex;
 }
 
 
@@ -58,7 +74,7 @@ header {
    ================================================================== */
 
 main {
-
+  background-color: var(--COLOR_PRIMARY);
 }
 
 
@@ -69,5 +85,6 @@ main {
    ================================================================== */
 
 footer {
-  background-color: var(--COLOR_PRIMARY);
+  text-align: end;
+  padding-bottom: 10px;
 }
