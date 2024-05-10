@@ -9,9 +9,12 @@
 // IMPORT
 import '../css/style.css'
 import '../css/reset.css'
+import TODO from './TODOS'
 
 // -------------------------
 // DOM ELEMENTS
+
+const taskList = document.getElementById('taskList')
 
 // -------------------------
 // EVENT LISTENERS
@@ -26,6 +29,12 @@ import '../css/reset.css'
    ================================================================== */
 
 
-function name(params) {
+// const task1 = TODO.createTask('mothafucka')
+
+// content.appendChild(task1)
+
+for(let i = 1; i < 35; i++) {
+  const task = TODO.createTask(`task ${i}`)
   
+  taskList.appendChild(task)
 }

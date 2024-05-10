@@ -1,7 +1,10 @@
 export default class TODO {
-  static createItem(className) {
+  static createTask(taskContent) {
     const div = document.createElement('div')
-    div.classList.add(className)
+    div.classList.add('task')
+    
+    div.innerText = taskContent
+
     return div
   }
 }

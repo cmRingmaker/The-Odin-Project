@@ -10,12 +10,15 @@
 
   /* ------------> DEFAULT DARK MODE COLORS!!!, CHANGE COLORS & DELETE THIS COMMENT LINE!!! <------------ */
   /* Main colors */
-  --COLOR_BG: hsl(0, 5%, 10%);
-  --COLOR_PRIMARY: hsl(220, 62%, 58%);
+  --COLOR_BG: hsl(0, 0%, 0%);
+  --COLOR_PRIMARY: hsl(155, 30%, 38%);
   --COLOR_SECONDARY: hsl(303, 71%, 73%);
 
   /* Text */
   --FONT_COLOR: hsl(30, 100%, 98%);
+
+  /* Misc Layout */
+  --RADIUS: 6px;
 }
 
 
@@ -27,14 +30,15 @@
    ================================================================== */
   
 body {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: 'Fira Code', sans-serif;
   background-color: var(--COLOR_BG);
+  background-image: url('../img/noise-light.png');
   color: var(--FONT_COLOR);
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr [content-start] minmax(300px, 900px) [content-end] 1fr;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-columns: 1fr [content-start] minmax(300px, 700px) [content-end] 1fr;
+  grid-template-rows: min-content 1fr;
   gap: 20px;
 
   & > * {
@@ -67,24 +71,64 @@ header {
 
 
 /* ==================================================================
-    - - - - - - - - - - [ %CONTENT ]
+    - - - - - - - - - - [ MAIN CONTENT ]
    ==================================================================
     - - [ main, section, div, article, aside, form ]
     * replace %CONTENT with one of the above when pasting this
    ================================================================== */
 
 main {
-  background-color: var(--COLOR_PRIMARY);
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 10px;
+
+  & > * {
+    background-color: var(--COLOR_PRIMARY);
+    border-radius: var(--RADIUS);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8px 8px 8px 20px;
+
+    @media screen and (max-width: 400px) {
+      margin: 0 10px;
+    }
+  }
+  
+  & ::before { /* TASK COLOR BAR OF IMPORTANCE! */
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background-color: red;
+    border-top-left-radius: var(--RADIUS);
+    border-bottom-left-radius: var(--RADIUS);
+  }
+
 }
 
-
 /* ==================================================================
-    - - - - - - - - - - [ FOOTER ]
+    - - - - - - - - - - [ SIDEBAR ]
    ==================================================================
-    * Typically a footer has branding and important site information
+    * A sidebar that toggles on and off when in mobile, popping
+      it out from the left side. Otherwise permanently on while
+      on desktop.
    ================================================================== */
 
-footer {
-  text-align: end;
-  padding-bottom: 10px;
+#sidebar {
+  width: 200px;
+  height: max-content;
+  grid-column: 1 / 2;
+  justify-self: right;
+  /* background-color: red; */
+
+  & > * {
+    margin-bottom: 20px;
+    background-color: red;
+  }
+
+  & > * > * {
+    padding-bottom: 10px;
+  }
 }
