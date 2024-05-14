@@ -38,6 +38,7 @@ body {
   font-family: 'Fira Code', sans-serif;
   background-color: var(--COLOR_BG);
   background-image: url('../img/noise-light.png');
+  background-attachment: fixed;
   color: var(--FONT_COLOR);
   height: 100vh;
   display: grid;
@@ -75,6 +76,10 @@ header {
   padding: 20px 0 0 20px;
   font-size: 4rem;
   display: flex;
+
+  & :last-child {
+    margin-left: auto;
+  }
 }
 
 /* ==================================================================
@@ -85,54 +90,73 @@ header {
       on desktop.
    ================================================================== */
 
-   #sidebar {
-    width: 250px;
-    grid-column: 1 / 2;
-    justify-self: right;
+#sidebar { /* ---DO SOMETHING WITH THIS SIDEBAR LAYOUT */
+  width: 250px;
+  grid-column: 1 / 2;
+  justify-self: right;
+  padding-left: 10px;
+  height: min-content;
+  /* z-index: 2; */
+  transition: opacity transform 250ms;
 
-    & .active {
-      color: red;
-      margin-right: 8px;
-      transition: margin-right 0.3s ease-in-out;
-      text-shadow: -2px 2px 2px var(--COLOR_BG);
-    }
-
-    & .active::before {
-      content: '>';
-      margin-right: 10px;
-    }
-  
-    & > * {
-      margin: 0 20px 20px 0;
-      text-align: right;
-      cursor: pointer;
-    }
-  
-    & > * > * {
-      padding-top: 14px;
-    }
-
-    & .low  { color: var(--PRIO_GREEN); }
-    & .med  { color: var(--PRIO_PURPLE); }
-    & .high { color: var(--PRIO_RED); }
-
-    & .new-project {
-      width: 100%;
-      margin-top: 20px;
-      padding: 8px 0;
-      font-size: 2.2rem;
-      background-color: var(--COLOR_PRIMARY);
-      color: var(--FONT_COLOR);
-      border-radius: var(--RADIUS);
-      opacity: 0.8;
-    }
-
-    & .new-project:hover {
-      background-color: var(--COLOR_PRIMARY);
-      color: var(--FONT_COLOR);
-      opacity: 1;
-    }
+  & .active {
+    color: red;
+    margin-right: 8px;
+    transition: margin-right 0.3s ease-in-out;
+    text-shadow: -2px 2px 2px var(--COLOR_BG);
   }
+
+  & .active::before {
+    content: '>';
+    margin-right: 10px;
+  }
+  
+  & > * {
+    margin: 0 20px 20px 0;
+    text-align: right;
+    cursor: pointer;
+  }
+  
+  & > * > * {
+    padding-top: 14px;
+  }
+
+  & .low  { color: var(--PRIO_GREEN); }
+  & .med  { color: var(--PRIO_PURPLE); }
+  & .high { color: var(--PRIO_RED); }
+
+  & .new-project {
+    width: 100%;
+    margin-top: 20px;
+    padding: 8px 0;
+    font-size: 2.2rem;
+    background-color: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    border-radius: var(--RADIUS);
+    opacity: 0.8;
+  }
+
+  & .new-project:hover {
+    background-color: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    opacity: 1;
+  }
+}
+
+/* Slide sidebar out the left of the screen */
+.show-sidebar {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/*  */
+
+.hide-sidebar {
+  transform: translateX(-500px);
+  opacity: 0.3;
+}
+
+
 
 
 /* ==================================================================
@@ -190,8 +214,8 @@ main {
     width: 80px;
     text-align: center;
     font-size: 1.2rem;
-    /* border-bottom-left-radius: var(--RADIUS); */
-    /* border-bottom-right-radius: var(--RADIUS); */
+    border-bottom-left-radius: var(--RADIUS);
+    border-bottom-right-radius: var(--RADIUS);
     opacity: 0.5;
   }
 
