@@ -24,18 +24,29 @@
 
   <nav id='sidebar'>
     <div id="menu-tasks">
-      <li>All Tasks</li>
+      <li class='active'>All Tasks</li> <!-- Default Task -->
       <li>Daily</li>
       <li>Weekly</li>
     </div>
 
+    <hr>
+
     <div id="menu-priority">
-      <li>Low</li>
-      <li>Medium</li>
-      <li>High</li>
+      <li class='active'>All Priorities</li> <!-- Default Priority -->
+      <li class='low'>Low</li>
+      <li class='med'>Medium</li>
+      <li class='high'>High</li>
+    </div>
+
+    <hr>
+
+    <div id="menu-project">
+      <button class="new-project">New Project +</button>
+      <li class='active'>My Project</li> <!-- Default Project -->
     </div>
   </nav>
-  <main id='taskList'></main>
+
+  <main id='task-list'></main>
 
 </body>
 

@@ -56,11 +56,15 @@ body {
   color: var(--COLOR_BG);
 }
 
+hr {
+  border-top: 1px dashed var(--COLOR_SECONDARY);
+}
+
 
 /* ==================================================================
     - - - - - - - - - - [ HEADER ]
    ==================================================================
-    * Typically a header has branding and a site nav
+    * Extremely simple header, updates on which task group selected
    ================================================================== */
   
 header {
@@ -68,6 +72,62 @@ header {
   font-size: 4rem;
   display: flex;
 }
+
+/* ==================================================================
+    - - - - - - - - - - [ SIDEBAR ]
+   ==================================================================
+    * A sidebar that toggles on and off when in mobile, popping
+      it out from the left side. Otherwise permanently on while
+      on desktop.
+   ================================================================== */
+
+   #sidebar {
+    width: 250px;
+    grid-column: 1 / 2;
+    justify-self: right;
+
+    & .active {
+      color: red;
+      margin-right: 8px;
+      transition: margin-right 0.3s ease-in-out;
+    }
+
+    & .active::before {
+      content: '>';
+      margin-right: 10px;
+    }
+  
+    & > * {
+      margin: 0 20px 20px 0;
+      text-align: right;
+      cursor: pointer;
+    }
+  
+    & > * > * {
+      padding-top: 14px;
+    }
+
+    & .low  { color: rgb(27, 206, 27); }
+    & .med  { color: rgb(152, 35, 219); }
+    & .high { color: rgb(228, 29, 29); }
+
+    & .new-project {
+      width: 100%;
+      margin-top: 20px;
+      padding: 8px 0;
+      font-size: 2.2rem;
+      background-color: var(--COLOR_PRIMARY);
+      color: var(--FONT_COLOR);
+      border-radius: var(--RADIUS);
+      opacity: 0.8;
+    }
+
+    & .new-project:hover {
+      background-color: var(--COLOR_PRIMARY);
+      color: var(--FONT_COLOR);
+      opacity: 1;
+    }
+  }
 
 
 /* ==================================================================
@@ -81,6 +141,8 @@ main {
   display: grid;
   grid-auto-rows: min-content;
   gap: 10px;
+
+  /* transition: margin-right 0.3s ease-in-out; */
 
   & > * {
     background-color: var(--COLOR_PRIMARY);
@@ -104,31 +166,12 @@ main {
     background-color: red;
     border-top-left-radius: var(--RADIUS);
     border-bottom-left-radius: var(--RADIUS);
+    transition: width 0.2s ease-in-out;
   }
 
-}
-
-/* ==================================================================
-    - - - - - - - - - - [ SIDEBAR ]
-   ==================================================================
-    * A sidebar that toggles on and off when in mobile, popping
-      it out from the left side. Otherwise permanently on while
-      on desktop.
-   ================================================================== */
-
-#sidebar {
-  width: 200px;
-  height: max-content;
-  grid-column: 1 / 2;
-  justify-self: right;
-  /* background-color: red; */
-
-  & > * {
-    margin-bottom: 20px;
-    background-color: red;
+  & :hover::before {
+    width: 16px;
   }
 
-  & > * > * {
-    padding-bottom: 10px;
-  }
+
 }
