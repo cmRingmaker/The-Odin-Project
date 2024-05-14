@@ -54,7 +54,6 @@ for(let i = 1; i < 35; i++) {
   taskList.appendChild(task)
 }
 
-
 function activeGroup(groupName, targetElement) {
   const groups = {
     'tasks': menuTask,
