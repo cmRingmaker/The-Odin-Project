@@ -15,9 +15,13 @@ import TODO from './TODOS'
 // DOM ELEMENTS
 
 const taskList =    document.getElementById('task-list')
+
+const sidebar =     document.getElementById('sidebar')
 const menuTask =    document.getElementById('menu-tasks').querySelectorAll('li')
 const menuPrio =    document.getElementById('menu-priority').querySelectorAll('li')
 const menuProject = document.getElementById('menu-project').querySelectorAll('li')
+
+const sidebarToggle = document.getElementById('sidebar-toggle')
 
 // -------------------------
 // EVENT LISTENERS
@@ -33,6 +37,8 @@ menuPrio.forEach((group) => {
 menuProject.forEach((group) => {
   group.addEventListener('click', () => activeGroup('project', group))
 })
+
+sidebarToggle.addEventListener('click', () => toggleSidebar())
 
 
 /* ==================================================================
@@ -70,3 +76,14 @@ function activeGroup(groupName, targetElement) {
 
   targetElement.classList.add('active')
 }
+
+function toggleSidebar(){
+  if(sidebar.classList.contains('show-sidebar')) {
+    sidebar.classList.remove('show-sidebar')
+    sidebar.classList.add('hide-sidebar')
+  } else {
+    sidebar.classList.remove('hide-sidebar')
+    sidebar.classList.add('show-sidebar')
+  }
+}
+

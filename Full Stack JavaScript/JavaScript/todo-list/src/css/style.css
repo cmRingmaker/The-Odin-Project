@@ -80,6 +80,12 @@ header {
   & :last-child {
     margin-left: auto;
   }
+
+  @media screen and (max-width: 850px) {
+    & :first-child { /* Make room for hamburger menu at smaller resolution */
+      padding-left: 80px;
+    }
+  }  
 }
 
 /* ==================================================================
@@ -90,14 +96,79 @@ header {
       on desktop.
    ================================================================== */
 
-#sidebar { /* ---DO SOMETHING WITH THIS SIDEBAR LAYOUT */
+#sidebar-toggle {
+  width: 80px;
+  height: 70px;
+  top: 20px;
+  left: calc((100vw - 940px) / 2);
+  position: fixed;
+
+  & input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  & span {
+    left: 20%;
+    top: 30%;
+    display: block;
+    width: 50px;
+    height: 6px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: var(--COLOR_SECONDARY);
+    border-radius: var(--RADIUS);
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+  }
+
+  & span:first-child {
+    transform-origin: 0% 0%;
+  }
+
+  & span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+
+  & input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: red;
+  }
+
+  & input:checked ~ span:first-child {
+    transform: rotate(45deg) translateX(-0px) translateY(-3px);
+  }
+
+  & input:checked ~ span:nth-last-child(2) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+
+  & input:checked ~ span:last-child {
+    transform: rotate(-45deg) translateX(-6px) translateY(0px);
+  }
+
+  @media screen and (max-width: 1200px) { left: 10%; }
+  @media screen and (max-width: 1000px) { left: 20px; }
+}
+
+#sidebar {
   width: 250px;
-  grid-column: 1 / 2;
-  justify-self: right;
   padding-left: 10px;
-  height: min-content;
-  /* z-index: 2; */
-  transition: opacity transform 250ms;
+  position: fixed;
+  top: 120px;
+  left: calc((100vw - 1300px) / 2); /* force responsiveness when resizing.. mother of god it works */
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
 
   & .active {
     color: red;
@@ -141,19 +212,20 @@ header {
     color: var(--FONT_COLOR);
     opacity: 1;
   }
-}
 
-/* Slide sidebar out the left of the screen */
-.show-sidebar {
-  transform: translateX(0);
-  opacity: 1;
-}
 
-/*  */
+  @media screen and (max-width: 1290px) {
+    left: 0;
+    background-color: hsla(0, 0%, 0%, 0.8);
+    border-top-right-radius: var(--RADIUS);
+    backdrop-filter: blur(4px);
+  } 
+}
 
 .hide-sidebar {
   transform: translateX(-500px);
-  opacity: 0.3;
+  opacity: 0;
+  visibility: hidden;
 }
 
 
@@ -170,8 +242,6 @@ main {
   display: grid;
   grid-auto-rows: min-content;
   gap: 10px;
-
-  /* transition: margin-right 0.3s ease-in-out; */
 
   & > * {
     background-color: var(--COLOR_PRIMARY);
