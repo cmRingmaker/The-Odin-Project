@@ -22,7 +22,6 @@ const form = document.getElementById('form')
 
 // -------------------------
 // EVENT LISTENERS
-
 createNew.addEventListener('click', () => createTodo())
 form.addEventListener('submit', () => formSubmit())
 
