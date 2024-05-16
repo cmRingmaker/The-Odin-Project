@@ -15,11 +15,16 @@ import NAV from './NAV'
 // -------------------------
 // DOM ELEMENTS
 
-const taskList =    document.getElementById('task-list')
+const taskList = document.getElementById('task-list')
+const createNew = document.getElementById('createNew')
+const modal = document.getElementById('modal')
+const form = document.getElementById('form')
 
 // -------------------------
 // EVENT LISTENERS
 
+createNew.addEventListener('click', () => createTodo())
+form.addEventListener('submit', () => formSubmit())
 
 /* ==================================================================
     - - - - - - - - - - [ %FUNCTIONS ]
@@ -31,8 +36,21 @@ const taskList =    document.getElementById('task-list')
 
 const nav = new NAV()
 
-for(let i = 1; i < 35; i++) {
-  const task = TODO.createTask(`task ${i}`)
-  
+function createTodo() {
+  modal.showModal()
+  console.log('modal??')
+}
+
+function formSubmit() {
+  console.log(form.task.value)
+  const task = TODO.createTask(form.task.value, radioCheck())
+
   taskList.appendChild(task)
+}
+
+function radioCheck() {
+  const selected = document.querySelector(`input[name='priority']:checked`)
+  const selectedValue = selected ? selected.value : ''
+  return selectedValue
+
 }

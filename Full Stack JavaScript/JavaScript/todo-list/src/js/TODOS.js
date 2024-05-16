@@ -1,18 +1,21 @@
 export default class TODO {
   static createTask(taskContent, taskPriority) {
+    // Create new Task
     const div = document.createElement('div')
     div.classList.add('task')
     div.innerText = taskContent
 
+    // Create a fake ::before with a span to change colors to indicate priority
+    const priority = document.createElement('span')
+    priority.classList.add(taskPriority)
+
+    // Create Project Header inside Task div
     const project = document.createElement('div')
     project.classList.add('project')
 
-    // CHANGE THIS TO TAKE IN ACCOUNT WHICH CURRENT TASK HAS PRIORITY, AND USE ITS COLOR!
-    // prio.style.backgroundColor = taskPriority
-
     project.innerText = taskContent
     
-    div.appendChild(project)
+    div.append(priority, project)
     return div
   }
 }

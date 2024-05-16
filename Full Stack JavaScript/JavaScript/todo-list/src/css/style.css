@@ -175,11 +175,11 @@ header {
     margin-right: 8px;
     transition: margin-right 0.3s ease-in-out;
     text-shadow: -2px 2px 2px var(--COLOR_BG);
-  }
 
-  & .active::before {
-    content: '>';
-    margin-right: 10px;
+    &::before {
+      content: '>';
+      margin-right: 10px;
+    }
   }
   
   & > * {
@@ -255,20 +255,24 @@ main {
       margin: 0 10px;
     }
   }
-  
-  & > *::before { /* TASK COLOR BAR OF IMPORTANCE! */
+
+  & span { /* TASK COLOR BAR OF IMPORTANCE! */
     content: "";
     position: absolute;
     left: 0;
     width: 10px;
     height: 100%;
-    background-color: red; /* CHANGE COLOR IN JS BASED ON CURRENT PRIO */
     border-top-left-radius: var(--RADIUS);
     border-bottom-left-radius: var(--RADIUS);
     transition: width 0.2s ease-in-out;
   }
 
-  & :hover::before {
+  /* Task color bar color select */
+  & .low  { background-color: var(--PRIO_GREEN); }
+  & .med  { background-color: var(--PRIO_PURPLE); }
+  & .high { background-color: var(--PRIO_RED); }
+
+  & :hover span { /* Expand priority color slightly */
     width: 18px;
     border-right: 1px solid var(--COLOR_BG);
   }
@@ -289,4 +293,103 @@ main {
     opacity: 0.5;
   }
 
+}
+
+/* ==================================================================
+    - - - - - - - - - - [ TASK MODAL & FORM ]
+   ==================================================================
+    - - [ main, section, div, article, aside, form ]
+    * replace %CONTENT with one of the above when pasting this
+   ================================================================== */
+
+dialog {
+  background-color: var(--COLOR_BG);
+  background-image: url('../img/noise-light.png');
+  height: 200px;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 30%;
+  border-radius: var(--RADIUS);
+  z-index: 12;
+  border: 2px dotted var(--COLOR_SECONDARY);
+
+  &::backdrop {
+    backdrop-filter: blur(4px);
+  }
+}
+
+form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & input[type="text"] {
+    outline: none;
+    background: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    border-radius: var(--RADIUS);
+    padding: 2px 10px;
+
+    &:focus {
+      box-shadow: 0 2px 0 0 var(--COLOR_SECONDARY);
+    }
+  }
+
+  & .form-prio {
+    color: red;
+    display: flex;
+    gap: 20px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+
+    & label {
+      height: 100%;
+      width: 33%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--RADIUS);
+      user-select: none;
+      cursor: pointer;
+      color: var(--FONT_COLOR);
+      text-shadow: var(--COLOR_BG) -2px 1px;
+      /* background-color: black; */
+      /* display: block; */
+      /* align-self: center; */
+    }
+
+    & input[type="radio"] {
+      appearance: none;
+      /* visibility: none; */
+      /* -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      outline: none;
+      border: 2px solid var(--COLOR_SECONDARY);
+      transition: border-color 0.2s ease-in-out; */
+    }
+
+    & input[id="low"]:checked ~ label[for="low"] {
+      background-color: var(--PRIO_GREEN);
+    }
+  
+    & input[id="med"]:checked ~ label[for="med"] {
+      background-color: var(--PRIO_PURPLE);
+    }
+  
+    & input[id="high"]:checked ~ label[for="high"] {
+      background-color: var(--PRIO_RED);
+    }
+  }
+
+  & #taskName {
+    width: 100%;
+    height: max-content;
+    font-size: 2.4rem;
+  }
 }

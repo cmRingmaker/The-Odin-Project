@@ -21,7 +21,7 @@
   <header>
     <h1>TODO:</h1>
     <div class="menuToggle"></div>
-    <div class="createNew">New</div>
+    <div id="createNew">New</div>
   </header>
 
   <!-- <button id='sidebar-toggle'>Menu</button> -->
@@ -58,6 +58,26 @@
   </nav>
 
   <main id='task-list'></main>
+
+  <dialog id="modal" open>
+    <form id='form' method='dialog'>
+
+      <div class="form-prio">
+        <input type="radio" name='priority' value='low' id='low' checked>
+        <label for="low">Low</label>
+
+        <input type="radio" name='priority' value='med' id='med'>
+        <label for="med">Medium</label>
+
+        <input type="radio" name="priority" value='high' id='high'>
+        <label for="high">High</label>
+      </div>
+
+      <!-- <label for="task"></label> -->
+      <input type="text" name='task' id='taskName' required>
+      <!-- <label for="task">NEW TASK</label> -->
+    </form>
+  </dialog>
 
 </body>
 
