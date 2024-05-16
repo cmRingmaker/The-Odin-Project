@@ -44,7 +44,7 @@
     <div id="menu-priority">
       <li class='active'>All Priorities</li> <!-- Default Priority -->
       <li class='low'>Low</li>
-      <li class='med'>Medium</li>
+      <li class='medium'>Medium</li>
       <li class='high'>High</li>
     </div>
 
@@ -58,23 +58,21 @@
 
   <main id='task-list'></main>
 
-  <dialog id="modal" open>
+  <dialog id="modal">
     <form id='form' method='dialog'>
 
       <div class="form-prio">
         <input type="radio" name='priority' value='low' id='low' checked>
         <label for="low">Low</label>
 
-        <input type="radio" name='priority' value='med' id='med'>
-        <label for="med">Medium</label>
+        <input type="radio" name='priority' value='medium' id='medium'>
+        <label for="medium">Medium</label>
 
         <input type="radio" name="priority" value='high' id='high'>
         <label for="high">High</label>
       </div>
 
-      <!-- <label for="task"></label> -->
       <input type="text" name='task' id='taskName' required>
-      <!-- <label for="task">NEW TASK</label> -->
     </form>
   </dialog>
 

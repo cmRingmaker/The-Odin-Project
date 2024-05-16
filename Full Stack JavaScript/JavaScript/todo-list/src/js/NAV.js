@@ -1,5 +1,6 @@
 export default class NAV {
   constructor() {
+    this.taskList = document.getElementById('task-list')
     this.sidebar = document.getElementById('sidebar')
     this.menuTask = document.getElementById('menu-tasks').querySelectorAll('li')
     this.menuPrio = document.getElementById('menu-priority').querySelectorAll('li')
@@ -14,15 +15,24 @@ export default class NAV {
     window.matchMedia('(max-width: 1290px').addEventListener('change', () => this.toggleSidebar())
 
     this.menuTask.forEach((group) => {
-      group.addEventListener('click', () => this.activeGroup('tasks', group))
+      group.addEventListener('click', () => {
+        this.activeGroup('tasks', group)
+        this.filterTasks('tasks', group.innerText)
+      })
     })
-    
+  
     this.menuPrio.forEach((group) => {
-      group.addEventListener('click', () => this.activeGroup('priority', group))
+      group.addEventListener('click', () => {
+        this.activeGroup('priority', group)
+        this.filterTasks('priority', group.innerText)
+      })
     })
-    
+  
     this.menuProject.forEach((group) => {
-      group.addEventListener('click', () => this.activeGroup('project', group))
+      group.addEventListener('click', () => {
+        this.activeGroup('project', group)
+        this.filterTasks('project', group.innerText)
+      })
     })
     
     this.sidebarToggle.addEventListener('click', () => this.toggleSidebar())
@@ -55,4 +65,22 @@ export default class NAV {
       this.sidebarButton.checked = false
     }
   }
+
+  filterTasks(filterType, filterValue) {
+    const tasks = this.taskList.querySelectorAll('.task')
+    tasks.forEach(task => {
+      let shouldHide = false
+
+      if (filterType === 'tasks' && filterValue !== 'All Tasks' && !task.innerText.includes(filterValue)) {
+        shouldHide = true
+      } else if (filterType === 'priority' && filterValue !== 'All Priorities' && !task.querySelector('span').classList.contains(filterValue.toLowerCase())) {
+        shouldHide = true
+      } else if (filterType === 'project' && filterValue !== 'My Project' && !task.querySelector('.project').innerText.includes(filterValue)) {
+        shouldHide = true
+      }
+
+      task.style.display = shouldHide ? 'none' : 'flex'
+    })
+  }
+
 }

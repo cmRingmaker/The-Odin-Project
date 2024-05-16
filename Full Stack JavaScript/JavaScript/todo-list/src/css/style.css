@@ -193,7 +193,7 @@ header {
   }
 
   & .low  { color: var(--PRIO_GREEN); }
-  & .med  { color: var(--PRIO_PURPLE); }
+  & .medium  { color: var(--PRIO_PURPLE); }
   & .high { color: var(--PRIO_RED); }
 
   & .new-project {
@@ -269,7 +269,7 @@ main {
 
   /* Task color bar color select */
   & .low  { background-color: var(--PRIO_GREEN); }
-  & .med  { background-color: var(--PRIO_PURPLE); }
+  & .medium  { background-color: var(--PRIO_PURPLE); }
   & .high { background-color: var(--PRIO_RED); }
 
   & :hover span { /* Expand priority color slightly */
@@ -356,29 +356,17 @@ form {
       cursor: pointer;
       color: var(--FONT_COLOR);
       text-shadow: var(--COLOR_BG) -2px 1px;
-      /* background-color: black; */
-      /* display: block; */
-      /* align-self: center; */
     }
 
     & input[type="radio"] {
       appearance: none;
-      /* visibility: none; */
-      /* -webkit-appearance: none;
-      -moz-appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      outline: none;
-      border: 2px solid var(--COLOR_SECONDARY);
-      transition: border-color 0.2s ease-in-out; */
     }
 
     & input[id="low"]:checked ~ label[for="low"] {
       background-color: var(--PRIO_GREEN);
     }
   
-    & input[id="med"]:checked ~ label[for="med"] {
+    & input[id="medium"]:checked ~ label[for="med"] {
       background-color: var(--PRIO_PURPLE);
     }
   
