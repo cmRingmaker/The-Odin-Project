@@ -17,7 +17,7 @@ export default class NAV {
     this.menuTask.forEach((group) => {
       group.addEventListener('click', () => {
         this.activeGroup('tasks', group)
-        this.filterTasks('tasks', group.innerText)
+        this.filterTasks('date', group.innerText)
       })
     })
   
@@ -79,22 +79,33 @@ export default class NAV {
 
   filterTasks(filterType, filterValue) {
     const tasks = this.taskList.querySelectorAll('.task')
-    const today = new Date().toLocaleDateString()
+    const today = new Date()
+    const todayDate = today.toISOString().slice(0, 10) // Get today's date in YYYY-MM-DD format
 
     console.log(time)
     tasks.forEach(task => {
       let shouldHide = false
 
-      const time = task.querySelector('.taskTime')
-      console.log(time.innerHTML, new Date(`${time.innerHTML}T00:00:00`).toLocaleDateString(), today)
+      const taskTime = task.querySelector('.taskTime').innerText
+      const taskDate = new Date(taskTime)
+      const taskDateString = taskDate.toISOString().slice(0, 10)
+      console.log(taskTime, taskDateString)
   
       // Apply multiple filters at once
       const activeTaskFilter = Array.from(this.menuTask).find(li => li.classList.contains('active'))
       const activePriorityFilter = Array.from(this.menuPrio).find(li => li.classList.contains('active'))
       const activeProjectFilter = Array.from(this.menuProject).find(li => li.classList.contains('active'))
+      const activeDateFilter = filterValue
       
-      if (activeTaskFilter && activeTaskFilter.innerText !== 'All Tasks' && !task.innerText.includes(activeTaskFilter.innerText)) {
-        shouldHide = true
+      // if (activeTaskFilter && activeTaskFilter.innerText !== 'All Tasks' && !task.innerText.includes(activeTaskFilter.innerText)) {
+      //   shouldHide = true
+      // }
+
+
+      if (filterType === 'tasks') {
+        if (activeTaskFilter && activeTaskFilter.innerText !== 'All Tasks' && !task.innerText.includes(activeTaskFilter.innerText)) {
+          shouldHide = true
+        }
       }
       
       if (activePriorityFilter && activePriorityFilter.innerText !== 'All Priorities' && !task.querySelector('span').classList.contains(activePriorityFilter.innerText.toLowerCase())) {
@@ -104,6 +115,24 @@ export default class NAV {
       if (activeProjectFilter && activeProjectFilter.innerText !== 'All Projects' && !task.querySelector('.project').innerText.includes(activeProjectFilter.innerText)) {
         shouldHide = true
       }
+
+      if(filterType === 'date') {
+        // Filter for today's tasks
+        if (filterValue === 'Daily' && taskDateString !== todayDate) {
+          shouldHide = true
+        }
+
+        // Filter for tasks within the current week
+        if (filterValue === 'Weekly') {
+          const oneWeekFromToday = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
+          const oneWeekFromTodayString = oneWeekFromToday.toISOString().slice(0, 10)
+          if (taskDateString < todayDate || taskDateString >= oneWeekFromTodayString) {
+            shouldHide = true
+          }
+        }
+      }
+
+
   
       task.style.display = shouldHide ? 'none' : 'flex'
     })

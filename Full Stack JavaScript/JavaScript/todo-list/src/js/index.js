@@ -93,13 +93,16 @@ function formSubmit() {
   const taskContent = form.task.value
   const taskPriority = radioCheck()
   const selectedProject = document.getElementById('dropdown').value
-  const taskDate = form.time.value
-  const task = TODO.createTask(taskContent, taskPriority, selectedProject, taskDate)
+  const taskDateInput = form.time.value
+
+  const taskDate = new Date(taskDateInput)
+  const formattedTaskDate = taskDate.toISOString().slice(0, 10)
+  const task = TODO.createTask(taskContent, taskPriority, selectedProject, formattedTaskDate)
 
   taskList.appendChild(task)
 
   const storage = JSON.parse(localStorage.getItem('tasks')) || []
-  storage.push({content: taskContent, priority: taskPriority, project: selectedProject, time: taskDate})
+  storage.push({content: taskContent, priority: taskPriority, project: selectedProject, time: formattedTaskDate})
   localStorage.setItem('tasks', JSON.stringify(storage))
 }
 
