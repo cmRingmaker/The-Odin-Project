@@ -40,7 +40,7 @@ export default class NAV {
     const menuProjectContainer = document.getElementById('menu-project')
     menuProjectContainer.addEventListener('DOMNodeInserted', (e) => {
       if(e.target.nodeName === 'LI') {
-        // this.menuProject = document.getElementById('menu-project').querySelectorAll('li')
+        this.menuProject = document.getElementById('menu-project').querySelectorAll('li')
         e.target.addEventListener('click', () => {
           this.activeGroup('project', e.target)
           this.filterTasks('project', e.target.innerText)
@@ -79,9 +79,14 @@ export default class NAV {
 
   filterTasks(filterType, filterValue) {
     const tasks = this.taskList.querySelectorAll('.task')
+    const today = new Date().toLocaleDateString()
 
+    console.log(time)
     tasks.forEach(task => {
       let shouldHide = false
+
+      const time = task.querySelector('.taskTime')
+      console.log(time.innerHTML, new Date(`${time.innerHTML}T00:00:00`).toLocaleDateString(), today)
   
       // Apply multiple filters at once
       const activeTaskFilter = Array.from(this.menuTask).find(li => li.classList.contains('active'))
