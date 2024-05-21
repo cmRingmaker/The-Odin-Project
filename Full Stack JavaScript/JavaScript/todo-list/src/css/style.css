@@ -160,7 +160,7 @@ header {
 }
 
 #sidebar {
-  width: 250px;
+  width: 275px;
   padding-left: 10px;
   position: fixed;
   top: 120px;
@@ -196,7 +196,7 @@ header {
   & .medium  { color: var(--PRIO_PURPLE); }
   & .high { color: var(--PRIO_RED); }
 
-  & .new-project {
+  & .project-btn {
     width: 100%;
     margin-top: 20px;
     padding: 8px 0;
@@ -207,10 +207,11 @@ header {
     opacity: 0.8;
   }
 
-  & .new-project:hover {
+  & .project-btn:hover {
     background-color: var(--COLOR_PRIMARY);
     color: var(--FONT_COLOR);
     opacity: 1;
+    cursor: pointer;
   }
 
 
@@ -227,8 +228,6 @@ header {
   opacity: 0;
   visibility: hidden;
 }
-
-
 
 
 /* ==================================================================
@@ -249,7 +248,8 @@ main {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 10px 10px 10px 28px;
+    padding: 12px 10px 12px 28px;
+    justify-content: space-between;
 
     @media screen and (max-width: 400px) {
       margin: 0 10px;
@@ -282,15 +282,19 @@ main {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    /* clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%); */
     background-color: var(--COLOR_BG); /* CHANGE COLOR IN JS TO THE TASK PROJECT THAT IS GIVEN */
-    height: 18px;
-    width: 80px;
+    height: 16px;
+    width: max-content;
+    padding: 0 10px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border-bottom-left-radius: var(--RADIUS);
     border-bottom-right-radius: var(--RADIUS);
     opacity: 0.5;
+  }
+
+  & .taskTime {
+    font-size: 1.4rem;
   }
 
 }
@@ -305,7 +309,8 @@ main {
 dialog {
   background-color: var(--COLOR_BG);
   background-image: url('../img/noise-light.png');
-  height: 200px;
+  height: min-content;
+  max-height: 460px;
   width: 500px;
   transform: translate(-50%, -50%);
   left: 50%;
@@ -325,6 +330,10 @@ form {
   flex-direction: column;
   gap: 20px;
 
+  label {
+    color: red;
+  }
+
   & input[type="text"] {
     outline: none;
     background: var(--COLOR_PRIMARY);
@@ -335,6 +344,21 @@ form {
     &:focus {
       box-shadow: 0 2px 0 0 var(--COLOR_SECONDARY);
     }
+  }
+
+  & .form-time {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    
+     & input {
+      width: 480px;
+      border-radius: var(--RADIUS);
+      background-color: var(--COLOR_PRIMARY);
+      color: var(--FONT_COLOR);
+      padding: 8px 20px;
+      margin-top: 12px;
+     }
   }
 
   & .form-prio {
@@ -360,13 +384,14 @@ form {
 
     & input[type="radio"] {
       appearance: none;
+      opacity: 0; /* Hacky fix for initial page load to force no radios */
     }
 
     & input[id="low"]:checked ~ label[for="low"] {
       background-color: var(--PRIO_GREEN);
     }
   
-    & input[id="medium"]:checked ~ label[for="med"] {
+    & input[id="medium"]:checked ~ label[for="medium"] {
       background-color: var(--PRIO_PURPLE);
     }
   
@@ -379,5 +404,52 @@ form {
     width: 100%;
     height: max-content;
     font-size: 2.4rem;
+  }
+
+  & .submitTo {
+    display: flex;
+    gap: 20px;
+    padding: 14px;
+
+    & select {
+      flex-grow: 1;
+    }
+  }
+
+  & #dropdown {
+    color: var(--FONT_COLOR);
+    background-color: var(--COLOR_PRIMARY);
+    padding: 4px 10px;
+    font-size: 1.4rem;
+  }
+}
+
+/* New Project Modal */
+#projectModal {
+  height: 140px;
+
+  & input {
+    margin-top: 10px;
+    padding: 10px 0;
+  }
+
+  & button {
+    position: absolute;
+  }
+}
+
+button[type=submit] { /* Submit Button for both modals */
+  width: 150px;
+  height: 40px;
+  right: 25px;
+  color: var(--COLOR_BG);
+  background-color: var(--COLOR_SECONDARY);
+  opacity: 0.8;
+  border-radius: var(--RADIUS);
+
+  &:hover {
+    background-color: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    cursor: pointer;
   }
 }

@@ -1,5 +1,5 @@
 export default class TODO {
-  static createTask(taskContent, taskPriority) {
+  static createTask(taskContent, taskPriority, projectName, taskDate) {
     // Create new Task
     const div = document.createElement('div')
     div.classList.add('task')
@@ -12,10 +12,14 @@ export default class TODO {
     // Create Project Header inside Task div
     const project = document.createElement('div')
     project.classList.add('project')
+    project.innerText = projectName || 'All Projects'
 
-    project.innerText = taskContent
+    const time = document.createElement('div')
+    time.classList.add('taskTime')
+    time.innerText = taskDate || ''
+
     
-    div.append(priority, project)
+    div.append(priority, project, time)
     return div
   }
 }

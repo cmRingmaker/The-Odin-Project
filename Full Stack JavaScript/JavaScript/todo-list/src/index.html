@@ -51,8 +51,8 @@
     <hr>
 
     <div id="menu-project">
-      <button class="new-project">New Project +</button>
-      <li class='active'>My Project</li> <!-- Default Project -->
+      <button class="project-btn" id='new-project'>New Project +</button>
+      <li class='active'>All Projects</li> <!-- Default Project -->
     </div>
   </nav>
 
@@ -61,7 +61,15 @@
   <dialog id="modal">
     <form id='form' method='dialog'>
 
-      <div class="form-prio">
+      <div class="form-time">
+        <label for="taskTime">Complete By:</label>
+        <input type="date" name="taskTime" id="time">
+      </div>
+
+      <hr>
+
+      <label for="form-prioLabel">Priority Level:</label>
+      <div class="form-prio" id='form-prioLabel'>
         <input type="radio" name='priority' value='low' id='low' checked>
         <label for="low">Low</label>
 
@@ -72,8 +80,29 @@
         <label for="high">High</label>
       </div>
 
-      <input type="text" name='task' id='taskName' required>
+      <hr>
+
+      <label for="taskName">Task Name:</label>
+      <input type="text" name='task' id='taskName' placeholder='Todo..' required>
+
+      <hr>
+
+      <!-- <label for="dropdown">Language</label> -->
+      <div class="submitTo">
+        <button type='submit' form='form' value='Submit'>Submit To ></button>
+
+        <select name="groups" id="dropdown">
+          <option value="All Projects">All Projects</option>
+        </select>
+      </div>
     </form>
+  </dialog>
+
+  <dialog id="projectModal">
+    <form id="projectForm" method='dialog'>
+      <input type="text" name='project' id='projectName' placeholder='New Project' required>
+    </form>
+    <button type='submit' form='projectForm' value='Submit'>Submit ></button>
   </dialog>
 
 </body>
