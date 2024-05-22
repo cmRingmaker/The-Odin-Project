@@ -22,12 +22,13 @@ const createNew = document.getElementById('createNew')
 const modal = document.getElementById('modal')
 const form = document.getElementById('form')
 
-
 // Groups
 const projectGroups = document.getElementById('menu-project')
 const newProject = document.getElementById('new-project')
 const projectModal = document.getElementById('projectModal')
 const projectForm = document.getElementById('projectForm')
+
+const deleteProject = document.getElementById('delete-project')
 
 // -------------------------
 // EVENT LISTENERS
