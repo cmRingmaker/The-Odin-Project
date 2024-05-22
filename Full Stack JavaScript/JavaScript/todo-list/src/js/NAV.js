@@ -17,7 +17,7 @@ export default class NAV {
     this.menuTask.forEach((group) => {
       group.addEventListener('click', () => {
         this.activeGroup('tasks', group)
-        this.filterTasks('date', group.innerText)
+        this.filterTasks('tasks', group.innerText)
       })
     })
   
@@ -77,65 +77,62 @@ export default class NAV {
     }
   }
 
-  filterTasks(filterType, filterValue) {
-    const tasks = this.taskList.querySelectorAll('.task')
-    const today = new Date()
-    const todayDate = today.toISOString().slice(0, 10) // Get today's date in YYYY-MM-DD format
-
-    console.log(time)
-    tasks.forEach(task => {
-      let shouldHide = false
-
-      const taskTime = task.querySelector('.taskTime').innerText
-      const taskDate = new Date(taskTime)
-      const taskDateString = taskDate.toISOString().slice(0, 10)
-      console.log(taskTime, taskDateString)
+  filterTasks() {
+    const taskElements = this.taskList.querySelectorAll('.task');
+    const selectedDateOption = Array.from(this.menuTask).find(li => li.classList.contains('active')).innerText;
+    const selectedPriorityOption = Array.from(this.menuPrio).find(li => li.classList.contains('active')).innerText;
+    const selectedProjectOption = Array.from(this.menuProject).find(li => li.classList.contains('active')).innerText;
+    const userSelectedDate = this.getUserSelectedDate(selectedDateOption)
   
-      // Apply multiple filters at once
-      const activeTaskFilter = Array.from(this.menuTask).find(li => li.classList.contains('active'))
-      const activePriorityFilter = Array.from(this.menuPrio).find(li => li.classList.contains('active'))
-      const activeProjectFilter = Array.from(this.menuProject).find(li => li.classList.contains('active'))
-      const activeDateFilter = filterValue
-      
-      // if (activeTaskFilter && activeTaskFilter.innerText !== 'All Tasks' && !task.innerText.includes(activeTaskFilter.innerText)) {
-      //   shouldHide = true
-      // }
-
-
-      if (filterType === 'tasks') {
-        if (activeTaskFilter && activeTaskFilter.innerText !== 'All Tasks' && !task.innerText.includes(activeTaskFilter.innerText)) {
-          shouldHide = true
-        }
-      }
-      
-      if (activePriorityFilter && activePriorityFilter.innerText !== 'All Priorities' && !task.querySelector('span').classList.contains(activePriorityFilter.innerText.toLowerCase())) {
-        shouldHide = true
-      }
-      
-      if (activeProjectFilter && activeProjectFilter.innerText !== 'All Projects' && !task.querySelector('.project').innerText.includes(activeProjectFilter.innerText)) {
-        shouldHide = true
-      }
-
-      if(filterType === 'date') {
-        // Filter for today's tasks
-        if (filterValue === 'Daily' && taskDateString !== todayDate) {
-          shouldHide = true
-        }
-
-        // Filter for tasks within the current week
-        if (filterValue === 'Weekly') {
-          const oneWeekFromToday = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
-          const oneWeekFromTodayString = oneWeekFromToday.toISOString().slice(0, 10)
-          if (taskDateString < todayDate || taskDateString >= oneWeekFromTodayString) {
-            shouldHide = true
-          }
-        }
-      }
-
-
+    taskElements.forEach(taskElement => {
+      const taskDate = taskElement.querySelector('.taskTime').innerText
+      const taskPriority = taskElement.querySelector('span').classList.value
+      const taskProject = taskElement.querySelector('.project').innerText
   
-      task.style.display = shouldHide ? 'none' : 'flex'
+      const shouldShowTask =
+        (selectedDateOption === 'All Tasks' || (selectedDateOption === 'Daily' && this.isToday(taskDate, userSelectedDate)) || (selectedDateOption === 'Weekly' && this.isThisWeek(taskDate, userSelectedDate))) &&
+        (selectedPriorityOption === 'All Priorities' || taskPriority.includes(selectedPriorityOption.toLowerCase())) &&
+        (selectedProjectOption === 'All Projects' || taskProject === selectedProjectOption)
+  
+      taskElement.style.display = shouldShowTask ? 'flex' : 'none'
     })
+  }
+
+  getUserSelectedDate(selectedDateOption) {
+    if (selectedDateOption === 'Daily') {
+      return new Date().toISOString().slice(0, 10)
+    } else if (selectedDateOption === 'Weekly') {
+      const today = new Date()
+      return today.toISOString().slice(0, 10)
+    } else {
+      return null
+    }
+  }
+
+  isToday(dateString, userSelectedDate) {
+    const today = new Date(userSelectedDate)
+    const taskDate = new Date(dateString)
+  
+    if (isNaN(taskDate.getTime())) {
+      return false
+    }
+  
+    return today.toDateString() === taskDate.toDateString()
+  }
+
+  isThisWeek(dateString, userSelectedDate) {
+    const today = new Date(userSelectedDate)
+    const taskDate = new Date(dateString)
+    
+    if (isNaN(taskDate.getTime())) {
+      return false
+    }
+
+    // Calculate the end date which is today + 6 days
+    const endOfWeek = new Date(today.getTime() + 6 * 24 * 60 * 60 * 1000)
+  
+    // Check if taskDate is within the adjusted range (today + 6 days)
+    return taskDate >= today && taskDate <= endOfWeek
   }
 
 }
