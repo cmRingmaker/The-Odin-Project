@@ -136,26 +136,3 @@ export default class NAV {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TODO: (heh)
-// FILTER OUT DAILY/WEEKLY BASED ON USER INPUT
