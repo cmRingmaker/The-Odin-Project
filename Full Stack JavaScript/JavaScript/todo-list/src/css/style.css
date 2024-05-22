@@ -1,0 +1,525 @@
+/* ==================================================================
+    - - - - - - - - - - [ GLOBALS ]
+   ==================================================================
+    [1] Size hack to set default font size to "10px" to make 1rem
+        the equivelent of 10px. (2.4rem = 24px, 0.8rem = 8px, etc)
+   ================================================================== */
+
+:root {
+  font-size: 62.5%; /* [1] */
+
+  /* ------------> DEFAULT DARK MODE COLORS!!!, CHANGE COLORS & DELETE THIS COMMENT LINE!!! <------------ */
+  /* Main colors */
+  --COLOR_BG: hsl(0, 0%, 0%);
+  --COLOR_PRIMARY: hsl(155, 30%, 38%);
+  --COLOR_SECONDARY: hsl(303, 71%, 73%);
+
+  --PRIO_GREEN: hsl(120, 77%, 46%);
+  --PRIO_PURPLE: hsl(278, 72%, 50%);
+  --PRIO_RED: hsl(0, 79%, 50%);
+
+  /* Text */
+  --FONT_COLOR: hsl(30, 100%, 98%);
+
+  /* Misc Layout */
+  --RADIUS: 6px;
+}
+
+
+/* ==================================================================
+    - - - - - - - - - - [ BASE STYLES ]
+   ==================================================================
+    - - [ body, fonts, text elements, media elements ]
+    * Styles that are shared across the entire site
+   ================================================================== */
+  
+body {
+  font-size: 2rem;
+  font-family: 'Fira Code', sans-serif;
+  background-color: var(--COLOR_BG);
+  background-image: url('../img/noise-light.png');
+  background-attachment: fixed;
+  color: var(--FONT_COLOR);
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr [content-start] minmax(300px, 700px) [content-end] 1fr;
+  grid-template-rows: min-content 1fr;
+  gap: 20px;
+
+  & > * {
+    grid-column: content;
+  }
+
+  @media screen and (max-width: 400px) {
+    grid-template-columns: 1fr;
+    & > * { grid-column: 1 / 2; }
+  }
+}
+
+::selection {
+  background-color: var(--COLOR_SECONDARY);
+  color: var(--COLOR_BG);
+}
+
+hr {
+  border-top: 1px dashed var(--COLOR_SECONDARY);
+}
+
+
+/* ==================================================================
+    - - - - - - - - - - [ HEADER ]
+   ==================================================================
+    * Extremely simple header, updates on which task group selected
+   ================================================================== */
+  
+header {
+  padding: 20px 0 0 20px;
+  font-size: 4rem;
+  display: flex;
+
+  & :last-child {
+    margin-left: auto;
+  }
+
+  @media screen and (max-width: 850px) {
+    & :first-child { /* Make room for hamburger menu at smaller resolution */
+      padding-left: 80px;
+    }
+  }  
+}
+
+/* ==================================================================
+    - - - - - - - - - - [ SIDEBAR ]
+   ==================================================================
+    * A sidebar that toggles on and off when in mobile, popping
+      it out from the left side. Otherwise permanently on while
+      on desktop.
+   ================================================================== */
+
+#sidebar-toggle {
+  width: 80px;
+  height: 70px;
+  top: 20px;
+  left: calc((100vw - 940px) / 2);
+  position: fixed;
+  z-index: 10;
+
+  & input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  & span {
+    left: 20%;
+    top: 30%;
+    display: block;
+    width: 50px;
+    height: 6px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: var(--COLOR_SECONDARY);
+    border-radius: var(--RADIUS);
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+  }
+
+  & span:first-child {
+    transform-origin: 0% 0%;
+  }
+
+  & span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+
+  & input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: red;
+  }
+
+  & input:checked ~ span:first-child {
+    transform: rotate(45deg) translateX(-0px) translateY(-3px);
+  }
+
+  & input:checked ~ span:nth-last-child(2) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+
+  & input:checked ~ span:last-child {
+    transform: rotate(-45deg) translateX(-6px) translateY(0px);
+  }
+
+  @media screen and (max-width: 1290px) { left: 20px; }
+  /* @media screen and (max-width: 1000px) { left: 20px; } */
+}
+
+#sidebar {
+  width: 275px;
+  padding-left: 10px;
+  position: fixed;
+  top: 120px;
+  left: calc((100vw - 1300px) / 2); /* force responsiveness when resizing.. mother of god it works */
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out;
+
+  & .active {
+    color: red;
+    margin-right: 8px;
+    transition: margin-right 0.3s ease-in-out;
+    text-shadow: -2px 2px 2px var(--COLOR_BG);
+
+    &::before {
+      content: '>';
+      margin-right: 10px;
+    }
+  }
+  
+  & > * {
+    margin: 0 20px 20px 0;
+    text-align: right;
+    cursor: pointer;
+  }
+  
+  & > * > * {
+    padding-top: 14px;
+  }
+
+  & .low  { color: var(--PRIO_GREEN); }
+  & .medium  { color: var(--PRIO_PURPLE); }
+  & .high { color: var(--PRIO_RED); }
+
+  & .project-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 8px 0;
+    font-size: 2.2rem;
+    background-color: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    border-radius: var(--RADIUS);
+    opacity: 0.8;
+  }
+
+  & .project-btn:hover {
+    background-color: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    opacity: 1;
+    cursor: pointer;
+  }
+
+
+  @media screen and (max-width: 1290px) {
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 0%, 0.8);
+    border-top-right-radius: var(--RADIUS);
+    backdrop-filter: blur(4px);
+  } 
+}
+
+.hide-sidebar {
+  transform: translateX(-500px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+#delete-project {
+  /* margin-top: 60px; */
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+    color: darkred;
+  }
+}
+
+
+/* ==================================================================
+    - - - - - - - - - - [ MAIN CONTENT ]
+   ==================================================================
+    - - [ main, section, div, article, aside, form ]
+    * replace %CONTENT with one of the above when pasting this
+   ================================================================== */
+
+main {
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 10px;
+
+  & > * {
+    background-color: var(--COLOR_PRIMARY);
+    border-radius: var(--RADIUS);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 12px 10px 12px 28px;
+    font-size: 1.6rem;
+    justify-content: space-between;
+
+    @media screen and (max-width: 400px) {
+      margin: 0 10px;
+    }
+  }
+
+  & .priority { /* TASK COLOR BAR OF IMPORTANCE! */
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 12px;
+    height: 100%;
+    border-top-left-radius: var(--RADIUS);
+    border-bottom-left-radius: var(--RADIUS);
+    transition: width 0.2s ease-in-out;
+  }
+
+  /* Task color bar color select */
+  & .low  { background-color: var(--PRIO_GREEN); }
+  & .medium  { background-color: var(--PRIO_PURPLE); }
+  & .high { background-color: var(--PRIO_RED); }
+
+  & :hover .priority { /* Expand priority color slightly */
+    width: 24px;
+    border-right: 1px solid var(--COLOR_BG);
+  }
+
+  & .project { /* Project tab on the todo item */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--COLOR_BG); /* CHANGE COLOR IN JS TO THE TASK PROJECT THAT IS GIVEN */
+    height: 14px;
+    width: max-content;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    border-bottom-left-radius: var(--RADIUS);
+    border-bottom-right-radius: var(--RADIUS);
+    opacity: 0.5;
+  }
+
+  & .taskTime {
+    font-size: 1.4rem;
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+  }
+
+  & .edit {
+    font-size: 1.5rem;
+    color: black;
+    position: absolute;
+    transform: rotate(-90deg);
+    left: -5px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  & > *:hover .edit {
+    opacity: 1;
+  }
+
+  & .delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(255, 0, 0, 0.397);
+    border-top-right-radius: var(--RADIUS);
+    border-bottom-left-radius: var(--RADIUS);
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  & > *:hover .delete {
+    opacity: 1;
+  }
+
+}
+
+/* ==================================================================
+    - - - - - - - - - - [ TASK MODAL & FORM ]
+   ==================================================================
+    - - [ main, section, div, article, aside, form ]
+    * replace %CONTENT with one of the above when pasting this
+   ================================================================== */
+
+dialog {
+  background-color: var(--COLOR_BG);
+  background-image: url('../img/noise-light.png');
+  height: min-content;
+  max-height: 460px;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 30%;
+  border-radius: var(--RADIUS);
+  z-index: 12;
+  border: 2px dotted var(--COLOR_SECONDARY);
+
+  &::backdrop {
+    backdrop-filter: blur(4px);
+  }
+}
+
+form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  label {
+    color: red;
+  }
+
+  & input[type="text"] {
+    outline: none;
+    background: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    border-radius: var(--RADIUS);
+    padding: 2px 10px;
+
+    &:focus {
+      box-shadow: 0 2px 0 0 var(--COLOR_SECONDARY);
+    }
+  }
+
+  & .form-time {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    
+     & input {
+      width: 480px;
+      border-radius: var(--RADIUS);
+      background-color: var(--COLOR_PRIMARY);
+      color: var(--FONT_COLOR);
+      padding: 8px 20px;
+      margin-top: 12px;
+     }
+  }
+
+  & .form-prio {
+    color: red;
+    display: flex;
+    gap: 20px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+
+    & label {
+      height: 100%;
+      width: 33%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--RADIUS);
+      user-select: none;
+      cursor: pointer;
+      color: var(--FONT_COLOR);
+      text-shadow: var(--COLOR_BG) -2px 1px;
+    }
+
+    & input[type="radio"] {
+      appearance: none;
+      opacity: 0; /* Hacky fix for initial page load to force no radios */
+    }
+
+    & input[id="low"]:checked ~ label[for="low"] {
+      background-color: var(--PRIO_GREEN);
+    }
+  
+    & input[id="medium"]:checked ~ label[for="medium"] {
+      background-color: var(--PRIO_PURPLE);
+    }
+  
+    & input[id="high"]:checked ~ label[for="high"] {
+      background-color: var(--PRIO_RED);
+    }
+  }
+
+  & #taskName {
+    width: 100%;
+    height: max-content;
+    font-size: 2.4rem;
+  }
+
+  & .submitTo {
+    display: flex;
+    gap: 20px;
+    padding: 14px;
+
+    & select {
+      flex-grow: 1;
+    }
+  }
+
+  & #dropdown {
+    color: var(--FONT_COLOR);
+    background-color: var(--COLOR_PRIMARY);
+    padding: 4px 10px;
+    font-size: 1.4rem;
+  }
+}
+
+/* New Project Modal */
+#projectModal {
+  height: 140px;
+
+  & input {
+    margin-top: 10px;
+    padding: 10px 0;
+  }
+
+  & button {
+    position: absolute;
+  }
+}
+
+/* Delete Group Modal */
+#deleteProjectModal {
+  flex-direction: column;
+  height: 200px;
+
+  & select {
+    background-color: var(--COLOR_PRIMARY);
+    font-size: 2.2rem;
+    border-radius: var(--RADIUS);
+    padding: 4px 14px;
+    color: var(--FONT_COLOR);
+  }
+
+  & button {
+    margin-top: 20px;
+    width: 90%;
+    position: absolute;
+  }
+}
+
+button[type=submit] { /* Submit Button for both modals */
+  width: 150px;
+  height: 40px;
+  right: 25px;
+  color: var(--COLOR_BG);
+  background-color: var(--COLOR_SECONDARY);
+  opacity: 0.8;
+  border-radius: var(--RADIUS);
+
+  &:hover {
+    background-color: var(--COLOR_PRIMARY);
+    color: var(--FONT_COLOR);
+    cursor: pointer;
+  }
+}

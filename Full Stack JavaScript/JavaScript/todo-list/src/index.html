@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="DESCRIPTION HERE">
+  <meta name="keywords" content="KEYWORD, KEYWORD, KEYWORD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap"
+    rel="stylesheet">
+
+  <title>TODO List</title>
+
+</head>
+
+<body>
+
+  <header>
+    <h1>TODO:</h1>
+    <div class="menuToggle"></div>
+    <div id="createNew">New</div>
+  </header>
+
+  <div id='sidebar-toggle'>
+    <!-- autocomplete='off' -->
+    <input type="checkbox" id='sidebar-button'>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav id='sidebar' class='show-sidebar'>
+    <div id="menu-tasks">
+      <li class='active'>All Tasks</li> <!-- Default Task -->
+      <li>Daily</li>
+      <li>Weekly</li>
+    </div>
+
+    <hr>
+
+    <div id="menu-priority">
+      <li class='active'>All Priorities</li> <!-- Default Priority -->
+      <li class='low'>Low</li>
+      <li class='medium'>Medium</li>
+      <li class='high'>High</li>
+    </div>
+
+    <hr>
+
+    <div id="menu-project">
+      <button class="project-btn" id='new-project'>New Project +</button>
+      <li class='active'>All Projects</li> <!-- Default Project -->
+    </div>
+
+    <div id="delete-project">
+      <li class='delproj'>Delete Project</li>
+    </div>
+  </nav>
+
+  <main id='task-list'></main>
+
+  <dialog id="modal">
+    <form id='form' method='dialog'>
+
+      <div class="form-time">
+        <label for="taskTime">Complete By:</label>
+        <input type="date" name="taskTime" id="time">
+      </div>
+
+      <hr>
+
+      <label for="form-prioLabel">Priority Level:</label>
+      <div class="form-prio" id='form-prioLabel'>
+        <input type="radio" name='priority' value='low' id='low' checked>
+        <label for="low">Low</label>
+
+        <input type="radio" name='priority' value='medium' id='medium'>
+        <label for="medium">Medium</label>
+
+        <input type="radio" name="priority" value='high' id='high'>
+        <label for="high">High</label>
+      </div>
+
+      <hr>
+
+      <label for="taskName">Task Name:</label>
+      <input type="text" name='task' id='taskName' placeholder='Todo..' required>
+
+      <hr>
+
+      <!-- <label for="dropdown">Language</label> -->
+      <div class="submitTo">
+        <button type='submit' form='form' value='Submit'>Submit To ></button>
+
+        <select name="groups" id="dropdown">
+          <option value="All Projects">All Projects</option>
+        </select>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="projectModal">
+    <form id="projectForm" method='dialog' open>
+      <input type="text" name='project' id='projectName' placeholder='New Project' required>
+    </form>
+    <button type='submit' form='projectForm' value='Submit'>Submit ></button>
+  </dialog>
+
+  <dialog id="deleteProjectModal">
+    <form id="deleteForm" method="dialog">
+      <label for="deleteDropdown">Select Project to Delete:</label>
+      <select name="groups" id="deleteDropdown"></select>
+    </form>
+    <button type="submit" form='deleteForm' value='Submit'>Delete Project</button>
+  </dialog>
+
+</body>
+
+</html>
