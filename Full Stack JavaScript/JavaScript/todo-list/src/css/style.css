@@ -249,6 +249,7 @@ main {
     align-items: center;
     position: relative;
     padding: 12px 10px 12px 28px;
+    font-size: 1.8rem;
     justify-content: space-between;
 
     @media screen and (max-width: 400px) {
@@ -283,11 +284,12 @@ main {
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--COLOR_BG); /* CHANGE COLOR IN JS TO THE TASK PROJECT THAT IS GIVEN */
-    height: 16px;
+    height: 14px;
     width: max-content;
     padding: 0 10px;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.2;
     border-bottom-left-radius: var(--RADIUS);
     border-bottom-right-radius: var(--RADIUS);
     opacity: 0.5;
