@@ -103,10 +103,18 @@
   </dialog>
 
   <dialog id="projectModal">
-    <form id="projectForm" method='dialog'>
+    <form id="projectForm" method='dialog' open>
       <input type="text" name='project' id='projectName' placeholder='New Project' required>
     </form>
     <button type='submit' form='projectForm' value='Submit'>Submit ></button>
+  </dialog>
+
+  <dialog id="deleteProjectModal">
+    <form id="deleteForm" method="dialog">
+      <label for="deleteDropdown">Select Project to Delete:</label>
+      <select name="groups" id="deleteDropdown"></select>
+    </form>
+    <button type="submit" form='deleteForm' value='Submit'>Delete Project</button>
   </dialog>
 
 </body>

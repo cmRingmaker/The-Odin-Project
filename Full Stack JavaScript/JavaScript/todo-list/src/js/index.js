@@ -28,7 +28,9 @@ const newProject = document.getElementById('new-project')
 const projectModal = document.getElementById('projectModal')
 const projectForm = document.getElementById('projectForm')
 
-const deleteProject = document.getElementById('delete-project')
+const deleteProjectDiv = document.getElementById('delete-project')
+const deleteProjectModal = document.getElementById('deleteProjectModal')
+const deleteForm = document.getElementById('deleteForm')
 
 // -------------------------
 // EVENT LISTENERS
@@ -37,6 +39,8 @@ form.addEventListener('submit', () => formSubmit())
 newProject.addEventListener('click', () => createProject())
 projectForm.addEventListener('submit', () => projectFormSubmit())
 
+deleteForm.addEventListener('submit', () => deleteSelectedProject())
+deleteProjectDiv.addEventListener('click', () => deleteProject())
 
 window.addEventListener('load', () => {
   loadTasks()
@@ -57,13 +61,17 @@ const nav = new NAV()
 
 function createTodo() {
   modal.showModal()
-  console.log('modal??')
 }
 
 function createProject() {
   projectModal.showModal()
-  console.log('project modal???')
 }
+
+function deleteProject() {
+  deleteProjectModal.showModal()
+}
+
+
 
 
 
@@ -127,7 +135,8 @@ function loadGroups() {
     const groupElement = PROJECT.createProject(group.content)
     projectGroups.appendChild(groupElement)
 
-    populateDropdown(group.content)
+    populateDropdown(group.content, 'dropdown')
+    populateDropdown(group.content, 'deleteDropdown')
   })
 }
 
@@ -145,13 +154,51 @@ function projectFormSubmit() {
   storage.push({content: projectContent})
   localStorage.setItem('groups', JSON.stringify(storage))
 
-  populateDropdown(projectContent)
+  populateDropdown(projectContent, 'dropdown')
+  populateDropdown(projectContent, 'deleteDropdown')
   projectForm.reset()
 }
 
-function populateDropdown(groupContent) {
+function populateDropdown(groupContent, dropdownId) {
   const op = document.createElement('option')
   op.value = groupContent
   op.textContent = groupContent
+  const dropdown = document.getElementById(dropdownId)
   dropdown.appendChild(op)
+}
+
+function deleteSelectedProject() {
+  const selectedProject = deleteForm.deleteDropdown.value
+
+  if(selectedProject !== 'All Projects') {
+    const confirmed = confirm(`Are you sure you want to delete the project "${selectedProject}"?`)
+    if(confirmed) {
+      const projectElement = Array.from(projectGroups.children).find(li => li.innerText === selectedProject)
+      if(projectElement) {
+        projectElement.remove()
+      }
+
+      // Delete Group out of local storage
+      const groups = JSON.parse(localStorage.getItem('groups')) || []
+      const groupIndex = groups.findIndex(group => group.content === selectedProject)
+      if (groupIndex !== -1) {
+        groups.splice(groupIndex, 1)
+        localStorage.setItem('groups', JSON.stringify(groups))
+      }
+
+      // Delete all tasks related to that group
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+      const updatedTasks = tasks.filter(task => task.project !== selectedProject)
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks))
+      const taskElements = taskList.querySelectorAll('.task')
+      taskElements.forEach(taskElement => {
+        const taskProject = taskElement.querySelector('.project').innerText
+        if (taskProject === selectedProject) {
+          taskElement.remove()
+        }
+      })
+    }
+  }
+
+  location.reload()
 }
