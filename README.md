@@ -29,6 +29,8 @@ Under each section that is completed, I will list notable things that I had lear
 
 [Restaurant Page](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/restaurant-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/restaurant-page/dist/)
 
+[Todo-List](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/todo-list) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/todo-list/dist/)
+
 ---
 ### <p align='center'>FOUNDATIONS</p>
 
