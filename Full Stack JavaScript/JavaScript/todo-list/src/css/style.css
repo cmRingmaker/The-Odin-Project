@@ -85,7 +85,12 @@ header {
     & :first-child { /* Make room for hamburger menu at smaller resolution */
       padding-left: 80px;
     }
-  }  
+  }
+
+  @media screen and (max-width: 500px) {
+    & h1 { display: none; }
+    & #createNew { padding-right: 10px; }
+  }
 }
 
 /* ==================================================================
@@ -180,6 +185,15 @@ header {
     &::before {
       content: '>';
       margin-right: 10px;
+    }
+  }
+
+  & #clear-tasks {
+    opacity: 0.7;
+    font-size: 1.8rem;
+
+    &:hover {
+      color: darkred;
     }
   }
   
@@ -290,6 +304,37 @@ main {
     border-right: 1px solid var(--COLOR_BG);
   }
 
+  
+  & input[type="checkbox"] {
+    display: none;
+  }
+  
+  & input[type="checkbox"] + span::before { /* Target the task-content for strikethroughs */
+    content: '';
+    position: absolute;
+    background-image: linear-gradient(transparent 0 48%, black 50% calc(50% + 2px), transparent calc(50% + 2px) 100%);
+    width: 0;
+    height: 100%;
+    transition: width 0.1s linear;
+  }
+  
+  & input[type="checkbox"]:checked + span::before { /* Target the task-content for strikethroughs */
+    width: 100%;
+  }
+  
+  & .task-content {
+    width: 100%;
+    position: relative;
+  }
+
+
+
+  /* & .task-content {
+    display: inline-block;
+    width: 80%;
+    background-color: red;
+  } */
+
   & .project { /* Project tab on the todo item */
     position: absolute;
     top: 0;
@@ -364,7 +409,7 @@ dialog {
   width: 500px;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 30%;
+  top: 50%;
   border-radius: var(--RADIUS);
   z-index: 12;
   border: 2px dotted var(--COLOR_SECONDARY);
@@ -400,9 +445,9 @@ form {
     display: flex;
     flex-direction: column;
     align-self: center;
+    width: 100%;
     
      & input {
-      width: 480px;
       border-radius: var(--RADIUS);
       background-color: var(--COLOR_PRIMARY);
       color: var(--FONT_COLOR);
