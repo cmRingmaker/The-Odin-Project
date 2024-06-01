@@ -290,6 +290,37 @@ main {
     border-right: 1px solid var(--COLOR_BG);
   }
 
+  
+  & input[type="checkbox"] {
+    display: none;
+  }
+  
+  & input[type="checkbox"] + span::before { /* Target the task-content for strikethroughs */
+    content: '';
+    position: absolute;
+    background-image: linear-gradient(transparent 0 48%, black 50% calc(50% + 2px), transparent calc(50% + 2px) 100%);
+    width: 0;
+    height: 100%;
+    transition: width 0.1s linear;
+  }
+  
+  & input[type="checkbox"]:checked + span::before { /* Target the task-content for strikethroughs */
+    width: 100%;
+  }
+  
+  & .task-content {
+    width: 100%;
+    position: relative;
+  }
+
+
+
+  /* & .task-content {
+    display: inline-block;
+    width: 80%;
+    background-color: red;
+  } */
+
   & .project { /* Project tab on the todo item */
     position: absolute;
     top: 0;

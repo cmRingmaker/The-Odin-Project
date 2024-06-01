@@ -125,8 +125,10 @@ function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || []
   tasks.forEach(task => {
     const taskElement = TODO.createTask(task.content, task.priority, task.project, task.time)
-    taskList.appendChild(taskElement);
-  });
+    const checkboxElement = taskElement.querySelector(`input[type='checkbox']`)
+    checkboxElement.checked = task.checked || false
+    taskList.appendChild(taskElement)
+  })
 }
 
 function loadGroups() {

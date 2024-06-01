@@ -5,9 +5,12 @@ export default class TODO {
     div.classList.add('task')
     // div.innerText = taskContent
 
+    const taskCheckbox = document.createElement('input')
+    taskCheckbox.type = 'checkbox'
+
     const taskContentText = document.createElement('span')
     taskContentText.innerText = taskContent
-    taskContentText.classList.add('task-content') 
+    taskContentText.classList.add('task-content')
 
     // Create a fake ::before with a span to change colors to indicate priority
     const priority = document.createElement('span')
@@ -55,12 +58,34 @@ export default class TODO {
       }
     })
 
+    div.addEventListener('click', (e) => {
+      if (!e.target.matches('.edit, .delete')) {
+        taskCheckbox.checked = !taskCheckbox.checked
+
+        console.log('CHECK MEEEEEEEEEEE')
+         // Save the checkbox state to localStorage
+         const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+         const taskIndex = tasks.findIndex(
+           (task) =>
+             task.content === taskContent &&
+             task.priority === taskPriority &&
+             task.project === projectName &&
+             task.time === taskDate
+         );
+
+         if (taskIndex !== -1) {
+          tasks[taskIndex].checked = taskCheckbox.checked
+          localStorage.setItem('tasks', JSON.stringify(tasks))
+        }
+      }
+    })
+
     const time = document.createElement('div')
     time.classList.add('taskTime')
     time.innerText = taskDate || ''
 
     
-    div.append(priority, taskContentText, project, time, editTask, delTask)
+    div.append(priority, taskCheckbox, taskContentText, project, time, editTask, delTask)
     return div
   }
 }
