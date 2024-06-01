@@ -23,6 +23,7 @@ const modal = document.getElementById('modal')
 const form = document.getElementById('form')
 
 // Groups
+const clearTasks = document.getElementById('clear-tasks')
 const projectGroups = document.getElementById('menu-project')
 const newProject = document.getElementById('new-project')
 const projectModal = document.getElementById('projectModal')
@@ -35,6 +36,7 @@ const deleteForm = document.getElementById('deleteForm')
 // -------------------------
 // EVENT LISTENERS
 createNew.addEventListener('click', () => createTodo())
+clearTasks.addEventListener('click', () => clearAllCompleted())
 form.addEventListener('submit', () => formSubmit())
 newProject.addEventListener('click', () => createProject())
 projectForm.addEventListener('submit', () => projectFormSubmit())
@@ -70,10 +72,6 @@ function createProject() {
 function deleteProject() {
   deleteProjectModal.showModal()
 }
-
-
-
-
 
 
 // TEST TO FILL 100 TASKS - REMOVE - REMOVE - REMOVE
@@ -119,6 +117,19 @@ function radioCheck() {
   const selected = document.querySelector(`input[name='priority']:checked`)
   const selectedValue = selected ? selected.value : ''
   return selectedValue
+}
+
+function clearAllCompleted() {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+  const confirmed = confirm(`Are you sure you want to delete the currently completed tasks?`)
+
+  if(confirmed) {
+    const updatedTasks = tasks.filter(task => !task.checked)
+    // Remove completed tasks from localStorage and reload
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks))
+    location.reload()
+  }
+
 }
 
 function loadTasks() {
