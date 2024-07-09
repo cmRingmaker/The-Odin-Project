@@ -104,8 +104,14 @@ Under each section that is completed, I will list notable things that I had lear
 
 ## Restaurant Page: [Restaurant Page](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/restaurant-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/restaurant-page/dist/)
 
-_[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]_
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
 
 - Classes are very useful to make utility tools.
 - Webpack has a steep learning curve, but is very flexible and powerful once you get going with it.
 - CSS natively supports nesting and it makes more sense to me to look at pages like I would look at a JS function, lumping all the relevant info together.
+
+## Todo-List: [Todo-List](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/todo-list) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/todo-list/dist/)
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+- Animating in CSS is pretty straightforward and fun.
+- Using .filter() is a strong option for quickly getting information you need from array.
+- HTMLs Dialog is a fantastic way to create custom popups.
