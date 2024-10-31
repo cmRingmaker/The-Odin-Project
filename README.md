@@ -73,6 +73,7 @@ Under each section that is completed, I will list notable things that I had lear
 - When using an ID with .getElementById, you do not need the # sign to choose it, you just simply call the ID name.
 
 ---
+---
 ### <p align='center'>INTERMEDIATE</p>
 
 ## Forms: [Sign-up Form](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Intermediate/sign-up-form) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Intermediate/sign-up-form/)
@@ -89,6 +90,7 @@ Under each section that is completed, I will list notable things that I had lear
 - You can have grids inside grids, or even flexbox inside grids!
 - Making grids be responsive to the page resizing is not only easy, but has the benefit of not having to write tons of mediaqueries.
 
+---
 ---
 ### <p align='center'>FULL STACK JAVASCRIPT</p>
 
@@ -120,6 +122,7 @@ Under each section that is completed, I will list notable things that I had lear
 - Using .filter() is a strong option for quickly getting information you need from array.
 - HTMLs Dialog is a fantastic way to create custom popups.
 
+---
 ---
 ### <p align='center'>ASYNCHRONUS JAVASCRIPT AND APIS</p>
 
