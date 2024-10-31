@@ -31,6 +31,10 @@ Under each section that is completed, I will list notable things that I had lear
 
 [Todo-List](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/todo-list) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/todo-list/dist/)
 
+### ASYNCHRONUS JAVASCRIPT AND APIS
+[Weather App](https://github.com/cmRingmaker/quick-weather) | [Demo](https://cmringmaker.github.io/quick-weather/)
+
+
 ---
 ### <p align='center'>FOUNDATIONS</p>
 
@@ -115,3 +119,13 @@ Under each section that is completed, I will list notable things that I had lear
 - Animating in CSS is pretty straightforward and fun.
 - Using .filter() is a strong option for quickly getting information you need from array.
 - HTMLs Dialog is a fantastic way to create custom popups.
+
+---
+### <p align='center'>ASYNCHRONUS JAVASCRIPT AND APIS</p>
+
+*editors note: this is where I started using multiple repos and will be using this page as an index*
+## Weather App: [Weather App](https://github.com/cmRingmaker/quick-weather) | [Demo](https://cmringmaker.github.io/quick-weather/)
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+- THe usage of ASync code allows single-threaded JavaScript to continue operating without waiting for those async functions to finish.
+- Utilizing API's by calling for data from a server is a great way to store and display data client-side.
+- Array destructuring is wonderful! No more writing array[0] array[1], etc.. when dealing with small arrays.
