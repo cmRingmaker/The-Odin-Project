@@ -27,6 +27,14 @@ Under each section that is completed, I will list notable things that I had lear
 
 [Tic-Tac-Toe Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/tic-tac-toe) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/tic-tac-toe/)
 
+[Restaurant Page](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/restaurant-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/restaurant-page/dist/)
+
+[Todo-List](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/todo-list) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/todo-list/dist/)
+
+### ASYNCHRONUS JAVASCRIPT AND APIS
+[Weather App](https://github.com/cmRingmaker/quick-weather) | [Demo](https://cmringmaker.github.io/quick-weather/)
+
+
 ---
 ### <p align='center'>FOUNDATIONS</p>
 
@@ -65,6 +73,7 @@ Under each section that is completed, I will list notable things that I had lear
 - When using an ID with .getElementById, you do not need the # sign to choose it, you just simply call the ID name.
 
 ---
+---
 ### <p align='center'>INTERMEDIATE</p>
 
 ## Forms: [Sign-up Form](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Intermediate/sign-up-form) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Intermediate/sign-up-form/)
@@ -82,6 +91,7 @@ Under each section that is completed, I will list notable things that I had lear
 - Making grids be responsive to the page resizing is not only easy, but has the benefit of not having to write tons of mediaqueries.
 
 ---
+---
 ### <p align='center'>FULL STACK JAVASCRIPT</p>
 
 ## Library: [Library Code](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/library) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/library/)
@@ -98,5 +108,27 @@ Under each section that is completed, I will list notable things that I had lear
 - OOP principles such as encapsulation and abstraction are useful for keeping important data out of harms way by not letting you change it.
 - Not everything has to be darkmode.
 
-## Restaurant Page:
+## Restaurant Page: [Restaurant Page](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/restaurant-page) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/restaurant-page/dist/)
+
 *[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+
+- Classes are very useful to make utility tools.
+- Webpack has a steep learning curve, but is very flexible and powerful once you get going with it.
+- CSS natively supports nesting and it makes more sense to me to look at pages like I would look at a JS function, lumping all the relevant info together.
+
+## Todo-List: [Todo-List](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/todo-list) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/todo-list/dist/)
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+- Animating in CSS is pretty straightforward and fun.
+- Using .filter() is a strong option for quickly getting information you need from array.
+- HTMLs Dialog is a fantastic way to create custom popups.
+
+---
+---
+### <p align='center'>ASYNCHRONUS JAVASCRIPT AND APIS</p>
+
+*editors note: this is where I started using multiple repos and will be using this page as an index*
+## Weather App: [Weather App](https://github.com/cmRingmaker/quick-weather) | [Demo](https://cmringmaker.github.io/quick-weather/)
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+- THe usage of ASync code allows single-threaded JavaScript to continue operating without waiting for those async functions to finish.
+- Utilizing API's by calling for data from a server is a great way to store and display data client-side.
+- Array destructuring is wonderful! No more writing array[0] array[1], etc.. when dealing with small arrays.
