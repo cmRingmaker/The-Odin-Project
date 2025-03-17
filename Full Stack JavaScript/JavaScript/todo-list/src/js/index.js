@@ -45,8 +45,8 @@ deleteForm.addEventListener('submit', () => deleteSelectedProject())
 deleteProjectDiv.addEventListener('click', () => deleteProject())
 
 window.addEventListener('load', () => {
-  loadTasks()
-  loadGroups()
+	loadTasks()
+	loadGroups()
 })
 
 // -------------------------
@@ -62,17 +62,16 @@ const nav = new NAV()
    ================================================================== */
 
 function createTodo() {
-  modal.showModal()
+	modal.showModal()
 }
 
 function createProject() {
-  projectModal.showModal()
+	projectModal.showModal()
 }
 
 function deleteProject() {
-  deleteProjectModal.showModal()
+	deleteProjectModal.showModal()
 }
-
 
 // TEST TO FILL 100 TASKS - REMOVE - REMOVE - REMOVE
 // const arr = ['low', 'medium', 'high']
@@ -91,127 +90,147 @@ function deleteProject() {
 // }
 // TEST TO FILL 100 TASKS - REMOVE - REMOVE - REMOVE
 
-
-
-
-
 function formSubmit() {
-  console.log(form.task.value)
-  const taskContent = form.task.value
-  const taskPriority = radioCheck()
-  const selectedProject = document.getElementById('dropdown').value
-  const taskDateInput = form.time.value
+	console.log(form.task.value)
+	const taskContent = form.task.value
+	const taskPriority = radioCheck()
+	const selectedProject = document.getElementById('dropdown').value
+	const taskDateInput = form.time.value
 
-  const taskDate = new Date(taskDateInput)
-  const formattedTaskDate = taskDate.toISOString().slice(0, 10)
-  const task = TODO.createTask(taskContent, taskPriority, selectedProject, formattedTaskDate)
+	const taskDate = new Date(taskDateInput)
+	const formattedTaskDate = taskDate.toISOString().slice(0, 10)
+	const task = TODO.createTask(
+		taskContent,
+		taskPriority,
+		selectedProject,
+		formattedTaskDate
+	)
 
-  taskList.appendChild(task)
+	taskList.appendChild(task)
 
-  const storage = JSON.parse(localStorage.getItem('tasks')) || []
-  storage.push({content: taskContent, priority: taskPriority, project: selectedProject, time: formattedTaskDate})
-  localStorage.setItem('tasks', JSON.stringify(storage))
+	const storage = JSON.parse(localStorage.getItem('tasks')) || []
+	storage.push({
+		content: taskContent,
+		priority: taskPriority,
+		project: selectedProject,
+		time: formattedTaskDate,
+	})
+	localStorage.setItem('tasks', JSON.stringify(storage))
 }
 
 function radioCheck() {
-  const selected = document.querySelector(`input[name='priority']:checked`)
-  const selectedValue = selected ? selected.value : ''
-  return selectedValue
+	const selected = document.querySelector(`input[name='priority']:checked`)
+	const selectedValue = selected ? selected.value : ''
+	return selectedValue
 }
 
 function clearAllCompleted() {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || []
-  const confirmed = confirm(`Are you sure you want to delete the currently completed tasks?`)
+	const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+	const confirmed = confirm(
+		`Are you sure you want to delete the currently completed tasks?`
+	)
 
-  if(confirmed) {
-    const updatedTasks = tasks.filter(task => !task.checked)
-    // Remove completed tasks from localStorage and reload
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks))
-    location.reload()
-  }
-
+	if (confirmed) {
+		const updatedTasks = tasks.filter((task) => !task.checked)
+		// Remove completed tasks from localStorage and reload
+		localStorage.setItem('tasks', JSON.stringify(updatedTasks))
+		location.reload()
+	}
 }
 
 function loadTasks() {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || []
-  tasks.forEach(task => {
-    const taskElement = TODO.createTask(task.content, task.priority, task.project, task.time)
-    const checkboxElement = taskElement.querySelector(`input[type='checkbox']`)
-    checkboxElement.checked = task.checked || false
-    taskList.appendChild(taskElement)
-  })
+	const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+	tasks.forEach((task) => {
+		const taskElement = TODO.createTask(
+			task.content,
+			task.priority,
+			task.project,
+			task.time
+		)
+		const checkboxElement = taskElement.querySelector(`input[type='checkbox']`)
+		checkboxElement.checked = task.checked || false
+		taskList.appendChild(taskElement)
+	})
 }
 
 function loadGroups() {
-  const groups = JSON.parse(localStorage.getItem('groups')) || []
-  groups.forEach(group => {
-    const groupElement = PROJECT.createProject(group.content)
-    projectGroups.appendChild(groupElement)
+	const groups = JSON.parse(localStorage.getItem('groups')) || []
+	groups.forEach((group) => {
+		const groupElement = PROJECT.createProject(group.content)
+		projectGroups.appendChild(groupElement)
 
-    populateDropdown(group.content, 'dropdown')
-    populateDropdown(group.content, 'deleteDropdown')
-  })
+		populateDropdown(group.content, 'dropdown')
+		populateDropdown(group.content, 'deleteDropdown')
+	})
 }
 
 function projectFormSubmit() {
-  console.log(projectForm.projectName.value)
-  const projectContent = projectForm.projectName.value
-  const newProjectElement = PROJECT.createProject(projectContent)
+	console.log(projectForm.projectName.value)
+	const projectContent = projectForm.projectName.value
+	const newProjectElement = PROJECT.createProject(projectContent)
 
-  newProjectElement.addEventListener('click', () => {
-    nav.activeGroup('project', newProjectElement)
-    nav.filterTasks('project', projectContent)
-  })
-  
-  const storage = JSON.parse(localStorage.getItem('groups')) || []
-  storage.push({content: projectContent})
-  localStorage.setItem('groups', JSON.stringify(storage))
+	newProjectElement.addEventListener('click', () => {
+		nav.activeGroup('project', newProjectElement)
+		nav.filterTasks('project', projectContent)
+	})
 
-  populateDropdown(projectContent, 'dropdown')
-  populateDropdown(projectContent, 'deleteDropdown')
-  projectForm.reset()
+	const storage = JSON.parse(localStorage.getItem('groups')) || []
+	storage.push({ content: projectContent })
+	localStorage.setItem('groups', JSON.stringify(storage))
+
+	populateDropdown(projectContent, 'dropdown')
+	populateDropdown(projectContent, 'deleteDropdown')
+	projectForm.reset()
 }
 
 function populateDropdown(groupContent, dropdownId) {
-  const op = document.createElement('option')
-  op.value = groupContent
-  op.textContent = groupContent
-  const dropdown = document.getElementById(dropdownId)
-  dropdown.appendChild(op)
+	const op = document.createElement('option')
+	op.value = groupContent
+	op.textContent = groupContent
+	const dropdown = document.getElementById(dropdownId)
+	dropdown.appendChild(op)
 }
 
 function deleteSelectedProject() {
-  const selectedProject = deleteForm.deleteDropdown.value
+	const selectedProject = deleteForm.deleteDropdown.value
 
-  if(selectedProject !== 'All Projects') {
-    const confirmed = confirm(`Are you sure you want to delete the project "${selectedProject}"?`)
-    if(confirmed) {
-      const projectElement = Array.from(projectGroups.children).find(li => li.innerText === selectedProject)
-      if(projectElement) {
-        projectElement.remove()
-      }
+	if (selectedProject !== 'All Projects') {
+		const confirmed = confirm(
+			`Are you sure you want to delete the project "${selectedProject}"?`
+		)
+		if (confirmed) {
+			const projectElement = Array.from(projectGroups.children).find(
+				(li) => li.innerText === selectedProject
+			)
+			if (projectElement) {
+				projectElement.remove()
+			}
 
-      // Delete Group out of local storage
-      const groups = JSON.parse(localStorage.getItem('groups')) || []
-      const groupIndex = groups.findIndex(group => group.content === selectedProject)
-      if (groupIndex !== -1) {
-        groups.splice(groupIndex, 1)
-        localStorage.setItem('groups', JSON.stringify(groups))
-      }
+			// Delete Group out of local storage
+			const groups = JSON.parse(localStorage.getItem('groups')) || []
+			const groupIndex = groups.findIndex(
+				(group) => group.content === selectedProject
+			)
+			if (groupIndex !== -1) {
+				groups.splice(groupIndex, 1)
+				localStorage.setItem('groups', JSON.stringify(groups))
+			}
 
-      // Delete all tasks related to that group
-      const tasks = JSON.parse(localStorage.getItem('tasks')) || []
-      const updatedTasks = tasks.filter(task => task.project !== selectedProject)
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks))
-      const taskElements = taskList.querySelectorAll('.task')
-      taskElements.forEach(taskElement => {
-        const taskProject = taskElement.querySelector('.project').innerText
-        if (taskProject === selectedProject) {
-          taskElement.remove()
-        }
-      })
-    }
-  }
+			// Delete all tasks related to that group
+			const tasks = JSON.parse(localStorage.getItem('tasks')) || []
+			const updatedTasks = tasks.filter(
+				(task) => task.project !== selectedProject
+			)
+			localStorage.setItem('tasks', JSON.stringify(updatedTasks))
+			const taskElements = taskList.querySelectorAll('.task')
+			taskElements.forEach((taskElement) => {
+				const taskProject = taskElement.querySelector('.project').innerText
+				if (taskProject === selectedProject) {
+					taskElement.remove()
+				}
+			})
+		}
+	}
 
-  location.reload()
+	location.reload()
 }
