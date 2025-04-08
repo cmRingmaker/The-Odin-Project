@@ -34,6 +34,9 @@ Under each section that is completed, I will list notable things that I had lear
 ### ASYNCHRONUS JAVASCRIPT AND APIS
 [Weather App](https://github.com/cmRingmaker/quick-weather) | [Demo](https://cmringmaker.github.io/quick-weather/)
 
+### A BIT OF COMPUTER SCIENCE
+[Recursion](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/fibonacci.js) | [Merge Sort](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/merge-sort.js)
+
 
 ---
 ### <p align='center'>FOUNDATIONS</p>
@@ -132,3 +135,13 @@ Under each section that is completed, I will list notable things that I had lear
 - THe usage of ASync code allows single-threaded JavaScript to continue operating without waiting for those async functions to finish.
 - Utilizing API's by calling for data from a server is a great way to store and display data client-side.
 - Array destructuring is wonderful! No more writing array[0] array[1], etc.. when dealing with small arrays.
+
+---
+---
+###<p align='center'>A BIT OF COMPUTER SCIENCE</p>
+
+## Recursion: [Recursion](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/fibonacci.js) | [Merge Sort](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/merge-sort.js)
+*[JavaScript]*
+- Recursion is fun, but it will have a performance cost.
+- Merge Sort uses a divide and conquer technique to continously split the problem in half, and then sort it.
+- One way or the other, you're paying in time or space! Choose your battles.
