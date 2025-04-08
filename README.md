@@ -138,7 +138,7 @@ Under each section that is completed, I will list notable things that I had lear
 
 ---
 ---
-###<p align='center'>A BIT OF COMPUTER SCIENCE</p>
+### <p align='center'>A BIT OF COMPUTER SCIENCE</p>
 
 ## Recursion: [Recursion](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/fibonacci.js) | [Merge Sort](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/merge-sort.js)
 *[JavaScript]*
