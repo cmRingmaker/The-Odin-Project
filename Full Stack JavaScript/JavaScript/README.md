@@ -21,3 +21,21 @@ _[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]_
 - Classes are very useful to make utility tools.
 - Webpack has a steep learning curve, but is very flexible and powerful once you get going with it.
 - CSS natively supports nesting and it makes more sense to me to look at pages like I would look at a JS function, lumping all the relevant info together.
+
+## Todo-List: [Todo-List](https://github.com/cmRingmaker/The-Odin-Project/tree/main/Full%20Stack%20JavaScript/JavaScript/todo-list) | [Demo](https://cmringmaker.github.io/The-Odin-Project/Full%20Stack%20JavaScript/JavaScript/todo-list/dist/)
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+- Animating in CSS is pretty straightforward and fun.
+- Using .filter() is a strong option for quickly getting information you need from array.
+- HTMLs Dialog is a fantastic way to create custom popups.
+
+## Weather App: [Weather App](https://github.com/cmRingmaker/quick-weather) | [Demo](https://cmringmaker.github.io/quick-weather/)
+*[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]*
+- THe usage of ASync code allows single-threaded JavaScript to continue operating without waiting for those async functions to finish.
+- Utilizing API's by calling for data from a server is a great way to store and display data client-side.
+- Array destructuring is wonderful! No more writing array[0] array[1], etc.. when dealing with small arrays.
+
+## Recursion: [Recursion](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/fibonacci.js) | [Merge Sort](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/recursion/merge-sort.js)
+*[JavaScript]*
+- Recursion is fun, but it will have a performance cost.
+- Merge Sort uses a divide and conquer technique to continously split the problem in half, and then sort it.
+- One way or the other, you're paying in time or space! Choose your battles.
