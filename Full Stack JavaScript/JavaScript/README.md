@@ -39,3 +39,9 @@ _[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]_
 - Recursion is fun, but it will have a performance cost.
 - Merge Sort uses a divide and conquer technique to continously split the problem in half, and then sort it.
 - One way or the other, you're paying in time or space! Choose your battles.
+
+## Linked Lists: [Linked Lists](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/linked-lists/linked-list.js) | [Tests](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/linked-lists/main.js)
+*[JavaScript | Node.js]*
+- Linked Lists are similar to arrays but aren't stored in consecutive chunks of memory.
+- Writing tests is important, and I certainly need to get better at it.
+- Traversing lists is a bit confusing at first but it becomes pretty fun.
