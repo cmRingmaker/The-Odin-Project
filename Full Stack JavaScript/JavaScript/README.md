@@ -45,3 +45,9 @@ _[HTML | CSS + Grid + Flexbox | JavaScript | Webpack]_
 - Linked Lists are similar to arrays but aren't stored in consecutive chunks of memory.
 - Writing tests is important, and I certainly need to get better at it.
 - Traversing lists is a bit confusing at first but it becomes pretty fun.
+
+## HashMap: [HashMap](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/hashmap/hashmap.js)
+*[JavaScript]*
+- Hashing is a great way to get unique ID's.
+- Hashmaps dynamically scale when more room is needed in order to reduce chances of collisions.
+- On average, a hashmap has an 0(1) time complexity, making it incredibly efficient.
