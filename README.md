@@ -41,6 +41,8 @@ Under each section that is completed, I will list notable things that I had lear
 
 [HashMap](https://github.com/cmRingmaker/The-Odin-Project/blob/main/Full%20Stack%20JavaScript/JavaScript/hashmap/hashmap.js)
 
+[Binary Search Trees](https://github.com/cmRingmaker/balanced-BST) | [Demo](https://cmringmaker.github.io/balanced-BST/)
+
 ---
 ### <p align='center'>FOUNDATIONS</p>
 
@@ -160,3 +162,9 @@ Under each section that is completed, I will list notable things that I had lear
 - Hashing is a great way to get unique ID's.
 - Hashmaps dynamically scale when more room is needed in order to reduce chances of collisions.
 - On average, a hashmap has an 0(1) time complexity, making it incredibly efficient.
+
+## Binary Search Trees: [Binary Search Trees](https://github.com/cmRingmaker/balanced-BST) | [Demo](https://cmringmaker.github.io/balanced-BST/)
+*[HTML | CSS | JavaScript]*
+- Utilizing recursion for BST methods felt very good to write.
+- Setting default parameters makes my code feel a little neater.
+- Actually fully understanding now how a BST works is exciting, considering at the start I was pretty lost.
