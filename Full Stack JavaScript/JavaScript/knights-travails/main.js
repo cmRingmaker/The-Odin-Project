@@ -1,5 +1,3 @@
-// TODO: Make the dang thang
-
 const BOARD_SIZE = 8;
 
 function knightMoves(start, end) {
